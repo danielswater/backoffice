@@ -1,0 +1,6 @@
+<strong ng-show="!!filtro.descricao">| Nome da Moeda:</strong>
+<span ng-bind="filtro.descricao"></span>
+<strong ng-show="!!filtro.sigla">| Sigla da Moeda:</strong>
+<span ng-bind="filtro.sigla"></span>
+<strong ng-show="!!filtro.dataVigenciaInicial && !!filtro.dataVigenciaFinal">| Período de Vigência:</strong>
+<span ng-show="!!filtro.dataVigenciaInicial && !!filtro.dataVigenciaFinal">{{ filtro.dataVigenciaInicial | date : 'dd/MM/yyyy' }} à {{ filtro.dataVigenciaFinal | date : 'dd/MM/yyyy' }}</span>

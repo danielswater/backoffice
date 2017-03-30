@@ -1,0 +1,61 @@
+<section>
+	<div class="row conteudo-interno" cg-busy="espera">
+		<div class="row">
+			<div class="col-sm-6 col-md-8">
+				<em class="titulo-interno">Pesquisar Produto</em>
+			</div>
+			<div class=" col-sm-6 col-md-4">
+				<button class="bt bt-incluir" spt-modal-acao titulo="Incluir Produto" acao="incluir" modulo="perfil-produto" objeto="produto" callback="preFiltrar()" tamanho="meio-grande" >
+				    <i class="fa fa-plus-circle" aria-hidden="true"></i> Incluir Produto
+				</button>
+			</div>
+		</div>
+		<div class="mensagem-erro" ng-if="!!mensagemServidor">
+			<p>
+				<em>{{mensagemServidor.descricao}}</em>
+			</p>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="formulario">
+					<spt-filtro modulo="perfil-produto"></spt-filtro>
+				</div>
+			</div>
+		</div>
+		<div ng-if="produtos.length" class="row resultados">
+			<div class="col-md-12">
+				<table class="tabela" width="100%">
+					<thead class="tabela-cabecalho">
+						<tr>
+							<th>Nome do Produto</th>
+							<th>Sigla</th>
+							<th>Emissor do Crédito</th>
+							<th>Nome do Crédito</th>
+							<th>Vigência</th>
+                            <th>Pagador da Tarifa</th>
+                            <th>Ação</th>
+						</tr>
+					</thead>
+					<tbody class="tabela-conteudo">
+						<tr dir-paginate="produto in produtos | itemsPerPage: ITENS_POR_PAGINA">
+							<td class="celula">{{produto.produto.nome}}</td>
+							<td class="celula">{{produto.produto.sigla}}</td>
+							<td class="celula">{{produto.emissorCredito.nomeFantasia}}</td>
+							<td class="celula">{{produto.creditoEletronico.nmCreditoEletronico}}</td>
+							<td class="celula">{{produto.dataInicioVigencia | date:'dd/MM/yyyy'}} a {{ (produto.dataFimVigencia | date:'dd/MM/yyyy') || 'indeterminado'}}</td>
+                            <td class="celula">{{produto.produto.tipoPagadorTarifa.descricao}}</td>
+							<td class="celula tabela-acoes">
+								<i class="fa fa-search" spt-modal-acao acao="detalhes" modulo="perfil-produto" tooltip-placement="bottom" uib-tooltip="Detalhes" titulo="Detalhes do Produto" objeto="produto" tamanho="meio-grande" aria-hidden="true"></i>
+								<i class="fa fa-pencil" spt-modal-acao acao="editar" modulo="perfil-produto" tooltip-placement="bottom" uib-tooltip="Alterar" titulo="Alterar Produto" callback="carregarProduto(produto.id)" objeto="produto" tamanho="meio-grande" aria-hidden="true"></i>
+								<i class="fa fa-times" spt-modal-acao acao="excluir" modulo="perfil-produto" tooltip-placement="bottom" uib-tooltip="Excluir" titulo="Excluir" objeto="produto" callback="preFiltrar()" aria-hidden="true"></i>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="paginacao col-md-12">
+					<dir-pagination-controls boundary-links="true" template-url="app/comum/templates/paginacao.diretiva.html" callback-buscar-resultados="filtrar(objFiltro)"></dir-pagination-controls>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

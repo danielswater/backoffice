@@ -1,0 +1,84 @@
+<div class="row">
+    <div class="row">
+        <span class="col-md-3">Nome do Produto:</span>
+        <span class="col-md-3 detalhes-bold">{{produto.produto.nome}}</span>
+        <span class="col-md-3">Sigla do Produto:</span>
+        <span class="col-md-3 detalhes-bold">{{produto.produto.sigla}}</span>
+    </div>
+    <div class="row">
+        <span class="col-md-3">Nome de exibição para o Portal SBE:</span>
+        <span class="col-md-9 detalhes-bold">{{produto.produto.nomeExibicao}}</span>
+    </div>
+    <div class="row">
+        <span class="col-md-3">Descrição:</span>
+        <span class="col-md-9 detalhes-bold">{{produto.produto.descricao}}</span>
+    </div>
+    <div class="row">
+        <span class="col-md-3">Grupo do Perfil do Usuário do Transporte:</span>
+        <span class="col-md-3 detalhes-bold">{{produto.perfilUtilizacao.nomeGrupoPerfil}}</span>
+        <span class="col-md-3">Perfil do Usuário do Transporte:</span>
+        <span class="col-md-3 detalhes-bold">{{produto.perfilUsuarioTransporte.nomePerfil}}</span>
+    </div>
+    <div class="row">
+        <span class="col-md-3">Pagador da Tarifa:</span>
+        <span class="col-md-3 detalhes-bold">{{produto.produto.tipoPagadorTarifa.descricao}}</span>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <span>Tipo de Emissão de Crédito:</span>
+        </div>
+        <div class="col-md-9">
+            <table class="tabela" width="100%">
+                <thead class="tabela-cabecalho">
+                    <tr>
+                        <th>ID</th>
+                        <th>Emissor do Crédito</th>
+                        <th>Nome do Crédito</th>
+                        <th>Tipo da Vigência</th>
+                        <th>Tipo Tarifário</th>
+                        <th>Aplicação do Crédito</th>
+                        <th>Vigência</th>
+                    </tr>
+                </thead>
+                <tbody class="tabela-conteudo">
+                    <tr>
+                        <td class="celula">{{produto.tipoEmissaoCredito.id}}</td>
+                        <td class="celula">{{produto.tipoEmissaoCredito.emissorCredito.descricao}}</td>
+                        <td class="celula">{{produto.tipoEmissaoCredito.creditoEletronico.descricao}}</td>
+                        <td class="celula">{{produto.tipoEmissaoCredito.vigenciaCreditoTemporal.descricao}}</td>
+                        <td class="celula">{{produto.tipoEmissaoCredito.tipoTarifario.descricao}}</td>
+                        <td class="celula">{{aplicacaolista[produto.tipoEmissaoCredito.tipoAplicacaoTransporte]}}</td>
+                        <td class="celula">{{produto.tipoEmissaoCredito.dataInicioVigencia | date: 'dd/MM/yyyy'}} a {{produto.tipoEmissaoCredito.dataFimVigencia | date: 'dd/MM/yyyy'}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <table class="tabela" width="100%">
+        <thead class="tabela-cabecalho">
+            <tr>
+                <th>Vigências</th>
+            </tr>
+        </thead>
+        <tbody class="tabela-conteudo">
+            <tr>
+                <td class="celula">
+                    <table class="tabela" width="100%">
+                        <thead class="tabela-cabecalho">
+                            <tr>
+                                <th>Data Inicial</th>
+                                <th>Data Final</th>
+                            </tr>
+                        </thead>
+                        <tbody class="tabela-conteudo">
+                            <tr>
+                                <td class="celula">{{produto.dataInicioVigencia | date: 'dd/MM/yyyy'}}</td>
+                                <td class="celula">{{produto.dataFimVigencia | date: 'dd/MM/yyyy'}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,99 @@
+<div class="formulario">
+	<spt-mensagem-erro form="formPergunta" mensagem-servidor="mensagemServidor"></spt-mensagem-erro>
+	<form id="formModal" class="modal-form" ng-submit="formPergunta.$valid && incluir()" name="formPergunta" novalidate>
+			<div class="form-group">
+				<label class="col-md-2 control-label">Categoria da Pergunta:*</label>
+				<div class="col-md-4">
+					<select 
+						class="form-control"
+						ng-model="novaPergunta.CategoriaPergunta"
+						ng-options="tipo.descricao for tipo in CategoriaPergunta" required>
+						<option value="">Selecione a Categoria da Pergunta...</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-2 control-label">Pergunta:*</label>
+				<div class="col-md-6">
+					<input type="text" class="form-control" id="pergunta" ng-model="novaPergunta.textoPergunta" restrict="reject" validate="false" clean="true" required>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-2 control-label">Orientação:</label>
+				<div class="col-md-6">
+					<textarea class="form-control" name="descricao" ng-model="novaPergunta.textoOrientacao" ng-trim="false" maxlength="200" rows="5"></textarea>
+				</div>
+			</div>
+			</br>
+			<fieldset class="well no-bkg">
+				<legend class='legend'>Informações da Resposta</legend>
+					<div class="form-group">
+						<label class="col-md-2 control-label">Tipo da Resposta:*</label>
+						<div class='col-md-4'>
+							<select 
+								class="form-control"
+								ng-model="novaPergunta.TipoResposta"
+								ng-options="tipo.descricao for tipo in TipoResposta"
+								ng-change="novaResposta(novaPergunta.TipoResposta)" required>
+								<option value="">Selecione o Tipo de Resposta...</option>>
+							</select>
+						</div>
+						<!--<label class="radio-inline" style="margin-left:15px;text-transform:lowercase;" ng-repeat="tipo in TipoResposta">
+							<input type="radio" ng-model="novaPergunta.TipoResposta" ng-change="novaResposta(novaPergunta.TipoResposta)" value="{{tipo.descricao}}" required/>{{tipo.descricao}}
+						</label>-->
+					</div>
+					
+					<div class="form-group" ng-if="novaPergunta.TipoResposta && novaPergunta.TipoResposta.id!='4'">
+						<label class="col-md-2 control-label">Resposta:*</label>
+						<div class="col-md-6">
+							<input type="text" ng-class="respostas.length < min ? 'form-control border-red' : 'form-control' "  ng-model="novaPergunta.resposta" id="resposta">
+						</div>
+						<input type="button" ng-model="addResposta" ng-disabled="respostas.length == max || novaPergunta.resposta.length==0" ng-click="addRow(novaPergunta.resposta,novaPergunta.TipoResposta.id)" value="+">
+					</div>
+					
+					<div class="form-group" ng-if="novaPergunta.TipoResposta" >
+						<label class="col-md-5 control-label" ng-if="novaPergunta.TipoResposta.id!==4">IMPORTANTE! Mínimo de <span class='red'>{{min}}</span> e no Máximo <span class='red'>{{max}}</span> respostas para preenchimento.</label>
+						<label class="col-md-5 control-label" ng-if="novaPergunta.TipoResposta.id==4">IMPORTANTE! O texto terá o limite de <span class='red'>800</span> caracteres.</label>
+					</div>
+
+					
+					
+					<div class="form-group" ng-if="novaPergunta.TipoResposta.id != '4'">
+						<div class="row resultados col-md-12">
+							<table ng-if="respostas.length" class="tabela" width="100%">
+								<thead class="tabela-cabecalho">
+									<tr>
+										<th class="col-md-11">Resposta</th>
+										<th class="col-md-1">Ação</th>
+									</tr>
+								</thead>
+								<tbody class="tabela-conteudo">
+									<tr ng-repeat="resposta in respostas">
+										<td class="celula" ng-bind="resposta.descricaoResposta" required></td>
+										<td class="celula tabela-acoes">
+											<i class="fa fa-pencil" spt-modal-acao acao="editar" objeto="pergunta" modulo="pergunta" caminho-modulo="pesquisa/pesquisar-pergunta" 
+												tooltip-placement="left" uib-tooltip="Editar" titulo="Editar" tamanho="60"
+												aria-hidden="true"></i>
+											<i class="fa fa-times"
+												tooltip-placement="left" tamanho="medio" 
+												aria-hidden="true" ng-click="removeRow()"></i>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</fieldset>
+	
+			
+			
+		</form>
+		<div class="row">
+			<span class="legendas"><em>* Campo de preenchimento obrigatório</em></span>
+		</div>
+	</form>
+</div>
+
+
+

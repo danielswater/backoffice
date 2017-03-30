@@ -1,0 +1,38 @@
+<section>
+	<div class="row conteudo-interno" cg-busy="espera">
+		<div class="row">
+			<div class="col-sm-6 col-md-8">
+				<em class="titulo-interno">Parametrização - Score Mínimo</em>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="formulario">
+					<div class="ng-class: mensagemControle.class;" ng-if="mensagemControle">
+						<span ng-bind="mensagemControle.data.mensagem"></span>
+					</div>
+					<div class="bloco">
+						<form id="form-score" class="form-parametrizacao" ng-submit="salvar()" name="formScoreMinimo" novalidate>
+							<div class="form-group">
+								<label for="" class="col-sm-4 col-md-2 control-label">Score Mínimo:* <i class="fa fa-info-circle" aria-hidden="true" tooltip-placement="top-left" uib-tooltip="O Score mínimo é utilizado para definir o limite entre as comparações faciais realizadas. Para comparações com resultado abaixo do Score mínimo, as fotos são consideradas não-autenticadas pelo Comparador Facial e encaminhadas para análise manual." tooltip-class="tooltip-grande"></i></label>
+								<div class="col-md-1">
+									<input type="text" class="form-control" focus ng-model="config.score" ng-change="scoreMinimoLimite()" name="scoreminimo" maxlength="3" min="0" max="100" required>
+								</div>
+							</div> 
+							<div class="form-group acoes">
+								<button type="button" ng-click="cancelar()" class="bt bt-padrao bt-cancelar" form="formScoreMinimo">
+								<mark class="cor"></mark>
+								Cancelar
+								</button>
+								<button type="submit" class="bt bt-padrao">
+								<mark class="cor"></mark>
+								Salvar
+								</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

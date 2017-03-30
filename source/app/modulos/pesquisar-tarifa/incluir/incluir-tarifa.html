@@ -1,0 +1,173 @@
+<div class="formulario">
+	<spt-mensagem-erro form="formTarifaControle" mensagem-servidor="mensagemServidor" ></spt-mensagem-erro>
+
+	<form id="formModal" class="modal-form" ng-submit="incluirSubmit(formTarifaControle.$valid)" name="formTarifaControle" novalidate>
+
+		<div class="form-group">
+			<div class="div-height">
+				<label for="nomePerfil" class="col-md-3 control-label">Nome da Tarifa:</label>
+				<div class="col-md-8">
+					<input type="text" id="nomeTarifa" class="form-control" ng-model="incluir.nome" min="3" ng-change="changeInput()">
+				</div>
+			</div>
+
+
+			<div class="div-height">
+
+				<label for="nomePerfil" class="col-md-3 control-label lbl-right">Número da legislação:</label>
+				<div class="col-md-3">
+					<input type="text" id="codigoLegislacao" class="form-control" ng-model="incluir.codigoLegislacao" min="3" ng-change="changeInput()">
+				</div>
+
+
+				<!-- "nome": null,
+				"codigoLegislacao": null,
+				"dataLegislacao": null,
+				"descricao": null,
+				"dataReajuste": "2017-02-01T00:00:00-02:00",
+				"moeda": null,
+				"valor": null,
+				"listaModal": null,
+				"registro": {
+				"motivo": null,
+				"situacao": null,
+				"dataCriacao": null,
+				"usuarioCriacao": null,
+				"dataAlteracao": null,
+				"usuarioAlteracao": null -->
+
+				<label for="inicio" class="col-md-2 control-label lbl-right">Data da Legislação:*</label>
+				<div class="col-md-3">
+					<spt-data  model="incluir.dataLegislacao" maxima="fim" mascara="39/19/9999" placeholder="dd/mm/aaaa"></spt-data>
+				</div>
+
+			</div>
+
+			<div class="div-height">
+				<div class="row">
+					<label for="descricao" class="col-md-2 control-label-right text-right">Descrição:*</label>
+					<div class="col-md-9">
+						<textarea class="form-control" name="descricao" ng-model="incluir.descricao" ng-trim="false" maxlength="200" rows="5" required></textarea>
+					</div>
+				</div>
+			</div>
+
+		</br>
+		<div class="div-height"></br></br></br></br></br></div>
+
+	</br>
+	<div class="col-md-6">
+		<label for="grupoUsuarioSistema" class="col-md-3 control-label">Tipo da Tarifa:</label>
+		<div class="col-md-7">
+			<select class="form-control" ng-model="incluir.tipo" id="tipoTarifa" name="tipoTarifa" ng-options="tipo.descricao for tipo in tarifasTipos">
+				<option value="">Todos(as)</option>
+			</select>
+		</div>
+	</div>
+
+
+	<label for="inicio" class="col-md-2 control-label lbl-right">Data do Reajuste:*</label>
+	<div class="col-md-3">
+		<spt-data  model="incluir.dataReajuste" maxima="fim" mascara="39/19/9999" placeholder="dd/mm/aaaa"></spt-data>
+	</div>
+
+</br>
+
+
+
+<!--Dual List -->
+<!--Dual List -->
+<div class="form-group" ng-controller="DualList" ng-if="incluir.tipo.descricao == 'Base'">
+	<label for="situacao" class="col-md-2 control-label">Modal:*</label>
+	<div class="dual-list list-left col-md-5">
+		<div class="well text-left">
+			<ul class="list-group apps-container screen floatleft" ui-sortable="sortableOptions" ng-model="Modal">
+				<li class="list-group-item" ng-repeat="app in Modal">{{app.descricao}}</li>
+			</ul>
+		</div>
+	</div>
+	<div class="list-arrows col-md-1 text-center">
+		<label class="btn btn-default btn-sm move-right" ng-click="moveAll(Modal,incluir.listaModal,event)">
+			<span class="glyphicon glyphicon-step-forward"></span>
+		</label>
+		<label class="btn btn-default btn-sm move-left" ng-click="moveAll(incluir.listaModal,Modal,event)">
+			<span class="glyphicon glyphicon-step-backward"></span>
+		</label>
+	</div>
+	<div class="dual-list list-right col-md-5">
+		<div class="well">
+			<ul class="list-group apps-container screen floatleft" ui-sortable="sortableOptions" ng-model="incluir.listaModal">
+				<li class="list-group-item" ng-repeat="app in incluir.listaModal">{{app.descricao}}</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<!-- dual list -->
+
+<!--Dual List -->
+<!-- <div class="form-group" ng-controller="DualList" ng-if="incluir.tipo.descricao == 'Integração'">
+<label for="situacao" class="col-md-2 control-label">Modal:*</label>
+<div class="dual-list list-left col-md-5">
+<div class="well text-left">
+<ul class="list-group apps-container screen floatleft" ui-sortable="sortableOptions" ng-model="Modal">
+<li class="list-group-item" ng-repeat="app in Modal">{{app.descricao}}</li>
+</ul>
+</div>
+</div>
+<div class="list-arrows col-md-1 text-center">
+<label class="btn btn-default btn-sm move-right" ng-click="moveAll(Modal,incluir.listaModal,event)">
+<span class="glyphicon glyphicon-step-forward"></span>
+</label>
+<label class="btn btn-default btn-sm move-left" ng-click="moveAll(incluir.listaModal,Modal,event)">
+<span class="glyphicon glyphicon-step-backward"></span>
+</label>
+</div>
+<div class="dual-list list-right col-md-5">
+<div class="well">
+<ul class="list-group apps-container screen floatleft" ui-sortable="sortableOptions" ng-model="incluir.listaModal">
+<li class="list-group-item" ng-repeat="app in incluir.listaModal">{{app.descricao}}</li>
+</ul>
+</div>
+</div>
+</div> -->
+<!-- dual list -->
+
+
+
+
+
+<div class="col-md-6">
+	<label for="grupoUsuarioSistema" class="col-md-3 control-label">Tipo de Moeda:</label>
+	<div class="col-md-7">
+		<select class="form-control" ng-model="incluir.moeda" id="tipoMoeda" name="tipoMoeda" ng-options="tipo.descricao for tipo in moedasTipos">
+			<option value="">Todos(as)</option>
+		</select>
+	</div>
+</div>
+
+<div class="col-md-6" ng-if="incluir.tipo.descricao == 'Base'">
+	<label for="grupoUsuarioSistema" class="col-md-3 control-label">Valor da Tarifa Base:</label>
+	<div class="col-md-7">
+		<input type="text" id="tarifabase" class="form-control" ng-model="incluir.valor" min="3" ng-change="changeInput()">
+	</div>
+</div>
+
+
+
+
+<div class="col-md-6" ng-if="incluir.tipo.descricao == 'Integração'">
+	<label for="grupoUsuarioSistema" class="col-md-3 control-label">Valor da Tarifa de Integração:</label>
+	<div class="col-md-7">
+		<spt-select id="numeroLegislacao" model="incluir.valor" options="valorTarifa" label="descricao" track-by="id" default="{{LABEL.TODOS}}"></spt-select>
+	</div>
+</div>
+
+
+</div>
+
+
+</form>
+<div class="row">
+	<span class="legendas"><em>* Campo Obrigatório</em></span>
+</div>
+</div>

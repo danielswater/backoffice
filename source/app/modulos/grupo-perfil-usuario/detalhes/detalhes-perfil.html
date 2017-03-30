@@ -1,0 +1,90 @@
+<div class="row" ng-show="!!agrupamento">
+	<div class="col-md-12">
+		<div class="row">
+			<div class="col-md-6">
+				<span>Grupo de Perfil</span>
+				<span ng-bind="perfil.nomeGrupoPerfil" class="detalhes-bold"></span>
+			</div>
+			<div class="col-md-6">
+				<span>Nome de Exibição para o Portal SBE</span>
+				<span ng-bind="perfil.nomeExibicaoPerfil" class="detalhes-bold"></span>
+			</div>
+		</div>
+		<div class="row">&nbsp;</div>
+		<!-- <div class="row">
+			<div class="col-md-6">
+				<span>Descrição</span>
+				<span ng-bind="agrupamento.descricao" class="detalhes-bold"></span>
+			</div>
+		</div> -->
+
+
+
+
+		<div class="row">&nbsp;</div>
+		<!-- <div class="row">
+			<div class="col-md-6">
+				<span>Imagem</span>
+				<img src="{{imagem}}" class="detalhes-bold" />
+			</div>
+		</div> -->
+		<div class="row">&nbsp;</div>
+
+
+		<div class="row">
+			<div class="col-md-3">
+				<span>Cor de Fundo</span>
+				<div ng-bind="agrupamento.corFundo" class="detalhes-bold"></div>
+				<div style="background-color:{{agrupamento.corFundo}};height:20px;width:60px;"></div>
+			</div>
+			<div class="col-md-6">
+				<span>Cor da Fonte</span>
+				<div ng-bind="agrupamento.corFonte" class="detalhes-bold"></div>
+				<div style="background-color:{{agrupamento.corFonte}};height:20px;width:60px;"></div>
+			</div>
+		</div>
+
+	</div>
+
+
+	<div class="row">&nbsp;</div>
+	<div class="borda-preta-1px">
+		<div class="row">
+			<div class="fundo-cinza borda-preta-abaixo padding-2px">
+				<span>Situação do Cadastro</span>
+			</div>
+		</div>
+		<div class="row">&nbsp;</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="col-md-2 fundo-cinza borda-cinza-e-1px borda-cinza-t-1px borda-cinza-b-1px">
+					<span>Data</span>
+				</div>
+				<div class="col-md-3 fundo-cinza borda-cinza-e-1px borda-cinza-t-1px borda-cinza-b-1px">
+					<span>Usuário</span>
+				</div>
+				<div class="col-md-3 fundo-cinza borda-cinza-e-1px borda-cinza-t-1px borda-cinza-b-1px">
+					<span>Situação</span>
+				</div>
+				<div class="col-md-4 fundo-cinza borda-cinza-de-1px borda-cinza-t-1px borda-cinza-b-1px">
+					<span>Motivo da Inativação</span>
+				</div>
+			</div>
+			<div class="col-md-12" ng-repeat="situacao in situacoes">
+				<div class="col-md-2 borda-cinza-e-1px borda-cinza-b-1px">
+					<span ng-bind="situacao.data"></span>
+				</div>
+				<div class="col-md-3 borda-cinza-e-1px borda-cinza-b-1px">
+					<span ng-bind="situacao.usuario"></span>
+				</div>
+				<div class="col-md-3 borda-cinza-e-1px borda-cinza-b-1px">
+					<span ng-bind="situacao.situacao"></span>
+				</div>
+				<div class="col-md-4 borda-cinza-de-1px borda-cinza-b-1px">
+					<span ng-bind="situacao.motivoInativacao"></span>
+				</div>
+			</div>
+		</div>
+		<div class="row">&nbsp;</div>
+	</div>
+</div>

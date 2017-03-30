@@ -1,0 +1,85 @@
+<div class="row" ng-show="!!faq">
+	<div class="col-md-12">
+		<div class="row">
+			<div class="col-md-2">
+				<span>Categoria</span>
+			</div>
+			<div class="col-md-10">
+				<span ng-bind="faq.categoria.descricao" class="detalhes-bold"></span>
+			</div>
+		</div>
+        <div class="row">&nbsp;</div>
+		<div class="row">
+			<div class="col-md-2">
+				<span>Ordenação</span>
+			</div>
+			<div class="col-md-10">
+				<span ng-bind="faq.nrOrdenacao" class="detalhes-bold"></span>
+			</div>
+		</div>
+	    <div class="row">&nbsp;</div>
+		<div class="row">
+			<div class="col-md-2">
+				<span>Pergunta</span>
+			</div>
+			<div class="col-md-10">
+				<span ng-bind="faq.txPerguntaFrequente" class="detalhes-bold"></span>
+			</div>
+		</div>
+	    <div class="row">&nbsp;</div>
+		<div class="row">
+			<div class="col-md-2">
+				<span>Resposta</span>
+			</div>
+			<div class="col-md-10">
+				<span ng-bind="faq.txRespostaFaq" class="detalhes-bold"></span>
+			</div>
+		</div>
+	    <div class="row">&nbsp;</div>
+		<div class="row" ng-show="faq.registro.situacao.id == 'A' ">
+			<div class="col-md-2">
+				<span>Situação</span>
+			</div>
+			<div class="col-md-10">
+				<span ng-bind="faq.registro.situacao.descricao" class="detalhes-bold"></span>
+			</div>
+		</div>
+	</div>
+	<div class="row">&nbsp;</div>
+
+	<div class="row resultados" ng-show="faq.registro.situacao.id == 'I' ">
+		<table class="tabela " width="100%">
+			<thead class="tabela-cabecalho">
+				<tr>
+					<th>Situação do FAQ</th>
+				</tr>
+			</thead>
+			<tbody class="tabela-conteudo">
+				<tr>
+					<td class="celula">
+						<div class="row">
+							<table class="tabela" width="100%">
+								<thead class="tabela-cabecalho">
+									<tr>
+										<th>Data</th>
+										<th>Usuário</th>
+										<th>Situação</th>
+										<th>Motivo da Inativação</th>
+									</tr>
+								</thead>
+								<tbody class="tabela-conteudo" ng-model="situacoes">
+									<tr>
+										<td class="celula">{{faq.registro.dataAlteracao | date : 'dd/MM/yyyy'}} às {{faq.registro.dataAlteracao | date : 'HH:mm:ss'}}</td>
+										<td class="celula"><span ng-bind="faq.registro.usuarioAlteracao"></span></td>
+										<td class="celula"><span ng-bind="faq.registro.situacao.descricao"></span></td>
+										<td class="celula"><span ng-bind="faq.registro.motivo.descricao"></span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

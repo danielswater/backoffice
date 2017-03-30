@@ -1,0 +1,21 @@
+<div ng-if="relatorio.length" class="row resultados" id="relatorio">
+	<div class="col-md-12">
+		<table class="tabela" width="100%">
+			<thead class="tabela-cabecalho">
+				<tr>
+					<th>Carro</th>
+					<th>Total</th>		
+				</tr>
+			</thead>
+			<tbody class="tabela-conteudo">
+				<tr dir-paginate="item in relatorio | itemsPerPage: ITENS_POR_PAGINA">
+					<td class="celula" ng-bind="item.carro"></td>
+					<td class="celula" ng-bind="item.total"></td>		
+				</tr>
+			</tbody>
+		</table>
+		<div class="paginacao col-md-12">
+			<dir-pagination-controls boundary-links="true" template-url="app/comum/templates/paginacao.diretiva.html" callback-buscar-resultados="filtrar(objFiltro)"></dir-pagination-controls>
+		</div>
+	</div>
+</div>

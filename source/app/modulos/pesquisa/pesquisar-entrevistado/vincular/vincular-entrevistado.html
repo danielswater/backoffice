@@ -1,0 +1,38 @@
+<div class="formulario">
+	<spt-mensagem-erro form="formCredito" mensagem-servidor="mensagemServidor" ></spt-mensagem-erro>
+	<div class="ng-class: mensagemControle.class;" ng-if="mensagemControle">
+		<span ng-bind="mensagemControle.data.mensagem"></span>
+	</div>
+	<spt-mensagem-erro form="formVincular" mensagem-servidor="mensagemServidor"></spt-mensagem-erro>
+	<form id="formVincular" class="modal-form" ng-submit="formVincular.$valid && vincular()" name="formVincular" novalidate>
+		<div class="form-group">
+			<div class="row">
+				<label for="" class="col-md-3 control-label-right text-right">Grupo de Entrevistados:*</label>
+				<div class="col-md-6">
+					<!--<select 
+						class="form-control"
+						ng-model="filtro.grupo" 
+						ng-options="grupo for grupo in grupo" required>
+						<option value="">Selecione o Grupo de Entrevistado:</option>
+					</select>-->
+					<select 
+						class="form-control"
+						ng-model="filtro.CategoriaPergunta"
+						ng-options="tipo.descricao for tipo in CategoriaPergunta">
+						<option value="">Selecione a Categoria da Pergunta</option>>
+					</select>
+				</div>
+			</div>
+			<div class="row">&nbsp;</div>
+			<div class="row">
+				<label for="" class="col-md-3 control-label-right text-right">Entrevistado:*</label>
+				<div class="col-md-6">
+					<input type="text" class="form-control" id="entrevistado" ng-model="filtro.entrevistado" restrict="reject" validate="false" clean="true" required>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<span class="legendas"><em>* Campo Obrigatório</em></span>
+		</div>
+	</form>
+</div>

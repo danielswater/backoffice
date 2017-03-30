@@ -1,0 +1,22 @@
+<div class="form-group">
+	<label for="sam" class="col-md-2 control-label">Tipo de SAM:*</label>
+	<div class="col-md-6">
+		<select class="form-control" ng-model="filtroSam.tipoSAM" id="samTipo" name="samTipo" ng-options="tipo.descricao for tipo in samsTipos">
+			<option value="">Todos(as)</option>
+		</select>
+	</div>
+</div>
+<div class="form-group">
+	<label for="sam" class="col-md-2 control-label">Número de Série:</label>
+	<div class="col-md-6">
+		<input type="text" class="form-control" id="numero" name="numero" ng-model="filtroSam.numeroSerie" mask="99999999999999999999" restrict="reject" validate="false" clean="true">
+	</div>
+</div>
+<div class="form-group">
+	<label for="situacao" class="col-md-2 control-label">Situação:*</label>
+	<div class="col-md-3">
+		<select class="form-control" ng-model="filtroSam.registro.situacao" id="situacao" name="situacao" ng-options="situacao.descricao for situacao in situacoes">
+			<option value="">Todos(as)</option>
+		</select>
+	</div>
+</div>

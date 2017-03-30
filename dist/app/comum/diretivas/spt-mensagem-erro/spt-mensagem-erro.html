@@ -1,0 +1,6 @@
+<div>
+	<p class="mensagem-erro" ng-if="(form.$submitted && form.$invalid) || (form.$invalid && form.$submitted && invalido) || (!!mensagemServidor && form.$submitted)">
+		<em ng-bind="mensagem.descricao" class="block" ng-if="form.$invalid"></em>
+		<em ng-bind="mensagemServidor.descricao"></em>
+	</p>	
+</div>

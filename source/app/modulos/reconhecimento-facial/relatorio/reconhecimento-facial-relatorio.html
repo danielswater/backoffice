@@ -1,0 +1,28 @@
+<section>
+	<div class="row conteudo-interno" cg-busy="espera">
+		<div class="row">
+			<div class="col-md-8"> <em class="titulo-interno">Relatório<span ng-show="filtro.tipoRelatorio != null"> - </span>{{filtro.tipoRelatorio.nome}}</em> </div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="formulario">
+					<spt-filtro caminho-modulo="reconhecimento-facial/relatorio" nome-filtro="reconhecimento-facial-relatorio"></spt-filtro>
+				</div>
+			</div>
+		</div>
+		<div class="mensagem" ng-if="!!mensagemServidor">
+			<p> <em ng-bind="mensagemServidor.descricao"></em> </p>
+		</div>
+		<spt-inclusao-estatica ng-if="!!filtro.tipoRelatorio && filtro.tipoRelatorio.nome == tipoRelatorioAntigo" template-url="app/modulos/reconhecimento-facial/relatorio/comum/parcial/{{filtro.tipoRelatorio.parcial}}"></spt-inclusao-estatica>
+		<div class="row" ng-show="!!filtro.tipoRelatorio && filtro.tipoRelatorio.nome == tipoRelatorioAntigo && relatorio.length">
+			<div class="col-md-12">
+				<div class="row">
+					<button class="bt bt-padrao" ng-click="exportarRelatorio()" type="button">
+						<mark class="cor"></mark>
+						<i class="fa fa-download"> </i> Exportar Relatório
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

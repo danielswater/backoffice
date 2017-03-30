@@ -1,0 +1,55 @@
+<section>
+	<div class="row conteudo-interno" cg-busy="espera">
+		<div class="row">
+			<div class="col-sm-6 col-md-8">
+				<em class="titulo-interno">Manutenção - Mídia</em>
+			</div>
+			<div class=" col-sm-6 col-md-4">
+				<button class="bt bt-incluir" spt-modal-acao titulo="Incluir" acao="incluir" modulo="midia" objeto="items" >
+				<i class="fa fa-plus-circle" aria-hidden="true"></i> Incluir Mídia
+				</button>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="formulario">
+					<spt-filtro modulo="midia"></spt-filtro>
+				</div>
+			</div>
+		</div>
+		<div class="mensagem" ng-if="!!mensagemServidor">
+			<p>
+				<em ng-bind="mensagemServidor.descricao"></em>
+			</p>
+		</div>
+		<div ng-if="midias.length" class="row resultados">
+			<div class="col-md-12">
+				<table class="tabela" width="100%">
+					<thead class="tabela-cabecalho">
+						<tr>
+							<th>Identificador</th>
+							<th>Descrição</th>
+							<th>Ações</th>
+						</tr>
+					</thead>
+					<tbody class="tabela-conteudo">
+						<tr dir-paginate="midia in midias | itemsPerPage: ITENS_POR_PAGINA">
+							<td class="celula" ng-bind="midia.id"></td>
+							<td class="celula" ng-bind="midia.descricao"></td>
+							<td class="celula tabela-acoes">							
+								<spt-botao-alternar condicao="midia.registro.status == 'A'" texto-verdadeiro="Inativar" texto-falso="Reativar" classe-verdadeiro="ativo" callback="carregarItem(midia.id)" posicao="bottom" icone="fa-check" modulo="midia" acao="ativar" objeto="midia" titulo-verdadeiro="Inativar" titulo-falso="Reativar"></spt-botao-alternar>
+								
+								<i class="fa fa-pencil" spt-modal-acao acao="editar" modulo="midia" tooltip-placement="bottom" uib-tooltip="Alterar" titulo="Alterar" callback="carregarItem(midia.id)" objeto="midia" aria-hidden="true"></i>
+								<i class="fa fa-search" spt-modal-acao acao="detalhes" modulo="midia" tooltip-placement="bottom" uib-tooltip="Consultar Detalhes" titulo="Consultar Detalhes" objeto="midia"  aria-hidden="true"></i>
+								<i class="fa fa-times" spt-modal-acao acao="excluir" modulo="midia" tooltip-placement="bottom" uib-tooltip="Excluir" titulo="Excluir" objeto="midia" callback="preFiltrar()" aria-hidden="true"></i>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="paginacao col-md-12">
+					<dir-pagination-controls boundary-links="true" template-url="app/comum/templates/paginacao.diretiva.html" ></dir-pagination-controls>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

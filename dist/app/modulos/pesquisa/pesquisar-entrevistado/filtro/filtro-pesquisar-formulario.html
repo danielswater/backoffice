@@ -1,0 +1,30 @@
+<div class="form-group">
+	<spt-mensagem-erro form="formCredito" mensagem-servidor="mensagemServidor" ></spt-mensagem-erro>
+	<div class="ng-class: mensagemControle.class;" ng-if="mensagemControle">
+		<span ng-bind="mensagemControle.data.mensagem"></span>
+	</div>
+	<div class="espac"></div>
+	<div class="form-group">
+		<label class="col-md-3 control-label">Grupo de Entrevistados:*</label>
+		<div class="col-md-4">
+			<select 
+				class="form-control"
+				ng-model="filtro.CategoriaPergunta"
+				ng-options="tipo.descricao for tipo in CategoriaPergunta" required>
+				<option value="">Selecione a Categoria da Pergunta...</option>>
+			</select>
+			<!--<select 
+				class="form-control" 
+				ng-model="filtro.grupo" 
+				ng-options="o.grupo for o in pesquisa | unique:'grupo'" required>
+				<option value="">Selecione o Grupo de Entrevistado:</option>>
+			</select>-->
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-md-3 control-label">CPF do Entrevistado:*</label>
+		<div class="col-md-4">
+			<input type="text" class="form-control" id="entrevistado" ng-model="filtro.entrevistado" restrict="reject" validate="false" clean="true" required>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,66 @@
+<section>
+    <div class="row conteudo-interno" cg-busy="espera">
+        <div class="row">
+            <div class="col-sm-6 col-md-8">
+                <em class="titulo-interno">Pesquisar Estampa</em>
+            </div>
+            <div class=" col-sm-6 col-md-4">
+                <button class="bt bt-incluir" spt-modal-acao titulo="Incluir Estampa de Cartão" acao="incluir" modulo="estampa" objeto="items" callback="incluirSucesso()">
+				<i class="fa fa-plus-circle" aria-hidden="true"></i> Incluir Estampa de Cartão
+				</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="formulario">
+                    <spt-filtro modulo="estampa"></spt-filtro>
+                </div>
+            </div>
+        </div>
+        <div class="mensagem" ng-if="!!mensagemServidor">
+            <p>
+                <em>{{mensagemServidor.descricao}}</em>
+            </p>
+        </div>
+        <div ng-if="estampas.length" class="row resultados">
+            <div class="col-md-12">
+                <table class="tabela" width="100%">
+                    <thead class="tabela-cabecalho">
+                        <tr>
+                            <th>Nome da Estampa</th>
+                            <th>Descricao</th>
+                            <th>Imagem</th>
+                            <th>Situação</th>
+                            <th>Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody class="tabela-conteudo">
+                        <tr dir-paginate="estampa in estampas | itemsPerPage: ITENS_POR_PAGINA">
+                            <td class="celula">{{estampa.nome}}</td>
+                            <td class="celula">{{estampa.descricao}}</td>
+                            <td class="celula"><img data-ng-src="{{estampa.imagemClob}}"></td>
+                            <td class="celula">{{estampa.registro.situacao.descricao}}</td>
+                            <td class="celula tabela-acoes">
+                                <i class="fa fa-search" spt-modal-acao acao="detalhes" modulo="estampa" tooltip-placement="bottom" uib-tooltip="Consultar Detalhes"
+                                    titulo="Consultar Detalhes da Estampa do Cartão" objeto="estampa" aria-hidden="true"></i>
+                                <i class="fa fa-pencil" spt-modal-acao acao="editar" modulo="estampa" tooltip-placement="bottom" uib-tooltip="Alterar" titulo="Alterar"
+                                    objeto="estampa" callback="carregarEstampa(estampa.identificadorEstampa)" aria-hidden="true"></i>
+                                <spt-botao-alternar condicao="estampa.registro.situacao.id == 'A' || estampa.registro.situacao.id == 'S'" texto-verdadeiro="Inativar"
+                                    texto-falso="Reativar" classe-verdadeiro="ativo" callback="carregarEstampa(estampa.identificadorEstampa)" posicao="bottom"
+                                    icone="fa-check" modulo="estampa" acao="ativar" objeto="estampa" titulo-verdadeiro="Inativar" titulo-falso="Reativar"></spt-botao-alternar>
+                                <i class="fa fa-times" spt-modal-acao acao="excluir" modulo="estampa" tooltip-placement="bottom" uib-tooltip="Excluir" titulo="Excluir"
+                                    objeto="estampa" callback="preFiltrar()" aria-hidden="true"></i>
+                            </td>
+                        </tr>
+						<tr ng-show="estampas.length">
+							<td colspan="5" align="right">Total de estampas cadastrados: {{ estampas.length }}</td>
+						</tr>                        
+                    </tbody>
+                </table>
+                <div class="paginacao col-md-12">
+                    <dir-pagination-controls boundary-links="true" template-url="app/comum/templates/paginacao.diretiva.html"></dir-pagination-controls>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

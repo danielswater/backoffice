@@ -1,0 +1,85 @@
+ <section>
+	<div class="row conteudo-interno" cg-busy="espera">
+		<div class="row">
+			<div class="col-sm-6 col-md-8">
+				<em class="titulo-interno">Pesquisar Menu da Página Principal</em>
+			</div>
+			<div class=" col-sm-6 col-md-4">
+				<button class="bt bt-incluir" spt-modal-acao 
+					modulo="menu-pagina-principal" caminho-modulo="menu-pagina-principal" acao="incluir" 
+					tamanho="medio" titulo="Incluir">
+				    <i class="fa fa-plus-circle" aria-hidden="true"></i> Incluir Menu da Página Principal
+				</button>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="formulario">
+					<spt-filtro caminho-modulo="menu-pagina-principal" nome-filtro="menu-pagina-principal"></spt-filtro>
+				</div>
+			</div>
+		</div>
+		<div class="mensagem" ng-if="!!mensagemServidor">
+			<p>
+				<em ng-bind="mensagemServidor.descricao"></em>
+			</p>
+		</div>
+		<div ng-if="menusPaginaPrincipal.length" class="row resultados">
+			<div class="col-md-12">
+				<table class="tabela" width="100%">
+					<thead class="tabela-cabecalho">
+						<tr>
+							<th style="width: 100px;">Ordenação</th>
+							<th>Nome do Menu da Página Principal</th>
+							<th style="width: 215px;">Grupo de Usuário do Sistema</th>
+							<th style="text-align:center;width: 200px;">Agrupamento</th>
+							<th style="text-align:center;width:145px;">Ação</th>
+						</tr>
+					</thead>
+					<tbody class="tabela-conteudo" ui-sortable="sortableOptions" ng-model="menusPaginaPrincipal">
+						<tr ng-repeat="menu in menusPaginaPrincipal" ng-show="menusPaginaPrincipal.length">
+							<td class="celula mover-itens" ng-bind="menu.ordenacao"></td>
+							<td class="celula mover-itens" ng-bind="menu.nomeMenusPaginaPrincipal"></td>
+							<td class="celula mover-itens" ng-bind="menu.grupoUsuarioSistema"></td>
+							<td class="celula mover-itens" ng-bind="menu.agrupamento"></td>
+							<td class="celula tabela-acoes">
+								<i class="fa fa-search" spt-modal-acao acao="detalhes" objeto="menu" modulo="menu-pagina-principal" caminho-modulo="menu-pagina-principal" 
+									tooltip-placement="left" uib-tooltip="Consultar Detalhes" titulo="Consultar Detalhes" tamanho="medio" 
+									aria-hidden="true"></i>
+								<i class="fa fa-pencil" spt-modal-acao acao="editar" objeto="menu" modulo="menu-pagina-principal" caminho-modulo="menu-pagina-principal" 
+									tooltip-placement="left" uib-tooltip="Editar" titulo="Editar"  tamanho="medio" 
+									aria-hidden="true"></i>
+
+								<spt-botao-alternar condicao="menu.registro.situacao.id =='A' "
+									texto-verdadeiro="Inativar" 
+									texto-falso="Reativar" 
+									classe-verdadeiro="ativo" 
+									modulo="menu-pagina-principal" 
+									objeto="menu" 
+									acao="ativar" 
+									posicao="bottom" icone="fa-check" 
+									titulo-verdadeiro="Inativar" titulo-falso="Reativar"
+									ng-class="menu.registro.situacao.id == 'A' ? 'corVerde' : 'corCinza' "
+									callback="preFiltrar()"
+									></spt-botao-alternar>
+
+								<i class="fa fa-times" spt-modal-acao acao="excluir" objeto="menu" modulo="menu-pagina-principal" caminho-modulo="menu-pagina-principal" callback="preFiltrar()"
+									tooltip-placement="left" uib-tooltip="Excluir" titulo="Excluir"  tamanho="medio" 
+									aria-hidden="true"></i>
+							</td>
+						</tr>
+						<tr ng-show="menusPaginaPrincipal.length">
+							<td colspan="5" align="right">Total de Menus Cadastrados: {{ menusPaginaPrincipal.length }}</td>
+						</tr>
+						<tr ng-show="menusPaginaPrincipal.length == 0">
+							<td colspan="5">Não há registro retornado na pesquisa.</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="row">
+				<span class="legendas"><em>&nbsp;&nbsp;&nbsp;Segure e arraste as linhas para reposicionar</em></span>
+			</div>
+		</div>
+	</div>
+</section>

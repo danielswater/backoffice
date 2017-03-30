@@ -1,0 +1,38 @@
+<p style="text-align:center">Deseja excluir o registro?</p>
+	<div class="row resultados">
+		<div class="col-md-12">
+			<table class="tabela" width="100%">
+					<thead class="tabela-cabecalho">
+						<tr>
+							<th style="width: 50px;">ID</th>
+							<th>Emissor do Crédito</th>
+							<th>Nome do Crédito</th>
+							<th>Tipo da Vigência</th>
+							<th>Tipo Tarifário</th>
+							<th>Aplicação do Crédito</th>
+						</tr>
+					</thead>
+					<tbody class="tabela-conteudo">
+						<tr ng-model="emissao">
+							<td class="celula">{{emissao.id}}</td>
+							<td class="celula">{{emissao.emissorCredito.descricao}}</td>
+							<td class="celula">{{emissao.creditoEletronico.descricao}}</td>
+							<td class="celula">{{emissao.vigenciaCreditoTemporal.descricao}}</td>
+							<td class="celula">{{emissao.tipoTarifario.descricao}}</td>
+							<td class="celula">{{emissao.tipoAplicacaoTransporte.descricao}}</td>
+						</tr>
+						<tr ng-show="emissao.length">
+							<td colspan="7" align="right">Total de Tipos de Emissão de Créditos Cadastrados: {{ emissao.length }}</td>
+						</tr>
+						<tr ng-show="emissao.length == 0">
+							<td colspan="7">Não há registro retornado na pesquisa.</td>
+						</tr>
+					</tbody>
+				</table>
+		</div>
+	</div>
+<div>
+	<p class="mensagem-erro" ng-if="!!mensagemServidor">
+		<em>{{mensagemServidor.descricao}}</em>
+	</p>
+</div>

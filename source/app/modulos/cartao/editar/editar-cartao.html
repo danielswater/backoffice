@@ -1,0 +1,50 @@
+<div class="formulario">
+	<spt-mensagem-erro form="formCartao" mensagem-servidor="mensagemServidor" ></spt-mensagem-erro>
+	<form id="formModal" class="modal-form" ng-submit="formCartao.$valid && incluir()"  name="formCartao" novalidate>
+		<div class="form-group">
+			<label for="" class="col-md-3 control-label">Número Lógico do Cartão:*</label>
+			<div class="col-md-9">
+				<input type="text" class="form-control" focus ng-model="cartao.numeroLogico" required >
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="" class="col-md-3 control-label">Número Físico do Cartão:*</label>
+			<div class="col-md-9">				
+				<input type="text" class="form-control" ng-model="cartao.numeroFisico" required restrict="reject" clean="true">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="" class="col-md-3 control-label">Código do Usuário:</label>
+			<div class="col-md-9">				
+				<input type="text" class="form-control" ng-model="cartao.codigoUsuario">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="" class="col-md-3 control-label">Tipo de Casco:*</label>
+			<div class="col-md-9">
+				<select class="form-control" ng-model="cartao.tipoCasco" id="tipoCasco" name="tipoCasco" ng-options="tipoCasco.descricao for tipoCasco in tipoCascos" required>
+					<option value="" selected="selected">Selecione</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="" class="col-md-3 control-label">Tipo de Cartão:*</label>
+			<div class="col-md-9">			
+				<select class="form-control" ng-model="cartao.tipoCartao" id="tipoCartao" name="tipoCartao" ng-options="tipoCartao.descricao for tipoCartao in tipoCartoes" required>
+					<option value="" selected="selected">Selecione</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="" class="col-md-3 control-label">Situação do Cartão:*</label>
+			<div class="col-md-9">				
+				<select class="form-control" ng-model="cartao.situacaoCartao" id="situacaoCartao" name="situacaoCartao" ng-options="situacaoCartao.descricao for situacaoCartao in situacaoCartoes" required>
+					<option value="" selected="selected">Selecione</option>
+				</select>
+			</div>
+		</div>
+	</form>
+	<div class="row">
+		<span class="legendas"><em>* Campo Obrigatório</em></span>
+	</div>
+</div>

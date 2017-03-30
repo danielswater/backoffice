@@ -1,0 +1,8 @@
+<strong ng-show="!!filtro.categoria">| Categoria:</strong>
+<span ng-bind="filtro.categoria.descricao"></span>
+<strong ng-show="!!filtro.tituloConteudo">| Titulo:</strong>
+<span ng-bind="filtro.tituloConteudo"></span>
+<strong ng-show="!!filtro.registro">| Situação:</strong>
+<span ng-bind="filtro.registro.situacao.descricao"></span>
+<strong ng-show="!!filtro.flagDestaque">| Destaque:</strong>
+<span ng-bind=" filtro.flagDestaque == '' ? 'Ambos' : filtro.flagDestaque == 'S' ? 'Sim' : 'Não' "></span>

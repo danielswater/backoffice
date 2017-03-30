@@ -1,0 +1,28 @@
+<div class="filtro">	
+	<form id="formFiltro" class="filtro" ng-submit="formFiltro.$valid && preFiltrar()"  name="formFiltro" novalidate>	
+		<uib-accordion>
+			<uib-accordion-group is-open="filtro.aberto">			
+				<spt-mensagem-erro form="formFiltro" contexto="filtro"></spt-mensagem-erro>
+				<uib-accordion-heading >
+					<em class="titulo-filtro">Filtro(s) de Pesquisa:</em>				
+					<span class="conteudo-filtrado" ng-show="!filtro.aberto && formFiltro.$valid ">
+						<i class="fa fa-info-circle" aria-hidden="true"></i>										
+						<spt-inclusao-estatica template-url="{{sptFiltro.template.filtrado}}"></spt-inclusao-estatica>		
+					</span>
+					<i class="fa" ng-class="{'fa-caret-square-o-down': !filtro.aberto, 'fa-caret-square-o-up': filtro.aberto}" aria-hidden="true"></i>
+				</uib-accordion-heading>			
+				<spt-inclusao-estatica template-url="{{sptFiltro.template.formulario}}"></spt-inclusao-estatica>
+				<div class="form-group acoes">
+					<button type="button" ng-click="limpar()" class="bt bt-padrao bt-cancelar" form="formFiltro">
+					<mark class="cor"></mark>
+					Limpar
+					</button>
+					<button type="submit" class="bt bt-padrao" form="formFiltro">
+					<mark class="cor"></mark>
+					Pesquisar
+					</button>
+				</div>
+			</uib-accordion-group>
+		</uib-accordion>
+	</form>
+</div>

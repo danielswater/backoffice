@@ -1,0 +1,18 @@
+<div class="formulario">
+	<spt-mensagem-erro form="formInativarPerfil" mensagem-servidor="mensagemServidor" ></spt-mensagem-erro>
+	<form id="formModal" class="modal-form" ng-submit="inativarSubmit()"  name="formInativarPerfil" novalidate>
+		<div class="form-group">
+			<div class="row">
+				<label for="" class="col-md-3 control-label-right text-right">Motivo</label>
+				<div class="col-md-9">
+					<select id="motivosInativacaoPerfil" class="form-control"
+						ng-model="inativar.motivosInativacaoPerfil"
+						ng-options="motivosInativacaoPerfil.descricao  for motivosInativacaoPerfil in motivosInativacaoPerfil"
+						ng-required="required">
+						<option value="" selected="selected">Selecione</option>
+					</select>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

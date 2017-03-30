@@ -1,0 +1,32 @@
+<table class="tabela">
+	<tbody>
+		<tr>
+			<td><strong>Tipo do SAM:</strong></td>
+			<td>{{sam.tipoSAM.descricao}}</td>
+		</tr>
+		<tr>
+			<td><strong>Número do SAM:</strong></td>
+			<td>{{sam.numeroSAM}}</td>
+		</tr>
+		<tr>
+			<td><strong>Número de Série:</strong></td>
+			<td>{{sam.numeroSerie}}</td>
+		</tr>
+		<tr ng-if="sam.registro.situacao.id == 'I'">
+			<td><strong>Data/hora:</strong></td>
+			<td>{{sam.registro.dataAlteracao}}</td>
+		</tr>
+		<tr ng-if="sam.registro.situacao.id == 'I'">
+			<td><strong>Usuário:</strong></td>
+			<td>{{sam.registro.usuarioAlteracao}}</td>
+		</tr>
+		<tr ng-if="sam.registro.situacao.id == 'I'">
+			<td><strong>Situação:</strong></td>
+			<td>{{sam.registro.situacao.descricao}}</td>
+		</tr>
+		<tr ng-if="sam.registro.situacao.id == 'I'">
+			<td><strong>Motivo:</strong></td>
+			<td>{{sam.registro.motivo.descricao}}</td>
+		</tr>
+	</tbody>
+</table>

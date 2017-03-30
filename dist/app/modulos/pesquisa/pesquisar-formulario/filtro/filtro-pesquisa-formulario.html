@@ -1,0 +1,39 @@
+<div class="form-group">
+<spt-mensagem-erro form="formCredito" mensagem-servidor="mensagemServidor" ></spt-mensagem-erro>
+<div class="ng-class: mensagemControle.class;" ng-if="mensagemControle">
+	<span ng-bind="mensagemControle.data.mensagem"></span>
+</div>
+<div class="espac"></div>
+<div class="form-group">
+	<label class="col-md-3 control-label">Formulário de Pesquisa:</label>
+	<div class="col-md-5">
+		<input type="text" class="form-control" id="grupo" ng-model="filtro.ordenacao" restrict="reject" validate="false" clean="true">
+	</div>
+</div>
+<div class="form-group">
+	<label class="col-md-3 control-label">Grupo de Entrevistados:</label>
+	<div class="col-md-5">
+		<select 
+			class="form-control" 
+			ng-model="filtro.categoria" 
+			ng-options="o.ordenacao for o in pesquisa_formulario">
+			<option value="">Grupo de Entrevistados:</option>>
+		</select>
+	</div>
+</div>
+<div class="form-group">
+	<label class="col-md-3 control-label">Período de Vigência:</label>
+	<div class="col-width fix-left">
+		<spt-data atualmin="atual" model="inicio" maxima="fim" mascara="39/19/9999" placeholder="dd/mm/aaaa" required></spt-data>
+	</div>
+	<label class='float-left control-label'>à</label>
+	<div class="col-width">
+		<spt-data atualmin="atual" model="inicio" maxima="fim" mascara="39/19/9999" placeholder="dd/mm/aaaa" required></spt-data>
+	</div>
+</div>
+<div class="form-group">
+	<label class="col-md-3 control-label">Situação:</label>
+	<div class="col-md-5">
+		<input type="text" class="form-control" id="grupo" ng-model="filtro.situacao" restrict="reject" validate="false" clean="true">
+	</div>
+</div>

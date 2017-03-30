@@ -1,0 +1,147 @@
+<div class="formulario" ng-show="informacao_editor">
+	<form id="formModal" class="modal-form" name="formInformacoes" novalidate>
+		<div class="form-group">
+			<label for="categoria" class="col-md-2 control-label-right text-right">Categoria:*</label>
+			<div class="col-md-9">
+				<spt-select required="true" id="categoria" name="categoria" model="incluir.categoria" options="categoriasInformacoes" label="descricao" track-by="id" default="Escolha..."></spt-select>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="titulo" class="col-md-2 control-label-right text-right">Título:*</label>
+			<div class="col-md-9">
+				<input type="text" id="titulo" name="titulo" class="form-control" ng-model="incluir.tituloConteudo" maxlength="50" required />
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="incluirTextoResumoInformacao" class="col-md-2 control-label-right text-right">Resumo:*</label>
+			<div class="col-md-9">
+				<textarea id="incluirTextoResumoInformacao" name="incluirTextoResumoInformacao" ng-model="incluir.textoResumoInformacao" cols="70" rows="6" maxlength="200" required></textarea>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="incluirTextoInformacao" class="col-md-2 control-label-right text-right">Informação:*</label>
+			<div class="col-md-9">
+				<ng-quill-editor id="incluirTextoInformacao" name="incluirTextoInformacao" theme="snow" ng-model="incluir.textoInformacao" placeholder="digite a informação aqui..." required="true"></ng-quill-editor>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="destaque" class="col-md-2 control-label-right text-right">Informação em Destaque:*</label>
+			<div class="col-md-9">
+				<label class="radio-inline"><input type="radio" name="destaque" ng-model="incluir.flagDestaque" value="S" required />Sim</label>
+				<label class="radio-inline"><input type="radio" name="destaque" ng-model="incluir.flagDestaque" value="N" />Não</label>
+			</div>
+		</div>
+		<div class="form-group" ng-show=" incluir.flagDestaque == 'S' && informacoesDestaque.length == 2 ">
+			<div class="col-md-2">&nbsp;</div>
+			<div class="col-md-9 text-danger text-center">Atenção: excedemos a quantidade de Informações em destaque, por favor remova uma para incluir outra</div>
+			<div class="col-md-2">&nbsp;</div>
+			<div class="col-md-9">
+				<table class="tabela" width="100%">
+					<thead class="tabela-cabecalho">
+						<tr>
+							<th style="text-align:center;width:120px;">Categoria da informação</th>
+							<th>Título da informação</th>
+							<th style="text-align:center;width:80px;">Ação</th>
+						</tr>
+					</thead>
+					<tbody class="tabela-conteudo">
+						<tr ng-repeat="infoDestaque in informacoesDestaque" ng-show="informacoesDestaque.length">
+							<td class="celula" ng-bind="infoDestaque.categoria.descricao"></td>
+							<td class="celula" ng-bind="infoDestaque.tituloConteudo"></td>
+							<td class="celula tabela-acoes">
+								<i class="fa fa-search" spt-modal-acao acao="detalhes" objeto="infoDestaque" modulo="informacoes" caminho-modulo="informacoes" 
+									tooltip-placement="left" uib-tooltip="Consultar Detalhes" titulo="Consultar Detalhes" tamanho="meio-grande" 
+									aria-hidden="true"></i>
+								<i class="fa fa-times" spt-modal-acao acao="excluir-destaque" objeto="infoDestaque" modulo="informacoes" caminho-modulo="informacoes" 
+									tooltip-placement="left" uib-tooltip="Excluir Destaque" titulo="Excluir Destaque" callback="carregaInformacoesDestaque()"
+									aria-hidden="true"
+									></i>
+							</td>
+						</tr>
+						<tr ng-if="informacoes.length">
+							<td colspan="6" align="right">Total de Informações Cadastradas: {{ informacoes.length }}</td>
+						</tr>
+						<tr ng-if="informacoes.length == 0">
+							<td colspan="6">Não há registro retornado na pesquisa.</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="form-group" ng-show=" incluir.flagDestaque == 'S' && informacoesDestaque.length == 2  ">&nbsp;</div>
+		<div class="form-group">
+			<label for="imagemDestaqueChoose" class="col-md-2 control-label-right text-right">Imagem:*</label>
+			<div class="col-md-9">
+				<input type="file" id="imagemDestaqueChoose" spt-arquivo-valido name="imagemDestaqueChoose" class="form-control" ng-model="incluir.imagemDestaqueChoose" accept=".png, .jpg, .jpeg" onchange="angular.element(this).scope().fileChanged(event)" required />
+				<span class="legendas"><em>* tamanho máximo permitido: 300kb</em></span><br />
+				<span class="legendas"><em>* extensões permitidas: jpeg, jpeg, png</em></span>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="txAlternativoImagem" class="col-md-2 control-label-right text-right">Texto Alternativo da Imagem:*</label>
+			<div class="col-md-9">
+				<input type="text" id="txAlternativoImagem" name="txAlternativoImagem" class="form-control" ng-model="incluir.txAlternativoImagem" maxlength="100" required />
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="imagemDestaqueChoose" class="col-md-2 control-label-right text-right">
+				<span class="legendas"><em>* Campo Obrigatório</em></span>
+			</label>
+		</div>
+		<div class="div-right">
+			<button class="bt bt-padrao bt-cancelar" type="button" ng-click="fechar()" form="formModal"><mark class="cor"></mark>Cancelar</button>
+			<button class="bt bt-padrao" ng-click="preVisualizar()" form="formModal"><mark class="cor"></mark>Pré-Visualizar</button>
+		</div>
+	</form>
+</div>
+<canvas id="myCanvas" ng-show="canvas_show" />
+
+<div class="row" ng-show="informacao_preview">
+	<spt-mensagem-erro form="formInformacoes" mensagem-servidor="mensagemServidor" ></spt-mensagem-erro>
+	<div class="form-group">
+		<div class="col-md-12">
+			<span class="detalhes-bold text-danger">{{incluir.tituloConteudo}}</span>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-md-12">
+			<span class="detalhes-bold">{{incluir.textoResumoInformacao}}</span>
+		</div>
+	</div>
+	<div class="form-group">&nbsp;</div>
+	<div class="form-group">
+		<div class="col-md-12">
+			<span ng-bind-html="incluir.previewTextoInformacao"></span>
+		</div>
+	</div>
+	<div class="row">&nbsp;</div>
+	<div class="form-group">
+		<label class="col-md-3 control-label-right text-right">Preview da Imagem:*</label>
+		<div class="col-md-9">
+			<canvas id="imagemDestaquePreview" title="{{ incluir.txAlternativoImagem }}" />
+		</div>
+	</div>
+	<div class="row">&nbsp;</div>
+	<div class="form-group row">
+		<label for="publicar" class="col-md-3 control-label-right text-right">Publicar informação:</label>
+		<div class="col-md-9">
+			<label class="radio-inline" ng-repeat="mti in motivosInformacoes">
+				<input type="radio" ng-change="mudaSituacao(mti)" name="publicar" ng-model="incluir.registro.motivo.id" ng-value="{{mti.id}}" required />{{ mti.descricao == 'Publicado' ? 'Sim':'Não' }}
+			</label>
+		</div>
+	</div>
+	<div class="row">&nbsp;</div>
+	<div class="form-group" ng-show="situacao == 'Publicado' || incluir.registro.motivo.descricao == 'Publicado' ">
+		<label for="data_publicacao" class="col-md-3 control-label-right text-right">Data Publicação:</label>
+		<div class="col-md-2">
+			<spt-data required="true" abre="up" id="data_publicacao" model="incluir.dataPublicacao" minima="dataPublicacaoMinima" atualmin="atual"></spt-data>
+		</div>
+		<div class="col-md-7">&nbsp;</div>
+	</div>
+	<div class="form-group">
+		<div class="div-right">
+			<button class="bt bt-padrao bt-cancelar" type="button" ng-click="retornaEditor()" form="formModal"><mark class="cor"></mark>Retornar ao Editor</button>
+			<button class="bt bt-padrao" type="button" ng-click="incluirSubmit()" form="formModal"><mark class="cor"></mark>Salvar</button>
+		</div>
+	</div>
+</div>

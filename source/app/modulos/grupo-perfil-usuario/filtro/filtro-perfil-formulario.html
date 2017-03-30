@@ -1,0 +1,28 @@
+
+<div class="form-group">
+
+	<!-- mensagem de erro -->
+	<div class="ng-class: mensagemControle.class;" ng-if="mensagemControle">
+		<span ng-bind="mensagemControle.data.mensagem"></span>
+	</div>
+	<div class="espac"></div>
+	<!-- mensagem de erro -->
+
+
+	<div class="row">
+		<div class="col-md-12">
+
+			<label for="nomePerfil" class="col-md-3 control-label">Grupo de perfil:</label>
+			<div class="col-md-3">
+				<input type="text" id="nomeGrupoPerfil" class="form-control" ng-model="filtro.nomeGrupoPerfil" min="3" ng-change="changeInput()">
+			</div>
+
+			<label for="nomePerfil" class="col-md-3 control-label lbl-right">Nome de exibição para o portal SBE:</label>
+			<div class="col-md-3">
+				<input type="text" id="nomeExibicaoPerfil" class="form-control" ng-model="filtro.nomeExibicaoPerfil" min="3" ng-change="changeInput()">
+			</div>
+
+		</div>
+	</div>
+
+</div>

@@ -1,0 +1,95 @@
+<section>
+	<div class="row conteudo-interno" cg-busy="espera">
+		<div class="row">
+			<div class="col-sm-6 col-md-8">
+				<em class="titulo-interno">Pesquisar Pergunta e Resposta</em>
+			</div>
+			<div class=" col-sm-6 col-md-4">
+				<button class="bt bt-incluir" spt-modal-acao 
+					modulo="pergunta" caminho-modulo="pesquisa/pesquisar-pergunta" acao="incluir" 
+					titulo="Incluir Pergunta e Resposta" tamanho="75" callback="preFiltrar()">
+				    <i class="fa fa-plus-circle" aria-hidden="true"></i> Incluir Pergunta e Resposta
+				</button>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="formulario">
+					<spt-filtro caminho-modulo="pesquisa/pesquisar-pergunta" nome-filtro="pergunta"></spt-filtro>
+				</div>
+				<button class="bt bt-incluir" spt-modal-acao 
+					modulo="pergunta" caminho-modulo="pesquisa/pesquisar-pergunta" acao="importar" 
+					titulo="Importar" tamanho="50">
+				    <i class="fa fa-upload" aria-hidden="true"></i> Importar Pergunta e Resposta
+				</button>
+			</div>
+		</div>
+		<p ng-bind="mensagemRetorno.descricao" class="mensagem-erro text-center"></p>
+		<div class="row resultados" ng-if="pergunta.length">
+			<div class="col-md-12">
+				<table class="tabela" width="100%">
+					<thead class="tabela-cabecalho">
+						<tr>
+							<th class="col-md-3">Categoria da Pergunta</th>
+							<th class="col-md-10">Pergunta</th>
+							<th class="col-md-2">Ação</th>
+						</tr>
+					</thead>
+					<tbody class="tabela-conteudo">
+						<tr dir-paginate="pergunta in pergunta | itemsPerPage: ITENS_POR_PAGINA">
+							<td class="celula" ng-bind="pergunta.CategoriaPergunta.descricao" ></td>
+							<td class="celula" ng-bind="pergunta.textoPergunta"></td>
+							<td class="celula tabela-acoes">
+								<i class="fa fa-search" spt-modal-acao acao="detalhes" objeto="pergunta" modulo="pergunta" caminho-modulo="pesquisa/pesquisar-pergunta" 
+									tooltip-placement="left" uib-tooltip="Consultar Detalhes" titulo="Consultar Detalhes" tamanho="75" 
+									aria-hidden="true"></i>
+								<i class="fa fa-pencil" 
+									spt-modal-acao acao="editar" 
+									objeto="pergunta" 
+									modulo="pergunta" 
+									caminho-modulo="pesquisa/pesquisar-pergunta" 
+									tooltip-placement="left" 
+									uib-tooltip="Editar" 
+									titulo="Editar Pergunta e Resposta" 
+									callback="preFiltrar()"
+									tamanho="75"
+									aria-hidden="true"></i>
+								<i class="fa fa-check" 
+									spt-modal-acao acao="ativar" 
+									objeto="pergunta" 
+									modulo="pergunta" 
+									caminho-modulo="pesquisa/pesquisar-pergunta"
+									uib-tooltip="{{pergunta.registro.Situacao.id=='A' || pergunta.registro.Situacao.id == 'S' ? 'Inativar Pergunta' : 'Ativar Pergunta'}}" 
+									titulo="{{pergunta.registro.Situacao.id =='A' || pergunta.registro.Situacao.id == 'S' ? 'Inativar Pergunta' : 'Ativar Pergunta'}}"
+									aria-hidden="true" 
+									callback="preFiltrar()"
+									ng-class="pergunta.registro.Situacao.id == 'A' || pergunta.registro.Situacao.id == 'S' ? 'corVerde' : 'corCinza' ">
+								</i>
+								<i class="fa fa-times" 
+									spt-modal-acao acao="excluir" 
+									objeto="pergunta" 
+									modulo="pergunta" 
+									caminho-modulo="pesquisa/pesquisar-pergunta" 
+									tooltip-placement="left" 
+									uib-tooltip="Excluir Pergunta" 
+									titulo="Excluir Pergunta" 
+									tamanho="medio" 
+									aria-hidden="true"
+									callback="preFiltrar()"></i>
+							</td>
+						</tr>
+						<tr ng-show="pergunta.length">
+							<td colspan="7" align="right">Total de Pergunta(s) Cadastrada(s): {{ pergunta.length }}</td>
+						</tr>
+						<tr ng-show="pergunta.length == 0">
+							<td colspan="7">Não há registro retornado na pesquisa.</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="paginacao col-md-12">
+					<dir-pagination-controls boundary-links="true" template-url="app/comum/templates/paginacao.diretiva.html"></dir-pagination-controls>
+				</div>
+			</div>
+		</div>	
+	</div>
+</section>

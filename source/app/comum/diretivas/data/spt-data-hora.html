@@ -1,0 +1,19 @@
+<div>
+    <select
+        id="hora"
+        name="hora"
+        class="form-control"
+        ng-model="data.hora"
+        ng-options="hora for hora in horas"
+        ng-init="data.hora = data.hora || horas[0]">
+    </select>
+    <span>:</span>
+    <select
+        id="minuto"
+        name="minuto"
+        class="form-control"
+        ng-model="data.minuto"
+        ng-options="minuto for minuto in minutos"
+        ng-init="data.minuto = data.minuto || minutos[0]">
+    </select">    
+</div>

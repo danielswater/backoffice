@@ -1,0 +1,20 @@
+<p>Tem certeza que desejar excluir?</p>
+<div>
+	<p class="mensagem-erro" ng-if="!!mensagemServidor">
+		<em>{{mensagemServidor.descricao}}</em>
+	</p>
+</div>
+<table class="tabela" width="100%">
+	<tr>
+		<td><strong>Tipo do SAM:</strong></td>
+		<td>{{sam.tipoSAM.descricao}}</td>
+	</tr>
+	<tr>
+		<td><strong>Número do SAM:</strong></td>
+		<td>{{sam.numeroSAM}}</td>
+	</tr>
+	<tr>
+		<td><strong>Número de Série:</strong></td>
+		<td>{{sam.numeroSerie}}</td>
+	</tr>
+</table>

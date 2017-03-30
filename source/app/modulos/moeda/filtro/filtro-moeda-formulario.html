@@ -1,0 +1,26 @@
+<div class="form-group">
+    <div class="row">
+		<div class="col-md-8">
+			<label for="descricao" class="col-md-3 control-label">Nome da Moeda:</label>
+			<div class="col-md-3">
+				<input type="text" id="descricao" class="form-control" ng-model="filtro.descricao" />
+			</div>
+			<label for="sigla" class="col-md-3 control-label">Sigla da Moeda:</label>
+			<div class="col-md-3">
+				<input type="text" id="sigla" class="form-control" ng-model="filtro.sigla" />
+			</div>
+		</div>
+	</div>
+    <div class="row">
+		<div class="col-md-8">
+			<label class="col-md-3 control-label">Período de Vigência:</label>
+			<div class="col-md-4">
+				<spt-data id="dataVigenciaInicial" model="filtro.dataVigenciaInicial" maxima="filtro.dataVigenciaFinal" mascara="39/19/9999" placeholder="dd/mm/aaaa"></spt-data>
+			</div>
+			<label class="col-md-1 control-label"> à </label>
+			<div class="col-md-4">
+				<spt-data id="dataVigenciaFinal" model="filtro.dataVigenciaFinal" minima="filtro.dataVigenciaInicial" mascara="39/19/9999" placeholder="dd/mm/aaaa"></spt-data>
+			</div>
+		</div>
+	</div>
+</div>

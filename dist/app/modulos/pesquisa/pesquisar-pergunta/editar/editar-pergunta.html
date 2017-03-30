@@ -1,0 +1,140 @@
+<div class="formulario">
+	<spt-mensagem-erro form="formPergunta" mensagem-servidor="mensagemServidor"></spt-mensagem-erro>
+	<form id="formModal" class="modal-form" ng-submit="formPergunta.$valid && editar()" name="formPergunta" novalidate>
+			<div class="form-group">
+				<label class="col-md-2 control-label">Categoria da Pergunta:*</label>
+				<div class="col-md-4">
+					<select 
+						class="form-control"
+						ng-model="perguntaDetalhes.CategoriaPergunta"
+						ng-options="pergunta.descricao for pergunta in CategoriaPergunta track by pergunta.id">
+					</select>
+					
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-2 control-label">Pergunta:*</label>
+				<div class="col-md-6">
+					<input type="text" class="form-control" id="pergunta" ng-model="perguntaDetalhes.textoPergunta" restrict="reject" validate="false" clean="true" required>					
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-2 control-label">Orientação:</label>
+				<div class="col-md-6">
+					<textarea class="form-control" name="descricao" ng-model="perguntaDetalhes.textoOrientacao" ng-trim="false" maxlength="200" rows="5"></textarea>
+				</div>
+			</div>
+			</br>
+			<fieldset class="well no-bkg">
+				<legend class='legend'>Informações da Resposta</legend>
+					<div class="form-group">
+						<label class="col-md-2 control-label">Tipo da Resposta:*</label>
+						<div class='col-md-4'>
+							<select 
+								class="form-control"
+								ng-model="perguntaDetalhes.TipoResposta"
+								ng-change="novaResposta(perguntaDetalhes.TipoResposta)"
+								ng-options="pergunta.descricao for pergunta in TipoResposta track by pergunta.id">
+							</select>
+						</div>
+					</div>
+					<div class="form-group" ng-if="perguntaDetalhes.TipoResposta.id!==4">
+						<label class="col-md-2 control-label">Resposta:*</label>
+						<div class="col-md-6">
+							<input type="text" ng-class="perguntaDetalhes.ListaResposta.Resposta.length < min ? 'form-control border-red' : 'form-control' "  ng-model="perguntaDetalhes.resposta" id="resposta">
+						</div>
+						<input type="button" ng-model="addResposta" ng-disabled="perguntaDetalhes.ListaResposta.Resposta.length == max" ng-click="addRow(perguntaDetalhes.resposta,perguntaDetalhes.TipoResposta.id)" value="+">
+					</div>
+					
+					<div class="form-group">
+						<label class="col-md-5 control-label" ng-model="texto" ng-if="perguntaDetalhes.TipoResposta.id!==4">IMPORTANTE! Mínimo de <span class='red'>{{min}}</span> e no Máximo <span class='red'>{{max}}</span> respostas para preenchimento.</label>
+						<label class="col-md-5 control-label" ng-if="perguntaDetalhes.TipoResposta.id==4">IMPORTANTE! O texto terá o limite de <span class='red'>800</span> caracteres.</label>
+					</div>
+
+					<div class="form-group" ng-if="perguntaDetalhes.TipoResposta.id != '4'">
+						<div class="row resultados col-md-12">
+							<table ng-if="perguntaDetalhes.ListaResposta.Resposta" class="tabela" width="100%">
+								<thead class="tabela-cabecalho">
+									<tr>
+										<th class="col-md-11">Resposta</th>
+										<th class="col-md-1">Ação</th>
+									</tr>
+								</thead>
+								<tbody class="tabela-conteudo">
+									<tr ng-repeat="resposta in perguntaDetalhes.ListaResposta.Resposta">
+										<td class="celula" ng-bind="resposta.descricaoResposta" required></td>
+										<td class="celula tabela-acoes">
+													<i class="fa fa-pencil" spt-modal-acao acao="editar" objeto="pergunta" modulo="pergunta" caminho-modulo="pesquisa/pesquisar-pergunta" 
+														tooltip-placement="left" uib-tooltip="Editar" titulo="Editar" tamanho="60"
+														aria-hidden="true"></i>
+													<i class="fa fa-times"
+														tooltip-placement="left" tamanho="medio" 
+														aria-hidden="true" ng-click="removeRow()"></i>
+											<!--<i class="fa fa-pencil" spt-modal-acao acao="editar" objeto="pergunta" modulo="pergunta" caminho-modulo="pesquisa/pesquisar-pergunta" 
+												tooltip-placement="left" uib-tooltip="Editar" titulo="Editar" tamanho="60"
+												aria-hidden="true"></i>-->
+												<!--<i class="fa fa-times" 
+													spt-modal-acao acao="excluir-resposta" 
+													objeto="resposta" 
+													modulo="pergunta" 
+													caminho-modulo="pesquisa/pesquisar-pergunta" 
+													tooltip-placement="left" 
+													uib-tooltip="Excluir Resposta" 
+													titulo="Excluir Resposta" 
+													tamanho="medio" 
+													aria-hidden="true"
+													callback="init()">
+												</i>-->
+												<!--<i class="fa fa-times"
+												tooltip-placement="left" tamanho="medio" 
+												aria-hidden="true" ng-click="removeRow($index, resposta)"></i>-->
+												
+
+											<!--<i class="fa fa-times"
+												tooltip-placement="left" tamanho="medio" 
+												aria-hidden="true" ng-click="deletarResposta(resposta,$index)"></i>-->
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+					
+					<!--<div class="form-group" ng-if="perguntaDetalhes.TipoResposta.id != '4'">
+						<div class="row resultados col-md-12">
+							<table ng-if="pergunta.PerguntaView.Pergunta.ListaResposta.Resposta.length" class="tabela" width="100%">
+								<thead class="tabela-cabecalho">
+									<tr>
+										<th class="col-md-11">Resposta</th>
+										<th class="col-md-1">Ação</th>
+									</tr>
+								</thead>
+								<tbody class="tabela-conteudo">
+									<tr ng-repeat="resposta in pergunta.PerguntaView.Pergunta.ListaResposta.Resposta">
+										<td class="celula" ng-bind="resposta.descricaoResposta" required></td>
+										<td class="celula tabela-acoes">
+											<i class="fa fa-pencil" spt-modal-acao acao="editar" objeto="pergunta" modulo="pergunta" caminho-modulo="pesquisa/pesquisar-pergunta" 
+												tooltip-placement="left" uib-tooltip="Editar" titulo="Editar" tamanho="60"
+												aria-hidden="true"></i>
+											<i class="fa fa-times"
+												tooltip-placement="left" tamanho="medio" 
+												aria-hidden="true" ng-click="removeRow($index)"></i>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>-->
+				</div>
+			</fieldset>
+			
+		</form>
+		<div class="row">
+			<span class="legendas"><em>* Campo de preenchimento obrigatório</em></span>
+		</div>
+	</form>
+</div>
+
+
+

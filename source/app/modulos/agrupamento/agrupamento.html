@@ -1,0 +1,91 @@
+ <section>
+	<div class="row conteudo-interno" cg-busy="espera">
+		<div class="row">
+			<div class="col-sm-6 col-md-8">
+				<em class="titulo-interno">Pesquisar Agrupamento</em>
+			</div>
+			<div class=" col-sm-6 col-md-4">
+				<button class="bt bt-incluir" spt-modal-acao modulo="agrupamento" caminho-modulo="agrupamento" acao="incluir" titulo="Incluir">
+				    <i class="fa fa-plus-circle" aria-hidden="true"></i> Incluir Agrupamento
+				</button>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="formulario">
+					<spt-filtro caminho-modulo="agrupamento" nome-filtro="agrupamento"></spt-filtro>
+				</div>
+			</div>
+		</div>
+		<div class="mensagem" ng-if="!!mensagemServidor">
+			<p>
+				<em ng-bind="mensagemServidor.descricao"></em>
+			</p>
+		</div>
+		<div ng-if="agrupamentos.length" class="row resultados">
+			<div class="col-md-12">
+				<table class="tabela" width="100%">
+					<thead class="tabela-cabecalho">
+						<tr>
+							<th style="width: 100px;">Ordenação</th>
+							<th style="width: 180px;">Nome do Agrupamento</th>
+							<th style="width: 215px;">Grupo de Usuário do Sistema</th>
+							<th style="text-align:center;">Descrição</th>
+							<th style="text-align:center;width:135px;">Ação</th>
+						</tr>
+					</thead>
+					<tbody class="tabela-conteudo mover-itens" ui-floating ng-show="agrupamentos.length" ui-sortable="sortableOptions" ng-model="agrupamentos">
+						<tr dir-paginate="agrupamento in agrupamentos | orderBy : 'ordenacao' | itemsPerPage: ITENS_POR_PAGINA" ng-show="agrupamentos.length">
+							<td class="celula" ng-bind="agrupamento.ordenacao"></td>
+							<td class="celula" ng-bind="agrupamento.nomeAgrupamento"></td>
+							<td class="celula" ng-bind="agrupamento.grupoUsuarioSistema"></td>
+							<td class="celula" ng-bind="agrupamento.descricao"></td>
+							<td class="celula tabela-acoes">
+								<i class="fa fa-search" spt-modal-acao acao="detalhes" objeto="agrupamento" modulo="agrupamento" caminho-modulo="agrupamento" 
+									tooltip-placement="left" uib-tooltip="Consultar Detalhes" titulo="Consultar Detalhes" tamanho="medio" 
+									style="float:left;position:relative;"
+									aria-hidden="true"></i>
+								<i class="fa fa-pencil" spt-modal-acao acao="editar" objeto="agrupamento" modulo="agrupamento" caminho-modulo="agrupamento" 
+									tooltip-placement="left" uib-tooltip="Editar" titulo="Editar"
+									style="float:left;position:relative;"
+									aria-hidden="true"></i>
+								
+								<spt-botao-alternar condicao="agrupamento.registro.situacao.id == 'A'" 
+									texto-verdadeiro="Inativar" 
+									texto-falso="Reativar" 
+									classe-verdadeiro="ativo" 
+									modulo="agrupamento" 
+									objeto="agrupamento" 
+									acao="ativar" 
+									posicao="bottom" icone="fa-check" 
+									titulo-verdadeiro="Inativar" titulo-falso="Reativar"
+									ng-class="agrupamento.registro.situacao.id == 'A' ? 'corVerde' : 'corCinza' "
+									style="float:left;position:relative;"
+									></spt-botao-alternar>
+
+								<i class="fa fa-times" spt-modal-acao acao="excluir" objeto="agrupamento" modulo="agrupamento" caminho-modulo="agrupamento" callback="preFiltrar()"
+									tooltip-placement="left" uib-tooltip="Excluir" titulo="Excluir" 
+									style="float:left;position:relative;"
+									aria-hidden="true"></i>
+							</td>
+						</tr>
+						<tr ng-show="agrupamentos.length">
+							<td colspan="5" align="right">Total de Agrupamentos Cadastrados: {{ agrupamentos.length }}</td>
+						</tr>
+						<tr ng-show="agrupamentos.length">
+							<td colspan="5" align="left">Segure e arraste para ordenar</td>
+						</tr>
+						<tr ng-show="agrupamentos.length == 0">
+							<td colspan="5">Não há registro retornado na pesquisa.</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<div class="paginacao col-md-12">
+					<dir-pagination-controls boundary-links="true" template-url="app/comum/templates/paginacao.diretiva.html"></dir-pagination-controls>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</section>

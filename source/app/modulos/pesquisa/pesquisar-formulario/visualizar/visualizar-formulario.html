@@ -1,0 +1,74 @@
+<div class="formulario">
+	<div class="form-group">
+		<div class="row">
+			<label for="" class="fix-left control-label">Data limite para preenchimento:</label>
+			<label class="no-weight">10/10/2075</label></br>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="row">
+			<label for="" class="col-md-12 control-label">Contato(s) para suporte:</label>
+			<label class="fix-left no-weight">Telefone: (11)3252-2525</label></br>
+			<label class="fix-left no-weight">E-mail: diegowesselka@outlook.com</label>
+			
+		</div>
+	</div></br></br>
+	<div class="form-group">
+		<label for="" class="col-md-12 control-label">Seguem abaixo as perguntas relacionadas à "Pesquisa de Linhas Novembro/2015":</label>
+	</div></br></br>
+	<div class="form-group">
+		<div class="row">
+			<label for="" class="col-md-12 control-label">1-) O Ônibus chega pontualmente?</label>
+			<div class="col-md-6">
+				<label class="radio-inline fix-left">
+					<input type="radio" name="apCredito" ng-model="apCredito" value="Sim">
+					Sim
+				</label>
+				<label class="radio-inline fix-left">
+					<input type="radio" name="apCredito" ng-model="apCredito" value="Não">
+					Não
+				</label>
+			</div>
+		</div>
+	</div></br>
+	<div class="form-group">
+		<div class="row">
+			<label for="" class="col-md-12 control-label">Atualmente você se encontra:</label>
+			<div class="col-md-6">
+				<select 
+					class="form-control" 
+					ng-model="categoriaModel" 
+					ng-options="categoria for categoria in ocupacao">
+					<option value="">Trabalhando...</option>
+				</select>
+			</div>
+		</div>
+	</div></br>
+	<div class="form-group">
+		<div class="row">
+			<label for="" class="control-label">Você utiliza esta linha para qual(is) finalidade(s):</label>
+			</br>
+			<div class="checkbox-inline col-md-9">
+				<label class='col-md-2 no-weight'>
+					<input type="checkbox" /> Trabalho
+				</label>
+				<label class='col-md-2 no-weight'>
+					<input type="checkbox" /> Estudo
+				</label>
+				<label class='col-md-2 no-weight'>
+					<input type="checkbox" /> Lazer
+				</label>
+				<label class='col-md-4 no-weight'>
+					<input type="checkbox" /> Tratamento Médico
+				</label>
+			</div>
+		</div>
+	</div></br>
+	<div class="form-group">
+		<div class="row">
+			<label for="" class="control-label">Qual a sua opinião sobre o trajeto da linha?</label></br>
+			<i class="fa fa-info-circle corAzul" aria-hidden="true"></i> <span class='text-small'>Descreva sua opinião sobre a limpeza, manutenção, estado de conservação e segurança do ônibus.</span>
+			<textarea class="form-control" name="descricao" ng-model="pesquisa.orientacao" ng-trim="false" maxlength="200" rows="5"></textarea>
+		</div>
+	</div>
+</div>

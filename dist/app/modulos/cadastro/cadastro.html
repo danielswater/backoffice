@@ -1,0 +1,53 @@
+<section>
+    <div class="row conteudo-interno" cg-busy="espera">
+        <div class="row">
+            <div class="col-sm-6 col-md-8">
+                <em class="titulo-interno">Consultar Cidadão</em>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="formulario">
+                    <spt-filtro modulo="cadastro"></spt-filtro>
+                </div>
+            </div>
+        </div>
+        <div class="mensagem" ng-if="!!mensagemServidor">
+            <p>
+                <em>{{mensagemServidor.descricao}}</em>
+            </p>
+        </div>
+        <div ng-if="cadastros.length" class="row resultados">
+            <div class="col-md-12">
+                <table class="tabela" width="100%">
+                    <thead class="tabela-cabecalho">
+                        <tr>
+                            <th>Cidadão</th>
+                            <th>CPF</th>
+                            <th>Nº Documento</th>
+                            <th>Data Nascimento</th>
+                            <th>Nome mãe</th>
+                            <th>Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody class="tabela-conteudo">
+                        <tr dir-paginate="cadastro in cadastros | itemsPerPage: ITENS_POR_PAGINA">
+                            <td class="celula">{{cadastro.nomeCidadao}}</td>
+                            <td class="celula">{{cadastro.cpf}}</td>
+                            <td class="celula">{{cadastro.numeroDocumento}}</td>
+                            <td class="celula">{{cadastro.dataNascimento}}</td>
+                            <td class="celula">{{cadastro.nomeMae}}</td>
+                            <td class="celula tabela-acoes">
+                                <i class="fa fa-search" spt-modal-acao acao="detalhes" modulo="cadastro" tooltip-placement="bottom" uib-tooltip="Consultar Dados"
+                                    titulo="Consultar Dados" objeto="cadastro" aria-hidden="true" tamanho="grande"></i>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="paginacao col-md-12">
+                    <dir-pagination-controls boundary-links="true" template-url="app/comum/templates/paginacao.diretiva.html" callback-buscar-resultados="filtrar(objFiltro)"></dir-pagination-controls>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,100 @@
+<div class="row" ng-show="!!menuPaginaPrincipal">
+	<div class="col-md-12">
+		<div class="row">
+			<div class="col-md-6">
+				<span>Nome do Menu da Página Principal</span>
+				<span ng-bind="menuPaginaPrincipal.nomeMenuPaginaPrincipal" class="detalhes-bold"></span>
+			</div>
+			<div class="col-md-6">
+				<span>Grupo de Usuário do Sistema</span>
+				<span ng-bind="menuPaginaPrincipal.grupoUsuarioSistema" class="detalhes-bold"></span>
+			</div>
+		</div>
+		<div class="row">&nbsp;</div>
+		<div class="row">
+			<div class="col-md-6">
+				<span>Descrição</span>
+				<span ng-bind="menuPaginaPrincipal.descricao" class="detalhes-bold"></span>
+			</div>
+		</div>
+		<div class="row">&nbsp;</div>
+		<div class="row">
+			<div class="col-md-6">
+				<span>Imagem</span>
+				<img src="{{imagem}}" class="detalhes-bold" />
+			</div>
+		</div>
+		<div class="row">&nbsp;</div>
+		<div class="row">
+			<div class="col-md-3">
+				<span>Cor de Fundo</span>
+				<div ng-bind="menuPaginaPrincipal.corFundo" class="detalhes-bold"></div>
+				<div style="background-color:{{menuPaginaPrincipal.corFundo}};height:20px;width:60px;"></div>
+			</div>
+			<div class="col-md-6">
+				<span>Cor da Fonte</span>
+				<div ng-bind="menuPaginaPrincipal.corFonte" class="detalhes-bold"></div>
+				<div style="background-color:{{menuPaginaPrincipal.corFonte}};height:20px;width:60px;"></div>
+			</div>
+		</div>
+	</div>
+	<div class="row">&nbsp;</div>
+	<div class="row">
+		<div class="col-md-3">
+			<span>Páginas do Menu</span>
+		</div>
+		<div class="col-md-4">
+			<table class="tabela " width="100%">
+				<thead class="tabela-cabecalho">
+					<tr>
+						<th>Ordenação</th>
+						<th>Página</th>
+					</tr>
+				</thead>
+				<tbody class="tabela-conteudo">
+					<tr ng-repeat="paginaMenu in paginasMenu">
+						<td class="celula"><span ng-bind="paginaMenu.ordenacao"></span></td>
+						<td class="celula"><span ng-bind="paginaMenu.pagina"></span></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="col-md-5"></div>
+	</div>
+	<div class="row">&nbsp;</div>
+	<div class="row resultados">
+		<table class="tabela " width="100%">
+			<thead class="tabela-cabecalho">
+				<tr>
+					<th>Situação do Cadastro</th>
+				</tr>
+			</thead>
+			<tbody class="tabela-conteudo">
+				<tr>
+					<td class="celula">
+						<div class="row">
+							<table class="tabela" width="100%">
+								<thead class="tabela-cabecalho">
+									<tr>
+										<th>Data</th>
+										<th>Usuário</th>
+										<th>Situação</th>
+										<th>Motivo da Inativação</th>
+									</tr>
+								</thead>
+								<tbody class="tabela-conteudo" ng-model="situacoes">
+									<tr ng-repeat="situacao in situacoes">
+										<td class="celula"><span ng-bind="situacao.data"></span></td>
+										<td class="celula"><span ng-bind="situacao.usuario"></span></td>
+										<td class="celula"><span ng-bind="situacao.situacao"></span></td>
+										<td class="celula"><span ng-bind="situacao.motivoInativacao"></span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

@@ -1,0 +1,116 @@
+<div class="formulario">
+	<spt-mensagem-erro form="formMenuPaginaPrincipal" mensagem-servidor="mensagemServidor" ></spt-mensagem-erro>
+	<form id="formModal" class="modal-form" name="formMenuPaginaPrincipal" novalidate>
+		<div class="form-group">
+			<label for="nomeMenuPaginaPrincipal" class="col-md-3 control-label-right text-right">Nome do Menu da Página Principal:*</label>
+			<div class="col-md-6">
+				<input type="text" id="nomeMenuPaginaPrincipal" class="form-control" ng-model="incluir.nomeMenuPaginaPrincipal" min="3" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="grupoUsuarioSistema" class="col-md-3 control-label-right text-right">Grupo de Usuário do Sistema:*</label>
+			<div class="col-md-6">
+				<spt-select required="true" id="grupoUsuarioSistema" model="incluir.grupoUsuarioSistema" options="gruposUsuarioSistema" label="descricao" track-by="id" default="{{LABEL.TODOS}}"></spt-select>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="agrupamento" class="col-md-3 control-label-right text-right">Menu Página Principal:*</label>
+			<div class="col-md-6">
+				<spt-select required="true" id="agrupamento" model="incluir.agrupamento" options="agrupamentos" label="descricao" track-by="id" default=""></spt-select>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="descricao" class="col-md-3 control-label-right text-right">Descrição:*</label>
+			<div class="col-md-6">
+				<textarea class="form-control" name="descricao" ng-model="incluir.descricao" ng-trim="false" maxlength="200" rows="5" required></textarea>								
+			</div>
+		</div>
+		<div class="form-group" id="imagemBox">
+			<label for="imagem" class="col-md-3 control-label-right text-right">Imagem:*</label>
+			<div class="col-md-6">
+				<input required type="file" ng-model="incluir.imagem" name="imagem" id="imagem" accept=".jpg,.png,.jpge" onchange="angular.element(this).scope().fileChanged(event)" class="form-control" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="corFundo" class="col-md-3 control-label-right text-right">Cor de Fundo:*</label>
+			<div class="col-md-2 small-input">
+				<input required colorpicker colorpicker-position="bottom" type="text" maxlength="7"
+					id="corFundo" class="form-control modalTop span2" ng-model="incluir.corFundo" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="corFonte" class="col-md-3 control-label-right text-right">Cor da Fonte:*</label>
+			<div class="col-md-2 small-input">
+				<input required colorpicker colorpicker-position="bottom" type="text" maxlength="7"
+					id="corFonte" class="form-control modalTop span2" ng-model="incluir.corFonte" />
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-md-3">&nbsp;</div>
+			<div class="col-md-6">
+				<span class="legendas"><em>* Campo Obrigatório</em></span>
+			</div>
+		</div>
+		<div class="form-group">&nbsp;</div>
+		<div class="form-group div-right">
+			<button class="bt bt-padrao bt-cancelar" type="button" ng-click="fechar()" form="formModal"><mark class="cor"></mark>Cancelar</button>
+			<button class="bt bt-padrao" ng-click="incluirSubmit()" form="formModal"><mark class="cor"></mark>Incluir</button>
+		</div>
+		<div class="form-group">&nbsp;</div>
+	</form>
+</div>
+
+<div class="row resultados">
+	<table class="tabela " width="100%">
+		<thead class="tabela-cabecalho">
+			<tr>
+				<th>Páginas do Menu</th>
+			</tr>
+		</thead>
+		<tbody class="tabela-conteudo">
+			<tr>
+				<td class="celula">
+					<div class="row">
+						<div class="col-md-3">
+							<label for="pagina" class="col-md-12 control-label-right text-right">Página:*</label>
+						</div>
+						<div class="col-md-4">
+							<spt-select required="true" id="pagina" model="pagina" options="paginas" label="descricao" track-by="id" default=""></spt-select>
+						</div>
+						<div class="col-md-5">
+							<button type="button" ng-click="adicionarPagina(pagina)" class="bt bt-padrao">
+								<mark class="cor"></mark> Adicionar
+							</button>
+						</div>
+					</div>
+					<div class="row">&nbsp;</div>
+					<div class="row" ng-show="paginasMenu">
+						<table class="tabela" width="100%">
+							<thead class="tabela-cabecalho">
+								<tr>
+									<th>Ordenação</th>
+									<th>Página</th>
+									<th class="tabela-acoes">Ação</th>
+								</tr>
+							</thead>
+							<tbody class="tabela-conteudo mover-itens" ui-sortable="sortableOptions" ng-model="paginasMenu">
+								<tr ng-repeat="paginaMenu in paginasMenu">
+									<td class="celula"><span ng-bind="paginaMenu.ordenacao"></span></td>
+									<td class="celula"><span ng-bind="paginaMenu.pagina"></span></td>
+									<td class="celula tabela-acoes">
+										<i class="fa fa-times" spt-modal-acao acao="excluir" objeto="paginaMenu" modulo="menu-pagina-principal" caminho-modulo="menu-pagina-principal"  nome-modal="pagina-menu-pagina-principal"
+											tooltip-placement="left" uib-tooltip="Excluir" titulo="Excluir" 
+											aria-hidden="true"></i>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="row">
+						<span class="legendas"><em>&nbsp;&nbsp;&nbsp;Segure e arraste as linhas para reposicionar</em></span>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

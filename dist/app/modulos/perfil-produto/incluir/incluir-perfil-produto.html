@@ -1,0 +1,177 @@
+<div class="formulario">
+    <spt-mensagem-erro form="formProduto" mensagem-servidor="mensagemServidor"></spt-mensagem-erro>
+    <form id="formModal" class="modal-form" ng-submit="formProduto.$valid && incluir()" name="formProduto" novalidate>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="" class="col-md-3 control-label">Nome do Produto:*</label>
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" name="nome" ng-model="novoProduto.produto.nome" restrict="reject" required clean="true" maxlength="100">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="" class="col-md-3 control-label">Sigla do Produto:*</label>
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" name="sigla" ng-model="novoProduto.produto.sigla" restrict="reject" required clean="true" maxlength="5">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="" class="col-md-3 control-label">Nome de exibição para o Porta SBE:*</label>
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" name="nomeExibicao" ng-model="novoProduto.produto.nomeExibicao" restrict="reject" required clean="true" maxlength="100">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="" class="col-md-3 control-label">Pagador de Tarifa:*</label>
+                    <div class="col-md-6">
+                        <select class="form-control" ng-model="novoProduto.produto.tipoPagadorTarifa" id="tipoPagadorTarifa" name="tipoPagadorTarifa" ng-options="pagador.descricao for pagador in pagadorLista"
+                            required>
+                            <option value="">Selecione</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="" class="col-md-3 control-label">Descrição:*</label>
+                    <div class="col-md-9">
+                        <textarea class="form-control" name="descricao" ng-model="novoProduto.produto.descricao" ng-trim="false" maxlength="300" rows="5" required></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="" class="col-md-3 control-label">Grupo de Perfil do Usuário do Transporte:*</label>
+                    <div class="col-md-6">
+                        <select class="form-control" ng-change="listaPerfilUsuario()" ng-model="novoProduto.perfilUtilizacao" id="perfilUtilizacao" name="perfilUtilizacao" ng-options="grupoPerfil.nomeGrupoPerfil for grupoPerfil in grupoPerfilLista" required>
+                            <option value="">Selecione</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" ng-show="novoProduto.perfilUtilizacao">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="" class="col-md-3 control-label">Perfil do Usuário do Transporte:*</label>
+                    <div class="col-md-6">
+                        <select class="form-control" ng-change="detalhePerfilUsuario()" ng-model="novoProduto.perfilUsuarioTransporte" id="perfilUsuarioTransporte" name="perfilUsuarioTransporte" ng-options="perfil.nomePerfil for perfil in perfilLista" required>
+                            <option value="">Selecione</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" ng-show="novoProduto.perfilUsuarioTransporte">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <table class="tabela" width="100%">
+                        <thead class="tabela-cabecalho">
+                            <tr>
+                                <th>Perfil</th>
+                                <th>Nome de Exibição para o Portal SBE</th>
+                                <th>Grupo de Perfil</th>
+                                <th>Política Pública</th>
+                                <th>Situação Cadastral</th>
+                            </tr>
+                        </thead>
+                        <tbody class="tabela-conteudo">
+                            <tr>
+                                <td class="celula">{{perfilUsuarioTransporte.nomePerfil}}</td>
+                                <td class="celula">{{perfilUsuarioTransporte.nomePerfil}}</td>
+                                <td class="celula">{{perfilUsuarioTransporte.grupoPerfil.nomeExibicaoPerfil}}</td>
+                                <td class="celula">{{perfilUsuarioTransporte.politicaPublica.descricao}}</td>
+                                <td class="celula">{{perfilUsuarioTransporte.registro.situacao.descricao}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>        
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="" class="col-md-3 control-label">Emissor do Crédito:*</label>
+                    <div class="col-md-6">
+                        <select class="form-control" ng-change="listaCreditos()" ng-model="novoProduto.emissorCredito" id="emissorCredito" name="emissorCredito" ng-options="emissor.razaoSocial for emissor in emissorLista" required>
+                            <option value="">Selecione</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6" ng-show="novoProduto.emissorCredito">
+                <div class="form-group">
+                    <label for="" class="col-md-3 control-label">Nome do Crédito:*</label>
+                    <div class="col-md-6">
+                        <select class="form-control" ng-change="detalheTipoEmissaoCredito()" ng-model="novoProduto.creditoEletronico" id="creditoEletronico" name="creditoEletronico" ng-options="credito.nmCreditoEletronico for credito in creditoLista" required>
+                            <option value="">Selecione</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" ng-show="novoProduto.creditoEletronico && novoProduto.emissorCredito">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <table class="tabela" width="100%">
+                        <thead class="tabela-cabecalho">
+                            <tr>
+                                <th>ID</th>
+                                <th>Emissor do Crédito</th>
+                                <th>Nome do Crédito</th>
+                                <th>Tipo da Vigência</th>
+                                <th>Tipo Tarifário</th>
+                                <th>Aplicação do Crédito</th>
+                                <th>Vigência</th>
+                            </tr>
+                        </thead>
+                        <tbody class="tabela-conteudo">
+                            <tr>
+                                <td class="celula">{{novoProduto.tipoEmissaoCredito.id}}</td>
+                                <td class="celula">{{novoProduto.tipoEmissaoCredito.emissorCredito.descricao}}</td>
+                                <td class="celula">{{novoProduto.tipoEmissaoCredito.creditoEletronico.descricao}}</td>
+                                <td class="celula">{{novoProduto.tipoEmissaoCredito.vigenciaCreditoTemporal.descricao}}</td>
+                                <td class="celula">{{novoProduto.tipoEmissaoCredito.tipoTarifario.descricao}}</td>
+                                <td class="celula">{{novoProduto.tipoEmissaoCredito.tipoAplicacaoTransporte.descricao}}</td>
+                                <td class="celula">{{novoProduto.tipoEmissaoCredito.dataInicioVigencia | date: 'dd/MM/yyyy'}} a {{novoProduto.tipoEmissaoCredito.dataFimVigencia | date: 'dd/MM/yyyy'}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>        
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="" class="col-md-3 control-label">Vigência de:*</label>
+                    <div class="col-md-6">
+                        <spt-data model="novoProduto.dataInicioVigencia" abre="up" atualmin="atual" maxima="novoProduto.dataFimVigencia || atual" mascara="39/19/9999" placeholder="dd/mm/aaaa" required></spt-data>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="" class="col-md-3 control-label">até:*</label>
+                    <div class="col-md-6">
+                        <spt-data id="fim" model="novoProduto.dataFimVigencia" abre="up" atualmin="atual" minima="novoProduto.dataInicioVigencia"  mascara="39/19/9999" placeholder="dd/mm/aaaa" required></spt-data>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="row">
+        <span class="legendas"><em>* Campo Obrigatório</em></span>
+    </div>
+</div>

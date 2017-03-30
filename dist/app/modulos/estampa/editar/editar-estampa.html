@@ -1,0 +1,29 @@
+<div class="formulario">
+	<spt-mensagem-erro form="formEstampa" mensagem-servidor="mensagemServidor"></spt-mensagem-erro>
+	<form id="formModal" class="modal-form" ng-submit="formEstampa.$valid && editar()" name="formEstampa" novalidate>
+		<div class="form-group">
+			<label for="" class="col-md-3 control-label">Nome da estampa:*</label>
+			<div class="col-md-6">
+				<input type="text" class="form-control" ng-model="estampa.nome" restrict="reject" required clean="true" maxlength="50">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="" class="col-md-3 control-label">Descrição:*</label>
+			<div class="col-md-6">
+				<input type="text" class="form-control" ng-model="estampa.descricao" restrict="reject" required clean="true" maxlength="100">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="" class="col-md-3 control-label">Imagem:*</label>
+            <span class="detalhes-bold"><img class="col-md-6 img-detalhes" data-ng-src="{{estampa.imagemClob}}"></span>
+		</div>
+		<div class="form-group">
+			<div class="col-md-6">
+				<input type="file" class="form-control" ng-model="estampa.imagemClob" restrict="reject" onchange="angular.element(this).scope().subirImagem(event)" required clean="true">
+			</div>
+		</div>
+	</form>
+	<div class="row">
+		<span class="legendas"><em>* Campo Obrigatório</em></span>
+	</div>
+</div>

@@ -1,0 +1,87 @@
+<section>
+	<div class="row conteudo-interno">
+		<div class="row">
+			<div class="col-sm-6 col-md-8">
+				<em class="titulo-interno">Pesquisar Tarifa</em>
+			</div>
+			<div class=" col-sm-6 col-md-4">
+				<button class="bt bt-incluir" spt-modal-acao
+				modulo="tarifa" caminho-modulo="pesquisar-tarifa" tamanho="medio" acao="incluir"
+				titulo="Incluir">
+				<i class="fa fa-plus-circle" aria-hidden="true"></i> Incluir Tarifa
+			</button>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="formulario">
+				<spt-filtro caminho-modulo="pesquisar-tarifa" nome-filtro="tarifa"></spt-filtro>
+			</div>
+		</div>
+	</div>
+	<div class="mensagem" ng-if="!!mensagemServidor">
+		<p>
+			<em ng-bind="mensagemServidor.descricao"></em>
+		</p>
+	</div>
+
+
+	<div ng-if="tarifas.length" class="row resultados">
+		<div class="col-md-12">
+			<table class="tabela" width="100%">
+				<thead class="tabela-cabecalho">
+					<tr>
+						<th class="tb-50 tb-left-text">Nome da Tarifa</th>
+						<th class="tb-50 tb-left-text">Número da Legislação</th>
+						<th class="tb-smaller tb-left-text">Tipo de Tarifa</th>
+						<th class="tb-small tb-left-text">Data do Reajuste</th>
+						<th class="tb-smaller tb-left-text">Modal</th>
+						<th class="tb-smaller tb-left-text">Valor da Tarifa</th>
+						<th class="tb-small tb-center-text">Ação</th>
+					</tr>
+				</thead>
+				<tbody class="tabela-conteudo">
+
+
+					<tr dir-paginate="tarifa in tarifas | itemsPerPage: ITENS_POR_PAGINA">
+						<td class="celula">{{tarifa.nome}}</td>
+						<td class="celula">{{tarifa.codigoLegislacao}}</td>
+						<td class="celula">{{tarifa.tipo.descricao}}</td>
+						<td class="celula">{{tarifa.dataReajuste | date: 'dd/MM/yyyy'}}</td>
+						<td class="celula">{{tarifa.listaModal}}</td>
+						<td class="celula">{{tarifa.valor}}</td>
+						<td class="celula tabela-acoes">
+							<!-- <i class="fa fa-arrow-down" ng-click="ordenar(tarifa)"
+							tooltip-placement="left" uib-tooltip="Ordenar" titulo="Ordenar"
+							aria-hidden="true"></i> -->
+
+							<i class="fa fa-search" spt-modal-acao acao="detalhes" objeto="tarifa" modulo="tarifa" caminho-modulo="pesquisar-tarifa"
+							tooltip-placement="left" uib-tooltip="Consultar Detalhes" titulo="Consultar Detalhes" tamanho="medio"
+							aria-hidden="true"></i>
+
+							<i class="fa fa-pencil" spt-modal-acao acao="editar" objeto="tarifa" modulo="tarifa" caminho-modulo="pesquisar-tarifa"
+							tooltip-placement="left" uib-tooltip="Editar" tamanho="medio" titulo="Editar"
+							aria-hidden="true"></i>
+
+							<i class="fa fa-times" spt-modal-acao acao="excluir" objeto="tarifa" modulo="tarifa"
+							caminho-modulo="pesquisar-tarifa"
+							tooltip-placement="left" uib-tooltip="Excluir" titulo="Excluir" callback="preFiltrar()" aria-hidden="true"></i>
+
+						</td>
+					</tr>
+					<tr ng-show="tarifas.length">
+						<td colspan="8" align="right">Total de Tarifas Cadastradas: {{ tarifas.length }}</td>
+					</tr>
+					<tr ng-show="tarifas.length == null">
+						<td colspan="5">Não há registro retornado na pesquisa.</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="paginacao col-md-12">
+				<dir-pagination-controls boundary-links="true" template-url="app/comum/templates/paginacao.diretiva.html"></dir-pagination-controls>
+			</div>
+		</div>
+	</div>
+
+</div>
+</section>

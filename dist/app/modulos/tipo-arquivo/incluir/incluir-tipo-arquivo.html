@@ -1,0 +1,38 @@
+<div class="formulario">
+	<spt-mensagem-erro form="formTipoArquivo" mensagem-servidor="mensagemServidor"></spt-mensagem-erro>
+	<form id="formModal" class="modal-form" ng-submit="formTipoArquivo.$valid && incluir()"  name="formTipoArquivo" novalidate>
+		<div class="form-group">
+			<label for="" class="col-md-2 control-label">Denominação:*</label>
+			<div class="col-md-10">
+				<input type="text" class="form-control" focus ng-model="tipoArquivo.descricao" name="descricao" required >
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="" class="col-md-2 control-label">Processo de Transmissão:*</label>
+			<div class="col-md-5">				
+				<select name="transmissao" id="transmissao" class="form-control" ng-model="filtro.transmissao" id="transmissao" name="transmissao" ng-options="transmissao.nome for transmissao in transmissoes"  required>
+					<option value="" selected="selected">Selecione</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="" class="col-md-2 control-label">Binarização:*</label>
+			<div class="col-md-5">				
+				<select class="form-control" ng-model="filtro.binario" id="binario" name="binario" ng-options="binario.nome for binario in binarios" required>
+				<option value="" selected="selected">Selecione</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="" class="col-md-2 control-label">Assinatura:*</label>
+			<div class="col-md-5">				
+				<select class="form-control" ng-model="filtro.assinatura" id="assinatura" name="assinatura" ng-options="assinatura.nome for assinatura in assinaturas" required>
+				<option value="" selected="selected">Selecione</option>
+				</select>
+			</div>
+		</div>
+	</form>
+	<div class="row">
+		<span class="legendas"><em>* Campo Obrigatório</em></span>
+	</div>
+</div>

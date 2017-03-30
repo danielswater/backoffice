@@ -1,0 +1,58 @@
+<div class="formulario">
+	<spt-mensagem-erro form="formImportar" mensagem-servidor="mensagemServidor" ></spt-mensagem-erro>
+	<form id="formModal" class="modal-form" ng-submit="formImportar.$valid && importar()"  name="formImportar" novalidate>
+		<div class="form-group">
+			<label class="col-md-3 control-label">Categoria da Pergunta:</label>
+			<div class="col-md-6">
+				<select 
+					class="form-control"
+					ng-model="filtro.CategoriaPergunta"
+					ng-options="tipo.descricao for tipo in CategoriaPergunta" required>
+					<option value="">Selecione a Categoria da Pergunta...</option>
+				</select>
+			</div>
+			<button class="bt bt-padrao" ng-click="formImportar.$valid && preFiltrar()" form="formImportar"><mark class="cor"></mark>Pesquisar</button>
+		</div>
+		<div class="form-group">
+			<label class="col-md-3 control-label">Categoria de Destino:</label>
+			<div class="col-md-6">
+				<select 
+					class="form-control"
+					ng-model="filtro.CategoriaDestino"
+					ng-options="tipo.descricao for tipo in CategoriaPergunta">
+					<option value="">Selecione a Categoria de Destino...</option>>
+				</select>
+			</div>
+		</div>
+		<div class="row resultados" ng-if="pergunta.length">
+			<div class="col-md-12">
+				<table class="tabela" width="100%">
+					<thead class="tabela-cabecalho">
+						<tr>
+							<th class="col-md-12"><input type="checkbox" ng-model="check" placeholder="Selecionar Todas"> Pergunta</th>
+						</tr>
+					</thead>
+					<tbody class="tabela-conteudo">
+						<tr dir-paginate="pergunta in pergunta | itemsPerPage: ITENS_POR_PAGINA">
+							<td class="celula" >
+								<input 	type="checkbox" 
+										value="pergunta.textoPergunta"
+										ng-checked="check">{{pergunta.textoPergunta}}
+							</td>
+						</tr>
+						<tr ng-if="pergunta.length">
+							<td colspan="7" align="right">Total de Pergunta(s) Cadastrada(s): {{ pergunta.length }}</td>
+						</tr>
+						<tr ng-if="!pergunta.length">
+							<td colspan="7">Não há registro retornado na pesquisa.</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		
+		<div class="row">
+			<span class="legendas"><em>* Campo Obrigatório</em></span>
+		</div>
+	</form>
+</div>

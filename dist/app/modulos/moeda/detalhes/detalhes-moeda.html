@@ -1,0 +1,16 @@
+<div class="row" ng-show="!!moeda">
+    <div class="form-group">
+		<div class="form-group">
+			<label for="nome" class="control-label">Nome:</label>
+			<span ng-bind="moeda.descricao"></span>
+		</div>
+		<div class="form-group">
+			<label for="sigla" class="control-label">Sigla:</label>
+			<span ng-bind="moeda.sigla"></span>
+		</div>
+		<div class="form-group">
+			<label for="vigencia" class="control-label">Período de Vigência:</label>
+			<span>{{ moeda.dataVigenciaInicial | date : 'dd/MM/yyyy' }} à {{ moeda.dataVigenciaFinal | date : 'dd/MM/yyyy' }}</span>
+		</div>
+	</div>
+</div>

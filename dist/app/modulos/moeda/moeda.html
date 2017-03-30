@@ -1,0 +1,67 @@
+ <section>
+	<div class="row conteudo-interno" cg-busy="espera">
+		<div class="row">
+			<div class="col-sm-6 col-md-8">
+				<em class="titulo-interno">Pesquisar Moeda</em>
+			</div>
+			<div class=" col-sm-6 col-md-4">
+				<button class="bt bt-incluir" spt-modal-acao 
+					modulo="moeda" caminho-modulo="moeda" acao="incluir"
+					titulo="Incluir">
+				    <i class="fa fa-plus-circle" aria-hidden="true"></i> Incluir Moeda
+				</button>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="formulario">
+					<spt-filtro caminho-modulo="moeda" nome-filtro="moeda"></spt-filtro>
+				</div>
+			</div>
+		</div>
+		<div class="mensagem" ng-if="!!mensagemServidor">
+			<p><em ng-bind="mensagemServidor.descricao"></em></p>
+		</div>
+		<div ng-if="moedas.length" class="row resultados">
+			<div class="col-md-12">
+				<table class="tabela" width="100%">
+					<thead class="tabela-cabecalho">
+						<tr>
+							<th>Nome da Moeda</th>
+							<th>Sigla da Moeda</th>
+							<th>Período de Vigência</th>
+							<th style="text-align:center;width:190px;">Ação</th>
+						</tr>
+					</thead>
+					<tbody class="tabela-conteudo" ui-floating ng-show="moedas.length">
+						<tr dir-paginate="moeda in moedas | itemsPerPage: ITENS_POR_PAGINA" ng-show="moedas.length">
+							<td class="celula" ng-bind="moeda.descricao"></td>
+							<td class="celula" ng-bind="moeda.sigla"></td>
+							<td class="celula">{{moeda.dataVigenciaInicial|date:'dd/MM/yyyy'}} à {{moeda.dataVigenciaFinal|date:'dd/MM/yyyy'}}</td>
+							<td class="celula tabela-acoes">
+								<i class="fa fa-search" spt-modal-acao acao="detalhes" objeto="moeda" modulo="moeda" caminho-modulo="moeda" 
+									tooltip-placement="left" uib-tooltip="Consultar Detalhes" titulo="Consultar Detalhes" tamanho="medio" 
+									aria-hidden="true"></i>
+								<i class="fa fa-pencil" spt-modal-acao acao="editar" objeto="moeda" modulo="moeda" caminho-modulo="moeda" 
+									tooltip-placement="left" uib-tooltip="Editar" titulo="Editar"
+									aria-hidden="true"></i>
+								<i class="fa fa-times" spt-modal-acao acao="excluir" objeto="moeda" modulo="moeda" caminho-modulo="moeda" callback="preFiltrar()"
+									tooltip-placement="left" uib-tooltip="Excluir" titulo="Excluir" 
+									aria-hidden="true"></i>
+							</td>
+						</tr>
+						<tr ng-show="moedas.length">
+							<td colspan="4" align="right">Total de Moedas Cadastradas: {{ moedas.length }}</td>
+						</tr>
+						<tr ng-show="moedas.length == 0">
+							<td colspan="4">Não há registro retornado na pesquisa.</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="paginacao col-md-12">
+					<dir-pagination-controls boundary-links="true" template-url="app/comum/templates/paginacao.diretiva.html"></dir-pagination-controls>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

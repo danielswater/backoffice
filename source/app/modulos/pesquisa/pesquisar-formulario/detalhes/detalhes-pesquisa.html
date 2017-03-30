@@ -1,0 +1,85 @@
+<div class="row">
+	<div class="col-md-12">
+		<fieldset class="well no-bkg col-md-11">
+			<legend class='legend'>Informações do Formulário de Pesquisa</legend>
+			<div class="form-group">
+				<div class="row">
+					<label for="" class="col-md-3 control-label-right text-right">Formulário de Pesquisa:</label>
+					<div class="col-md-6">
+						<label for="" class="float-left control-label no-weight">Pesquisa Linha Novembro 2015</label>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="row">
+					<label for="" class="col-md-3 control-label-right text-right">Grupo de Entrevistados:</label>
+					<div class="col-md-6">
+						<label for="" class="float-left control-label no-weight">Conselheiros Zona Norte, Zona Sul</label>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="row">
+					<label for="" class="col-md-3 control-label-right text-right">Período de Vigência:</label>
+					<div class="col-md-6">
+						<label for="" class="float-left control-label no-weight">01/10/2016 à 20/05/2018</label>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="row">
+					<label for="" class="col-md-3 control-label-right text-right">Contato para suporte (e-mail):</label>
+					<div class="col-md-6">
+						<label for="" class="float-left control-label no-weight">meuemail@meuprovedor.com.br</label>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="row">
+					<label for="" class="col-md-3 control-label-right text-right">Contato para suporte (telefone):</label>
+					<div class="col-md-6">
+						<label for="" class="float-left control-label no-weight">(11)95151-5151</label>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="row">
+					<label for="" class="col-md-3 control-label-right text-right">Enviar pesquisa via e-mail?:</label>
+					<div class="col-md-6">
+						<label for="" class="float-left control-label no-weight">Sim</label>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="row">
+					<label for="" class="col-md-3 control-label-right text-right">Situação:</label>
+					<div class="col-md-6">
+						<label for="" class="float-left control-label no-weight">Pendente de aprovação</label>
+					</div>
+				</div>
+			</div>
+		</fieldset>
+		<fieldset class="well no-bkg col-md-11">
+			<legend class='legend'>Perguntas vinculadas ao Formulário</legend>
+			<div class="form-group">
+				<div class="row">
+					<table class="tabela" width="100%" id="sortable">
+						<thead class="tabela-cabecalho">
+							<tr>
+								<th class="col-md-1">Ordenação</th>
+								<th class="col-md-2">Categoria da Pergunta</th>
+								<th class="col-md-2">Pergunta</th>
+							</tr>
+						</thead>
+						<tbody class="tabela-conteudo" ng-show="linhas.length" ng-model="linhas">
+							<tr dir-paginate="pesquisa in linhas | itemsPerPage: ITENS_POR_PAGINA" ng-show="linhas.length">
+								<td class="celula" ng-bind="pesquisa.ordenacao"></td>
+								<td class="celula" ng-bind="pesquisa.categoria"></td>
+								<td class="celula">{{pesquisa.pergunta}} <i class="fa fa-info-circle corAzul" uib-tooltip="{{pesquisa.resposta}}" aria-hidden="true"></i></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+	</div>
+</div>

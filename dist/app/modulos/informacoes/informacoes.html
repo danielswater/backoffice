@@ -1,0 +1,80 @@
+ <section>
+	<div class="row conteudo-interno" cg-busy="espera">
+		<div class="row">
+			<div class="col-sm-6 col-md-8">
+				<em class="titulo-interno">Pesquisar Informações</em>
+			</div>
+			<div class=" col-sm-6 col-md-4">
+				<button class="bt bt-incluir" spt-modal-acao 
+					modulo="informacoes" caminho-modulo="informacoes" acao="incluir" 
+					titulo="Incluir"
+					tamanho="meio-grande"
+					callback="preFiltrar()"
+					>
+				    <i class="fa fa-plus-circle" aria-hidden="true"></i> Incluir Informação
+				</button>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="formulario">
+					<spt-filtro caminho-modulo="informacoes" nome-filtro="informacoes"></spt-filtro>
+				</div>
+			</div>
+		</div>
+		<div class="mensagem" ng-if="!!mensagemServidor">
+			<p>
+				<em ng-bind="mensagemServidor.descricao"></em>
+			</p>
+		</div>
+
+		<div class="col-md-12" ng-show="informacoes.length">
+			<table class="tabela" width="100%">
+				<thead class="tabela-cabecalho">
+					<tr>
+						<th style="text-align:center;width:120px;">Categoria da informação</th>
+						<th>Título da informação</th>
+						<th>Resumo da informação</th>
+						<th>Situação</th>
+						<th>Destaque</th>
+						<th style="text-align:center;width:180px;">Ação</th>
+					</tr>
+				</thead>
+				<tbody class="tabela-conteudo">
+					<tr dir-paginate="info in informacoes | itemsPerPage : ITENS_POR_PAGINA " ng-show="informacoes.length">
+						<td class="celula" ng-bind="info.categoria.descricao"></td>
+						<td class="celula" ng-bind="info.tituloConteudo"></td>
+						<td class="celula" ng-bind="info.textoResumoInformacao"></td>
+						<td class="celula" ng-bind="info.registro.motivo.descricao"></td>
+						<td class="celula" ng-bind="info.flagDestaque == '' ? 'Ambos' : info.flagDestaque == 'S' ? 'Sim' : 'Não'"></td>
+						<td class="celula tabela-acoes">
+							<i class="fa fa-search" spt-modal-acao acao="detalhes" objeto="info" modulo="informacoes" caminho-modulo="informacoes" 
+								tooltip-placement="left" uib-tooltip="Consultar Detalhes" titulo="Consultar Detalhes" tamanho="meio-grande" 
+								aria-hidden="true"></i>
+							<i class="fa fa-pencil" spt-modal-acao acao="editar" objeto="info" modulo="informacoes" caminho-modulo="informacoes" 
+								tooltip-placement="left" uib-tooltip="Editar" titulo="Editar" tamanho="meio-grande" 
+								aria-hidden="true"
+								callback="preFiltrar()"></i>
+							<i class="fa fa-times" spt-modal-acao acao="excluir" objeto="info" modulo="informacoes" caminho-modulo="informacoes"
+								tooltip-placement="left" uib-tooltip="Excluir" titulo="Excluir" 
+								aria-hidden="true"
+								callback="preFiltrar()"></i>
+						</td>
+					</tr>
+					<tr ng-if="informacoes.length">
+						<td colspan="6" align="right">Total de Informações Cadastradas: {{ informacoes.length }}</td>
+					</tr>
+					<tr ng-if="informacoes.length == 0">
+						<td colspan="6">Não há registro retornado na pesquisa.</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<div class="paginacao col-md-12">
+				<dir-pagination-controls boundary-links="true" template-url="app/comum/templates/paginacao.diretiva.html"></dir-pagination-controls>
+			</div>
+
+		</div>
+		
+	</div>
+</section>

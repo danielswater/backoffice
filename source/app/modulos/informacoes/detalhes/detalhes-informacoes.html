@@ -1,0 +1,80 @@
+<div class="row" ng-show="!!informacoes">
+	<div class="form-group" ng-show="informacoes.dataPublicacao && mesPublicacao">
+		<span class="detalhes-bold text-danger-mini">{{ informacoes.dataPublicacao | date : 'd' }} de {{ mesPublicacao }} de {{ informacoes.dataPublicacao | date : 'y' }}</span>
+	</div>
+	<div class="row">&nbsp;</div>
+	<div class="form-group">
+		<span ng-bind="informacoes.tituloConteudo" class="detalhes-bold text-danger"></span>
+	</div>
+	<div class="row">&nbsp;</div>
+	<div class="form-group">
+		<span ng-bind="informacoes.textoResumoInformacao"></span>
+	</div>
+	<div class="row">&nbsp;</div>
+	<div class="form-group">
+		<span ng-bind-html="informacoes.textoInformacaoPreview"></span>
+	</div>
+	<div class="row">&nbsp;</div>
+	<div class="form-group">
+		<div class="col-md-3">
+			<span style="float: right;font-weight:bold;">Informação em Destaque: </span>
+		</div>
+		<div class="col-md-9">
+			{{  informacoes.flagDestaque == '' ? 'Ambos' : informacoes.flagDestaque == 'S' ? 'Sim' : 'Não'   }}
+		</div>
+	</div>
+	<div class="row">&nbsp;</div>
+	<div class="form-group" >
+		<div class="col-md-3">
+			<span style="float: right;font-weight:bold;">Imagem em Destaque:</span>
+		</div>
+		<div class="col-md-9">
+			<canvas id="imagemDestaquePreview" ng-model="imagemDestaquePreview" title="{{ informacoes.txAlternativoImagem }}" />
+		</div>
+	</div>
+	<div class="row">&nbsp;</div>
+	<div class="form-group" >
+		<div class="col-md-3">
+			<span style="float: right;font-weight:bold;">Texto Alternativo da Imagem:</span>
+		</div>
+		<div class="col-md-9">
+			{{ informacoes.txAlternativoImagem }}
+		</div>
+	</div>
+	<div class="row">&nbsp;</div>
+	<div class="form-group">
+		<table class="tabela " width="100%">
+			<thead class="tabela-cabecalho">
+				<tr>
+					<th>Situação da Informação</th>
+				</tr>
+			</thead>
+			<tbody class="tabela-conteudo">
+				<tr>
+					<td class="celula">
+						<div class="row">
+							<table class="tabela" width="100%">
+								<thead class="tabela-cabecalho">
+									<tr>
+										<th>Data</th>
+										<th>Usuário</th>
+										<th>Situação</th>
+									</tr>
+								</thead>
+								<tbody class="tabela-conteudo" ng-model="situacoes">
+									<tr>
+										<td class="celula" ng-show="informacoes.registro.dataCriacao" ng-hide="informacoes.registro.dataAlteracao">{{ informacoes.registro.dataCriacao | date: 'dd/MM/yyyy' }} às {{ informacoes.registro.dataCriacao | date: 'HH' }}h{{ informacoes.registro.dataCriacao | date: 'mm' }}</td>
+										<td class="celula" ng-if="informacoes.registro.dataAlteracao">{{ informacoes.registro.dataAlteracao | date: 'dd/MM/yyyy' }} às {{ informacoes.registro.dataAlteracao | date: 'HH' }}h{{ informacoes.registro.dataAlteracao | date: 'mm' }}</td>
+										<td class="celula" ng-show="informacoes.registro.usuarioCriacao" ng-hide="informacoes.registro.usuarioAlteracao"><span ng-bind="informacoes.registro.usuarioCriacao"></span></td>
+										<td class="celula" ng-if="informacoes.registro.usuarioAlteracao"><span ng-bind="informacoes.registro.usuarioAlteracao"></span></td>
+										<td class="celula"><span ng-bind="informacoes.registro.motivo.descricao"></span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

@@ -1,0 +1,295 @@
+<div class="formulario">
+	<spt-mensagem-erro form="formCredito" mensagem-servidor="mensagemServidor" ></spt-mensagem-erro>
+	<form id="formModal" class="modal-form" ng-submit="incluirSubmit(formCredito.$valid)" name="formCredito" novalidate>
+			<div class="row">&nbsp;</div>
+			<div class="row">
+				<label for="" class="col-md-2 control-label-right text-right">Formulário de Pesquisa:*</label>
+				<div class="col-md-6">
+					<input type="text" class="form-control" id="pergunta" ng-model="filtro.pergunta" restrict="reject" validate="false" clean="true" required>
+				</div>
+			</div>
+			<div class="row">&nbsp;</div>
+			<div class="row">
+				<label for="" class="col-md-2 control-label-right text-right">Grupo de Entrevistados:*</label>
+				<input type="checkbox">Selecionar todos os Cidadãos ativos no Portal do SBE
+				<div class="col-md-4">
+					<select 
+						class="form-control" 
+						ng-model="categoriaModel" 
+						ng-options="categoria for categoria in categorias" required>
+						<option value="">Selecione o Grupo de Entrevistados...</option>>
+					</select>
+				</div>
+			</div>
+			<div class="row">&nbsp;</div>
+				<div class="row">
+				<label for="" class="col-md-2 control-label-right text-right">Período de Vigência:</label>
+				<div class="col-width fix-left">
+					<spt-data atualmin="atual" model="inicio" maxima="fim" mascara="39/19/9999" placeholder="dd/mm/aaaa" required></spt-data>
+				</div>
+				<label class='float-left control-label'>à</label>
+				<div class="col-width">
+					<spt-data atualmin="atual" model="inicio" maxima="fim" mascara="39/19/9999" placeholder="dd/mm/aaaa" required></spt-data>
+				</div>
+			</div>
+			<div class="row">&nbsp;</div>
+				<div class="row">
+				<label for="" class="col-md-2 control-label-right text-right">Contato para suporte </br>(e-mail):</label>
+				<div class="col-md-6">
+					<input type="text" class="form-control" id="pergunta" ng-model="filtro.pergunta" restrict="reject" validate="false" clean="true" required>
+				</div>
+			</div>
+			<div class="row">&nbsp;</div>
+				<div class="row">
+				<label for="" class="col-md-2 control-label-right text-right">Contato para suporte (telefone):</label>
+				<div class="col-md-2">
+					<input type="text" class="form-control" id="pergunta" mask="(99)99999-9999" placeholder="(XX) 99999-9999" ng-model="filtro.phone" restrict="reject" validate="false" clean="true" required>
+				</div>
+			</div>
+			<div class="row">&nbsp;</div>
+				<div class="row">
+				<label for="" class="col-md-2 control-label-right text-right">Enviar pesquisa via e-mail:*</label>
+				<label class="radio-inline fix-left">
+					<input type="radio" name="apCredito" ng-model="apCredito" value="Sim">
+					Sim
+				</label>
+				<label class="radio-inline fix-left">
+					<input type="radio" name="apCredito" ng-model="apCredito" value="Não">
+					Não
+				</label>
+			</div>
+			<div class="row">&nbsp;</div>
+				<div class="row">
+					<div class="form-group acoes">
+						<button type="button" ng-click="limpar()" class="bt bt-padrao bt-cancelar" form="formFiltro">
+						<mark class="cor"></mark>
+						Limpar
+						</button>
+						<button type="submit" class="bt bt-padrao" form="formFiltro">
+						<mark class="cor"></mark>
+						Salvar
+						</button>
+					</div>
+				</div>
+		</form>
+		<div class="row">
+			<span class="legendas"><em>* Campo de preenchimento obrigatório</em></span>
+		</div>
+	</form>
+	<fieldset class="well no-bkg col-md-11">
+		<legend class='legend'>Vincular Perguntas ao Formulário de Pesquisa</legend>
+		<div class="form-group">
+			<div class="row">
+				<label for="" class="col-md-3 control-label-right text-right">Formulário de Pesquisa:</label>
+				<div class="col-md-6">
+					<label for="" class="float-left control-label no-weight">Pesquisa Linha Novembro 2015</label>
+				</div>
+			</div>
+			<div class="row">&nbsp;</div>
+			<div class="row">
+				<label for="" class="col-md-3 control-label-right text-right">Grupo de Entrevistados:</label>
+				<div class="col-md-6">
+					<label for="" class="float-left control-label no-weight">Conselheiros Zona Norte, Zona Sul</label>
+				</div>
+			</div>
+			<div class="row">&nbsp;</div>
+			<div class="row">
+				<label for="inicio" class="col-md-3 control-label-right text-right">Período de Vigência:</label>
+				<div class="col-md-6">
+					<label for="" class="float-left control-label no-weight">01/10/2016 à 20/05/2018</label>
+				</div>
+			</div>
+			<div class="row">&nbsp;</div>
+			<div class="row">
+				<label for="" class="col-md-3 control-label-right text-right">Importar Perguntas?</label>
+				<div class="col-md-6">
+					<label class="radio-inline">
+					<input type="radio" name="apCredito" ng-model="Import" value="Sim">
+						Sim
+					</label>
+					<label class="radio-inline">
+						<input type="radio" name="apCredito" ng-model="Import" value="Não">
+						Não
+					</label>
+				</div>
+			</div>
+			<div class="row">&nbsp;</div>
+			<div ng-show="Import=='Sim'">
+				<div class="row" >
+					<label for="inicio" class="col-md-3 control-label-right text-right">Formulário de Pesquisa:</label>
+					<div class="col-md-5">
+						<select 
+							class="form-control" 
+							ng-model="categoriaModel" 
+							ng-options="categoria for categoria in categorias" required>
+							<option value="">Selecione o Formulário de Pesquisa...</option>
+						</select>
+					</div>
+				</div>
+				<div class="row">&nbsp;</div>
+				<div class="row">
+					<div class="form-group acoes">
+						<button type="button" ng-click="limpar()" class="bt bt-padrao bt-cancelar" form="formFiltro">
+						<mark class="cor"></mark>
+						Cancelar
+						</button>
+						<button type="submit" class="bt bt-padrao" form="formFiltro">
+						<mark class="cor"></mark>
+						Importar
+						</button>
+					</div>
+				</div>
+			</div>
+			<div ng-show="Import!='Sim'">
+				<div class="row">
+					<label for="inicio" class="col-md-3 control-label-right text-right">Categoria da Pergunta:</label>
+					<div class="col-md-5">
+						<select 
+							class="form-control" 
+							ng-model="categoriaModel" 
+							ng-options="categoria for categoria in categorias" required>
+							<option value="">Selecione a Categoria da Pergunta...</option>>
+						</select>
+					</div>
+				</div>
+				<div class="row">&nbsp;</div>
+				<div class="row">
+					<label for="inicio" class="col-md-3 control-label-right text-right">Pergunta:</label>
+					<div class="col-md-5">
+						<select 
+							class="form-control" 
+							ng-model="perguntaModel" 
+							ng-options="categoria for categoria in categorias" required>
+							<option value="">Selecione a Pergunta...</option>>
+						</select>
+					</div>
+					<div class="col-md-2">
+						<button class="bt bt-incluir" spt-modal-acao 
+							modulo="formulario" caminho-modulo="pesquisa/pesquisar-formulario" acao="incluir" 
+							titulo="Incluir Pergunta" tamanho="medio">
+							<i class="fa fa-plus-circle" aria-hidden="true"></i> Incluir Pergunta
+						</button>
+					</div>
+				</div>
+				<div class="row">&nbsp;</div>
+				<div class="row">
+					<div class="form-group acoes">
+						<button type="button" ng-click="limpar()" class="bt bt-padrao bt-cancelar" form="formFiltro">
+						<mark class="cor"></mark>
+						Limpar
+						</button>
+						<button type="submit" class="bt bt-padrao" form="formFiltro">
+						<mark class="cor"></mark>
+						Vincular
+						</button>
+					</div>
+				</div>
+			</div>
+			
+			
+		</div>
+		<div class="row resultados">
+			<div class="col-md-12">
+				
+				<!--<table class="tabela" width="100%" >
+					<thead class="tabela-cabecalho">
+						<tr>
+							<th class="col-md-2">Ordenação</th>
+							<th class="col-md-4">Categoria da Pergunta</th>
+							<th class="col-md-8">Pergunta</th>
+							<th class="col-md-2">Ação</th>
+						</tr>
+					</thead>
+					<tbody class="tabela-conteudo mover-itens" ng-show="linhas.length" ui-sortable="sortableOptions" ng-model="linhas">
+						<tr dir-paginate="pesquisa in linhas | orderBy : 'ordenacao' | itemsPerPage: ITENS_POR_PAGINA" ng-show="linhas.length">
+					
+							<td class="celula" ng-bind="pesquisa.ordenacao"></td>
+							<td class="celula" ng-bind="pesquisa.categoria"></td>
+							<td class="celula" ng-bind="pesquisa.pergunta"></td>
+							<td class="celula tabela-acoes">
+								<i class="fa fa-check" 
+									spt-modal-acao acao="inativar-motivo" 
+									objeto="credito" 
+									modulo="credito" 
+									caminho-modulo="emissao-credito" 
+									tooltip-placement="left" 
+									uib-tooltip="{{pesquisa.situacao.ativo ? 'Inativar' : 'Ativar'}}" 
+									titulo="{{pesquisa.situacao.ativo ? 'Inativar' : 'Ativar'}}"
+									aria-hidden="true" 
+									ng-class="pesquisa.situacao.ativo ? 'corVerde' : 'corCinza' ">
+								</i>
+								<i class="fa fa-times" 
+									spt-modal-acao acao="excluir" 
+									objeto="pesquisa" 
+									modulo="pesquisa" 
+									caminho-modulo="pesquisa/pesquisar-formulario" 
+									tooltip-placement="left" 
+									uib-tooltip="Excluir" 
+									titulo="Excluir" 
+									tamanho="medio" 
+									aria-hidden="true">
+								</i>
+							</td>
+						</tr>
+					</tbody>
+				</table>-->
+
+
+
+
+
+				<table class="tabela" width="100%" id="sortable">
+					<thead class="tabela-cabecalho">
+						<tr>
+							<th class="col-md-2">Ordenação</th>
+							<th class="col-md-4">Categoria da Pergunta</th>
+							<th class="col-md-8">Pergunta</th>
+							<th class="col-md-2">Ação</th>
+						</tr>
+					</thead>
+					<tbody class="tabela-conteudo mover-itens" ui-floating ng-show="linhas.length" ui-sortable="sortableOptions" ng-model="linhas">
+						<tr dir-paginate="pesquisa in linhas | itemsPerPage: ITENS_POR_PAGINA" ng-show="linhas.length">
+							<td class="celula" ng-bind="pesquisa.ordenacao"></td>
+							<td class="celula" ng-bind="pesquisa.categoria"></td>
+							<td class="celula" ng-bind="pesquisa.pergunta"></td>
+							<td class="celula tabela-acoes">
+								<i class="fa fa-check" 
+									spt-modal-acao acao="inativar-motivo" 
+									objeto="credito" 
+									modulo="credito" 
+									caminho-modulo="emissao-credito" 
+									tooltip-placement="left" 
+									uib-tooltip="{{pesquisa.situacao.ativo ? 'Inativar' : 'Ativar'}}" 
+									titulo="{{pesquisa.situacao.ativo ? 'Inativar' : 'Ativar'}}"
+									aria-hidden="true" 
+									ng-class="pesquisa.situacao.ativo ? 'corVerde' : 'corCinza' ">
+								</i>
+								<i class="fa fa-times" 
+									spt-modal-acao acao="excluir" 
+									objeto="pesquisa" 
+									modulo="pesquisa" 
+									caminho-modulo="pesquisa/pesquisar-formulario" 
+									tooltip-placement="left" 
+									uib-tooltip="Excluir" 
+									titulo="Excluir" 
+									tamanho="medio" 
+									aria-hidden="true">
+								</i>
+							</td>
+						</tr>
+						<tr ng-show="linhas.length">
+							<td colspan="5" align="right">Total de linhas Cadastrados: {{ linhas.length }}</td>
+						</tr>
+						<tr ng-show="linhas.length">
+							<td colspan="5" align="left">Segure e arraste para ordenar</td>
+						</tr>
+						<tr ng-show="linhas.length == 0">
+							<td colspan="5">Não há registro retornado na pesquisa.</td>
+						</tr>
+					</tbody>
+				</table>
+				</div>
+			</div>
+		</div>
+	</fieldset>
+</div>

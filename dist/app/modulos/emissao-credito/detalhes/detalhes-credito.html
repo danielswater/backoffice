@@ -1,0 +1,95 @@
+<div class="row">
+	<div class="col-md-12">
+		<div class="row">
+			<div class="col-md-6">
+				<span><strong>Identificador:</strong></span>
+				<span>{{emissao.id}}</span>
+			</div>
+		</div>
+		<div class="row">&nbsp;</div>
+		<div class="row">
+			<div class="col-md-6">
+				<tr>
+					<td><strong>Emissor do Crédito:</strong></td>
+					<td>{{emissao.emissorCredito.descricao}}</td>
+				</tr>
+			</div>
+			<div class="col-md-6">
+				<span><strong>Nome do Crédito:</span></strong>
+				<span>{{emissao.creditoEletronico.descricao}}</span>
+			</div>
+		</div>
+		<div class="row">&nbsp;</div>
+		<div class="row">
+			<div class="col-md-6">
+				<span><strong>Tipo da Vigência:</strong></span>
+				<span>{{emissao.vigenciaCreditoTemporal.descricao}}</span>
+			</div>
+			<div class="col-md-3" ng-if="emissao.dataInicioVigencia.length">
+				<span><strong>Vigência de:</strong></span>
+				<span>{{emissao.dataInicioVigencia | date: 'dd/MM/yyyy'}}</span>
+			</div>
+			<div class="col-md-3" ng-if="emissao.dataFimVigencia.length">
+				<span><strong>até:</strong></span>
+				<span>{{emissao.dataFimVigencia | date: 'dd/MM/yyyy'}}</span>
+			</div>
+		</div>
+		<div class="row">&nbsp;</div>
+		<div class="row">
+			<div class="col-md-6">
+				<span><strong>Tipo Tarifário:</strong></span>
+				<span>{{emissao.tipoTarifario.descricao}}</span>
+			</div>
+		</div>
+		<div class="row">&nbsp;</div>
+		<div class="row">
+			<div class="col-md-6">
+				<span><strong>Aplicação do Crédito:</strong></span>
+				<span>{{emissao.tipoAplicacaoTransporte.descricao}}</span>
+			</div>
+		</div>
+		<div class="row">&nbsp;</div>
+		<div class="row">
+			<div class="col-md-3" ng-if="emissao.modal.length">
+				<span><strong>Modal:</strong></span>
+					<div class="well text-left">
+						<ul class="list-group no-margin">
+							<li class="list-group-item" ng-repeat="emissao in emissao.modal">{{emissao.descricao}}</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<table class="tabela" width="100%" ng-if="emissao.registro.situacao.descricao=='Inativo'">
+			<thead class="tabela-cabecalho">
+				<tr>
+					<th>Situação do Cadastro</th>
+				</tr>
+			</thead>
+			<tbody class="tabela-conteudo">
+				<tr>
+					<td class="celula">
+						<table class="tabela" width="100%">
+							<thead class="tabela-cabecalho">
+								<tr>
+									<th>Data</th>
+									<th>Usuário</th>
+									<th>Situação</th>
+									<th class="col-md-6">Motivo da Inativação</th>
+								</tr>
+							</thead>
+							<tbody class="tabela-conteudo">
+								<tr>
+									<td class="celula">{{emissao.registro.dataAlteracao | date: 'dd/MM/yyyy, HH:mm'}}</td>
+									<td class="celula">{{emissao.registro.usuarioCriacao}}</td>
+									<td class="celula">{{emissao.registro.situacao.descricao}}</td>
+									<td class="celula">{{emissao.registro.motivo.descricao}}</td>
+								</tr>
+							</tbody>
+						</table>
+					</td>
+				</tr>
+			</tbody>
+		</table>	
+	</div>
+</div>

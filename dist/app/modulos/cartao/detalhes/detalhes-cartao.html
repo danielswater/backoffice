@@ -1,0 +1,22 @@
+<table class="tabela">
+    <tbody>
+        <tr>
+          <td><strong>Razão Social:</strong></td>
+          <td>{{cartao.razaoSocial}}</td>
+      </tr>
+      <tr>
+          <td><strong>CNPJ:</strong></td>
+          <td>{{cartao.cnpj}}</td>
+      </tr>
+      <tr>
+          <td><strong>Situação:</strong></td>
+          <!--TODO: Pegar pelo situacao.descricao-->
+          <td ng-if="cartao.registro.status == 'A'">Ativo</td>
+          <td ng-if="cartao.registro.status == 'I'">Inativo</td>
+      </tr>
+      <tr ng-if="cartao.registro.status == 'I'">
+          <td><strong>Justificativa</strong></td>
+          <td>{{cartao.registro.justificativa}}</td>
+      </tr>
+  </tbody>
+</table>

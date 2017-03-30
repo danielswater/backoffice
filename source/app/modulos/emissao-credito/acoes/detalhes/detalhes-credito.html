@@ -1,0 +1,95 @@
+<div class="row">
+	<div class="col-md-12">
+		<div class="row">
+			<div class="col-md-6">
+				<span>Identificador:</span>
+				<span ng-bind="credito.id" class="detalhes-bold"></span>
+			</div>
+		</div>
+		<div class="row">&nbsp;</div>
+		<div class="row">
+			<div class="col-md-6">
+				<span>Emissor do Crédito:</span>
+				<span ng-bind="credito.emissor" class="detalhes-bold"></span>
+			</div>
+			<div class="col-md-6">
+				<span>Nome do Crédito:</span>
+				<span ng-bind="credito.nomeCredito" class="detalhes-bold"></span>
+			</div>
+		</div>
+		<div class="row">&nbsp;</div>
+		<div class="row">
+			<div class="col-md-6">
+				<span>Tipo da Vigência:</span>
+				<span ng-bind="credito.vigencia" class="detalhes-bold"></span>
+			</div>
+			<div class="col-md-3">
+				<span>Vigência de:</span>
+				<span ng-bind="credito.vigenciaDe" class="detalhes-bold"></span>
+			</div>
+			<div class="col-md-3">
+				<span>até:</span>
+				<span ng-bind="credito.vigenciaAte" class="detalhes-bold"></span>
+			</div>
+		</div>
+		<div class="row">&nbsp;</div>
+		<div class="row">
+			<div class="col-md-3">
+				<span>Tipo Tarifário:</span>
+				<span ng-bind="credito.tarifario" class="detalhes-bold"></span>
+			</div>
+		</div>
+		<div class="row">&nbsp;</div>
+		<div class="row">
+			<div class="col-md-3">
+				<span>Aplicação do Crédito:*</span>
+			<span ng-bind="credito.aplicacao" class="detalhes-bold"></span>
+			</div>
+		</div>
+	
+		<div class="row">&nbsp;</div>
+		<div class="row">
+			<div class="col-md-3">
+				<span>Modal:</span>
+					<div class="well text-left">
+						<ul class="list-group apps-container screen floatleft ng-pristine ng-untouched ng-valid ng-isolate-scope ui-sortable ng-not-empty" ui-sortable="sortableOptions" ng-model="list1">
+							<li class="list-group-item ng-binding ng-scope ui-sortable-handle">Metrô</li><!-- end ngRepeat: app in list1 --><li class="list-group-item ng-binding ng-scope ui-sortable-handle">CPTM</li><!-- end ngRepeat: app in list1 --><li class="list-group-item ng-binding ng-scope ui-sortable-handle">EMTU</li><!-- end ngRepeat: app in list1 --><li class="list-group-item ng-binding ng-scope ui-sortable-handle">Via4</li><!-- end ngRepeat: app in list1 --><li class="list-group-item ng-binding ng-scope ui-sortable-handle">Ônibus</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
+		<table class="tabela" width="100%">
+			<thead class="tabela-cabecalho">
+				<tr>
+					<th>Situação do Cadastro</th>
+				</tr>
+			</thead>
+			<tbody class="tabela-conteudo">
+				<tr>
+					<td class="celula">
+						<table class="tabela" width="100%">
+							<thead class="tabela-cabecalho">
+								<tr>
+									<th>Data</th>
+									<th>Usuário</th>
+									<th>Situação</th>
+									<th class="col-md-6">Motivo da Inativação</th>
+								</tr>
+							</thead>
+							<tbody class="tabela-conteudo">
+								<tr>
+									<td class="celula">10/10/206 às 15:00h45</td>
+									<td class="celula">Jãopones</td>
+									<td class="celula">Inativo</td>
+									<td class="celula">Tipo de Emissão de Crédito não é mais utilizado</td>
+								</tr>
+							</tbody>
+						</table>
+					</td>
+				</tr>
+			</tbody>
+		</table>	
+	</div>
+</div>

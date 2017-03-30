@@ -1,0 +1,21 @@
+<section>
+	<div class="row conteudo-interno">
+		<div class="row">
+			<div class="col-sm-12 col-md-12">
+				<em class="titulo-interno">Página Inicial</em>
+			</div>
+
+			<div class="box-links col-sm-6 col-md-12">
+				  <ul class="reconhecimento">
+					<!-- RECON -->
+					<li ng-repeat="page in reconPages"><a ng-href="#/{{page.url}}"><span ng-bind="page.label"></span></a></li>
+					<!-- /RECON -->
+					<!-- BACKOFFICE -->
+					<li ng-repeat="page in boPages"><a ng-href="#/{{page.url}}"><span ng-bind="page.label"></span></a></li>
+					<!-- /BACKOFFICE -->
+				  </ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

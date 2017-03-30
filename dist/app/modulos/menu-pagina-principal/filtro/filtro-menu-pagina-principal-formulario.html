@@ -1,0 +1,32 @@
+<div class="form-group">
+	<div class="row">
+		<div class="col-md-5">
+			<label for="nome" class="col-md-7 control-label">Nome do Menu da Página Principal:</label>
+			<div class="col-md-5">
+				<input type="text" id="nome" class="form-control" ng-model="filtro.nome" />
+			</div>
+		</div>
+		<div class="col-md-5">
+			<label for="grupoId" class="col-md-7 control-label">Grupo de Usuário do Sistema: *</label>
+			<div class="col-md-5">
+				<spt-select id="grupoId" model="filtro.grupoId" options="gruposUsuarioSistema" label="descricao" track-by="id" default="Selecione"></spt-select>
+			</div>
+		</div>
+		<div class="col-md-2"></div>
+	</div>
+	<div class="row">
+		<div class="col-md-5">
+			<label for="agrupamentoId" class="col-md-7 control-label">Agrupamento: *</label>
+			<div class="col-md-5">
+				<spt-select id="agrupamentoId" model="filtro.agrupamentoId" options="agrupamentos" label="descricao" track-by="id" default="Selecione"></spt-select>
+			</div>
+		</div>
+		<div class="col-md-5">
+			<label for="pagina" class="col-md-7 control-label">Página:</label>
+			<div class="col-md-5">
+				<spt-select id="pagina" model="filtro.pagina" options="paginas" label="descricao" track-by="id" default="Selecione"></spt-select>
+			</div>
+		</div>
+		<div class="col-md-2"></div>
+	</div>
+</div>

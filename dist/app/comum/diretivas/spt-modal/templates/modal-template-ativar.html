@@ -1,0 +1,30 @@
+<div ng-show="!mensagemRetorno" cg-busy="espera">
+	<div class="cabecalho-modal"> <a type="button" class="fechar" ng-click="fechar()">×</a>
+		<h4 class="titulo-modal"><em ng-bind="modal.titulo"></em></h4>
+	</div>
+	<div class="conteudo-modal">		
+		<spt-inclusao-estatica template-url="{{modal.template}}"></spt-inclusao-estatica>
+	</div>
+	<div class="rodape-modal">
+			<div ng-show="modal.situacao == 'A' || modal.objeto.registro.Situacao.id == 'A' || modal.situacao == 'S' || modal.registro.situacao.id == 'A' || modal.registro.situacao.id == 'S'">
+				<button class="bt bt-padrao bt-cancelar" type="button" ng-click="fechar()"><mark class="cor"></mark>Cancelar</button>
+				<button class="bt bt-padrao" type="submit" form="formModal"><mark class="cor"></mark>Salvar</button>
+			</div>
+			<div ng-show="modal.situacao == 'I' || modal.registro.situacao.id == 'I'  || modal.objeto.registro.Situacao.id=='I'">
+				<button class="bt bt-padrao bt-cancelar" type="button" ng-click="fechar()"><mark class="cor"></mark>Não</button>
+				<button class="bt bt-padrao" type="submit" form="formModal"><mark class="cor"></mark>Sim</button>
+			</div>
+	</div>	
+</div>
+<div ng-show="!!mensagemRetorno">
+	<div class="cabecalho-modal"> <a type="button" class="fechar" ng-click="ok()">×</a>		
+	</div>
+	<div class="conteudo-modal">
+		<div class="mensagem-sucesso">
+            <i class="fa fa-check-circle-o"></i> <span ng-bind="mensagemRetorno.descricao"></span>
+        </div>
+	</div>
+	<div class="rodape-modal">	
+		<button class="bt bt-padrao bt-sucesso" ng-click="ok()"><mark class="cor"></mark>OK</button>
+	</div>
+</div>

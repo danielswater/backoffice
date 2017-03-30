@@ -1,0 +1,35 @@
+<div class="formulario">
+    <div class="row">
+        <span class="col-md-4">Nome da Estampa:</span>
+        <span class="col-md-6 detalhes-bold">{{estampa.nome}}</span>
+    </div>
+    <div class="row">
+        <span class="col-md-4">Descrição:</span>
+        <span class="col-md-6 detalhes-bold">{{estampa.descricao}}</span>
+    </div>
+    <div class="row">
+        <span class="col-md-4">Imagem:</span>
+        <span class="col-md-6 detalhes-bold"><img class="img-detalhes" data-ng-src="{{estampa.imagemClob}}"></span>
+    </div>
+    <fieldset class="fieldset" ng-if="estampa.registro.situacao.id == 'I'">
+        <legend class="legend">Situação da Estampa do Cartão</legend>
+        <table class="tabela" width="100%">
+            <thead class="tabela-cabecalho">
+                <tr>
+                    <th>Data</th>
+                    <th>Usuário</th>
+                    <th>Situação</th>
+                    <th>Motivo</th>
+                </tr>
+            </thead>
+            <tbody class="tabela-conteudo">
+                <tr>
+                    <td class="celula">{{estampa.registro.dataAlteracao | date: 'dd/MM/yyyy hh:mm'}}</td>
+                    <td class="celula">{{estampa.registro.usuarioAlteracao}}</td>
+                    <td class="celula">{{estampa.registro.situacao.descricao}}</td>
+                    <td class="celula">{{estampa.registro.motivo.descricao}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </fieldset>
+</div>

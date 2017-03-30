@@ -1,0 +1,86 @@
+<section>
+	<div class="row conteudo-interno">
+		<div class="row">
+			<div class="col-sm-6 col-md-8">
+				<em class="titulo-interno">Pesquisar Grupo de Perfil do Usuário do Transporte Público</em>
+			</div>
+			<div class=" col-sm-6 col-md-4">
+				<button class="bt bt-incluir" spt-modal-acao
+				modulo="perfil" caminho-modulo="grupo-perfil-usuario" acao="incluir"
+				titulo="Incluir">
+				<i class="fa fa-plus-circle" aria-hidden="true"></i> Incluir Grupo de Perfil
+			</button>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="formulario">
+				<spt-filtro caminho-modulo="grupo-perfil-usuario" nome-filtro="perfil"></spt-filtro>
+			</div>
+		</div>
+	</div>
+	<div class="mensagem" ng-if="!!mensagemServidor">
+		<p>
+			<em ng-bind="mensagemServidor.descricao"></em>
+		</p>
+	</div>
+	<div ng-if="perfis.length" class="row resultados">
+		<div class="col-md-12">
+			<table class="tabela" width="100%">
+				<thead class="tabela-cabecalho">
+					<tr>
+						<th class="tb-50 tb-left-text">Grupo de perfil</th>
+						<th class="tb-50 tb-left-text">Nome de Exibição para o Portal SBE</th>
+						<th class="tb-small tb-left-text">Ação</th>
+					</tr>
+				</thead>
+				<tbody class="tabela-conteudo">
+					<tr dir-paginate="perfil in perfis | itemsPerPage: ITENS_POR_PAGINA">
+						<td class="celula">{{perfil.nomeGrupoPerfil}}</td>
+						<td class="celula">{{perfil.nomeExibicaoPerfil}}</td>
+						<td class="celula tabela-acoes">
+
+							<i class="fa fa-arrow-down" ng-click="ordenar(perfil)"
+							tooltip-placement="left" uib-tooltip="Ordenar" titulo="Ordenar"
+							aria-hidden="true"></i>
+
+							<i class="fa fa-search" spt-modal-acao acao="detalhes" objeto="perfil" modulo="perfil" caminho-modulo="grupo-perfil-usuario"
+							tooltip-placement="left" uib-tooltip="Consultar Detalhes" titulo="Consultar Detalhes" tamanho="medio"
+							aria-hidden="true"></i>
+
+							<i class="fa fa-pencil" spt-modal-acao acao="editar" objeto="perfil" modulo="perfil" caminho-modulo="grupo-perfil-usuario"
+							tooltip-placement="left" uib-tooltip="Editar" titulo="Editar"
+							aria-hidden="true" callback="carregarItem()"></i>
+
+							<!-- <i class="fa fa-check" spt-modal-acao acao="inativar-motivo" objeto="perfil"
+							modulo="perfil" caminho-modulo="grupo-perfil-usuario" callback="carregarPerfil(perfil.id)" tooltip-placement="left"
+							uib-tooltip="{{perfil.situacao.ativo ? 'Inativar' : 'Ativar'}}"
+							titulo="{{perfil.situacao.ativo ? 'Inativar' : 'Ativar'}}"
+							aria-hidden="true" ng-class="perfil.situacao.ativo ? 'corVerde' : 'corCinza' "></i> -->
+
+
+							<spt-botao-alternar condicao="perfil.registro.situacao.id == 'A' || perfil.registro.situacao.id == 'S'"
+							texto-verdadeiro="Inativar" texto-falso="Reativar" classe-verdadeiro="ativo" callback="carregarPerfil(perfil.id)"
+							posicao="bottom" icone="fa-check" modulo="grupo-perfil-usuario" acao="ativar" objeto="perfil" titulo-verdadeiro="Inativar"
+							titulo-falso="Reativar"></spt-botao-alternar>
+
+							<i class="fa fa-times" spt-modal-acao acao="excluir" objeto="perfil" modulo="perfil"
+							caminho-modulo="grupo-perfil-usuario"
+							tooltip-placement="left" uib-tooltip="Excluir" titulo="Excluir" callback="carregarPerfil(perfil.id)" aria-hidden="true"></i>
+						</td>
+					</tr>
+					<tr ng-show="perfis.length">
+						<td colspan="6" align="right">Total de Agrupamentos Cadastrados: {{ perfis.length }}</td>
+					</tr>
+					<tr ng-show="perfis.length == null">
+						<td colspan="5">Não há registro retornado na pesquisa.</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="paginacao col-md-12">
+				<dir-pagination-controls boundary-links="true" template-url="app/comum/templates/paginacao.diretiva.html"></dir-pagination-controls>
+			</div>
+		</div>
+	</div>
+</div>
+</section>

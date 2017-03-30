@@ -1,0 +1,20 @@
+<div class="formulario">
+    <spt-mensagem-erro form="formEstampa" mensagem-servidor="mensagemServidor"></spt-mensagem-erro>
+    <form id="formModal" class="modal-form" ng-submit="formEstampa.$valid && ativar()" name="formEstampa" novalidate>
+        <div class="form-group">
+            <div class="col-md-12" ng-if="estampa.registro.situacao.id == 'A'">
+                <p>Informe o motivo da inativação:*</p>
+                <select class="form-control" ng-model="estampa.registro.motivo" id="motivo" name="motivo" ng-options="motivo.descricao for motivo in motivoLista"
+                    required>
+						<option value="">Selecione</option>
+					</select>
+                <div class="row">
+                    <span class="legendas"><em>* Campo Obrigatório</em></span>
+                </div>
+            </div>
+            <div class="col-md-12" ng-if="estampa.registro.situacao.id == 'I'">
+                <p>Tem certeza que deseja reativar?</p>
+            </div>
+        </div>
+    </form>
+</div>

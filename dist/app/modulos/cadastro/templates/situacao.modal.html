@@ -1,0 +1,38 @@
+<div class="cabecalho-modal"> <a type="button" class="fechar" ng-click="fechar()">×</a></div>
+<div class="modal-body" id="situacao_modal">
+    <div class="row">
+        <span class="col-md-3">Situação do cartão:</span>
+        <span class="col-md-3 detalhes-bold">{{cartao.registro.situacao.descricao}}</span>
+    </div>
+    <div class="row">
+        <span class="col-md-3">Data de emissão:</span>
+        <span class="detalhes-bold col-md-3">{{cartao.dataEmissaoCartao | date: 'dd/MM/yyyy'}}</span>
+        <span class="col-md-3">Situação da emissão:</span>
+        <span class="detalhes-bold col-md-3">{{cartao.situacaoOSE}}</span>
+    </div>
+    <div class="row">
+        <span>Ocorrências:</span>
+    </div>
+    <div class="row">
+        <table class="tabela" width="100%">
+            <thead class="tabela-cabecalho">
+                <tr>
+                    <th>Número</th>
+                    <th>Data da ocorrência</th>
+                    <th>Regra</th>
+                    <th>Situação da ocorrência</th>
+                    <th>Segunda via</th>
+                </tr>
+            </thead>
+            <tbody class="tabela-conteudo">
+                <tr ng-repeat="ocorrencia in ocorrencias">
+                    <td class="celula">{{ocorrencia.codigoOcorrencia}}</td>
+                    <td class="celula">{{ocorrencia.dataOcorrencia | date: 'dd/MM/yyyy'}}</td>
+                    <td class="celula">{{ocorrencia.textoRegra}}</td>
+                    <td class="celula">{{ocorrencia.situacaoDescricao}}</td>
+                    <td class="celula">{{ocorrencia.flagEmiteSegundaVia == 'N' ? 'Permite solicitação' : 'Não permite solicitação'}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

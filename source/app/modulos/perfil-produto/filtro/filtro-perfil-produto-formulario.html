@@ -1,0 +1,52 @@
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="nome" class="col-md-3 control-label">Nome do Produto:</label>
+            <div class="col-md-9">
+                <input type="text" maxlength="100" class="form-control" ng-model="filtroProduto.produto.nome" id="nome" name="nome">
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="sigla" class="col-md-3 control-label">Sigla do Produto:</label>
+            <div class="col-md-9">
+                <input type="text" maxlength="5" class="form-control" ng-model="filtroProduto.produto.sigla" id="sigla" name="sigla">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="emissorCredito" class="col-md-3 control-label">Emissor do Crédito:</label>
+            <div class="col-md-9">
+                <select class="form-control" ng-model="filtroProduto.emissorCredito" id="emissorCredito" name="emissorCredito" ng-options="emissor.razaoSocial for emissor in emissorLista">
+					<option value="" selected="selected">Selecione</option>
+				</select>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="creditoEletronico" class="col-md-3 control-label">Nome do Crédito:</label>
+            <div class="col-md-9">
+                <select class="form-control" ng-model="filtroProduto.creditoEletronico" id="creditoEletronico" name="creditoEletronico" ng-options="credito.nmCreditoEletronico for credito in creditoLista">
+					<option value="" selected="selected">Selecione</option>
+				</select>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="tipoPagadorTarifa" class="col-md-3 control-label">Pagador da Tarifa:</label>
+            <div class="col-md-9">
+                <select class="form-control" ng-model="filtroProduto.produto.tipoPagadorTarifa" id="tipoPagadorTarifa" name="tipoPagadorTarifa" ng-options="pagador.descricao for pagador in pagadorLista">
+					<option value="" selected="selected">Selecione</option>
+				</select>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,60 @@
+<div class="formulario">
+	<spt-mensagem-erro form="formAgrupamento" mensagem-servidor="mensagemServidor" ></spt-mensagem-erro>
+	<form id="formModal" class="modal-form" ng-submit="editarSubmit()"  name="formAgrupamento" novalidate>
+
+
+
+		<div class="form-group">
+
+			<div class="row">
+				<label for="nome" class="col-md-3 control-label-right text-right">Grupo de Perfil*</label>
+				<div class="col-md-6">
+					<input type="text" id="nomeGrupoPerfil" class="form-control" ng-model="perfil.nomeGrupoPerfil" min="3" ng-change="changeInput()" required>
+				</div>
+			</div>
+
+			<div class="row">
+				<label for="nomeExibicaoPortal" class="col-md-3 control-label-right text-right">Nome de Exibição para o Portal SBE:*</label>
+				<div class="col-md-6">
+					<input type="text" id="nomeExibicaoPerfil" class="form-control" ng-model="perfil.nomeExibicaoPerfil" min="3" ng-change="changeInput()" required>
+				</div>
+			</div>
+
+
+			<!-- <div class="row">
+				<label for="situacaoCadastral" class="col-md-3 control-label-right text-right">Situação Cadastral do usuário:*</label>
+				<div class="col-md-6">
+					<spt-select required id="grupoUsuarioSistema" model="perfil.situacao" options="gruposUsuarioSistema" label="descricao" track-by="id" default="{{LABEL.TODOS}}"></spt-select>
+				</div>
+			</div>
+
+
+			<div class="row">
+				<label for="grupoPerfil" class="col-md-3 control-label-right text-right">Grupo de Perfil:*</label>
+				<div class="col-md-6">
+					<spt-select required id="grupoUsuarioSistema" model="perfil.grupoPerfil" options="gruposUsuarioSistema" label="descricao" track-by="id" default="{{LABEL.TODOS}}"></spt-select>
+				</div>
+			</div>
+
+
+			<div class="row">
+				<label for="politicaPublica" class="col-md-3 control-label-right text-right">Política Pública:*</label>
+				<div class="col-md-6">
+					<spt-select required id="grupoUsuarioSistema" model="perfil.politicaPublica" options="gruposUsuarioSistema" label="descricao" track-by="id" default="{{LABEL.TODOS}}"></spt-select>
+				</div>
+			</div> -->
+
+			<div class="row">
+				<label for="descricao" class="col-md-3 control-label-right text-right">Descrição:*</label>
+				<div class="col-md-6">
+					<textarea class="form-control" name="descricaoGrupoPerfil" ng-model="perfil.descricaoGrupo" ng-trim="false" maxlength="200" rows="5" required></textarea>
+				</div>
+			</div>
+		</div>
+
+
+		</form>
+	<div class="row">
+		<span class="legendas"><em>* Campo Obrigatório</em></span>
+	</div>
+</div>

@@ -1,0 +1,46 @@
+<section>
+	<div class="row conteudo-interno" cg-busy="espera">
+		<div class="row">
+			<div class="col-sm-6 col-md-8">
+				<em class="titulo-interno">Parametrização - Periodicidade de Permanência</em>
+			</div>
+		</div>
+		<div class="row" >
+			<div class="col-md-12">
+				<div class="formulario">
+					<div class="ng-class: mensagemControle.class;" ng-if="mensagemControle">
+						<span ng-bind="mensagemControle.data.mensagem"></span>
+					</div>
+					<div class="bloco">
+						<form id="form-score" class="form-parametrizacao" ng-submit="salvar()" name="formExpurgo" novalidate>
+							<div class="form-group">
+								<label for="" class="col-sm-6 col-md-4 control-label">Tempo de permanência no cadastro positivo:* </label>
+								<div class="col-sm-1 col-md-1">
+									<input type="text" class="form-control" focus ng-model="config.positivo" name="positivo" maxlength="6" min="0" max="999999" required>
+								</div>
+								<label class="col-sm-1 col-md-1 control-label pos-input">dias</label>
+							</div>
+							<div class="form-group">
+								<label for="" class="col-sm-6 col-md-4 control-label">Tempo de permanência no cadastro negativo:*</label>
+								<div class=" col-sm-1 col-md-1">
+									<input type="text" class="form-control" focus ng-model="config.negativo" name="negativo" maxlength="6" min="0" max="999999" required>
+								</div>
+								<label class="col-sm-1 col-md-1 control-label pos-input">dias</label>
+							</div>
+							<div class="form-group acoes">
+								<button type="button" ng-click="cancelar()" class="bt bt-padrao bt-cancelar" form="formExpurgo">
+								<mark class="cor"></mark>
+								Cancelar
+								</button>
+								<button type="submit" class="bt bt-padrao" >
+								<mark class="cor"></mark>
+								Salvar
+								</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

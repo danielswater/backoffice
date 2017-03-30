@@ -1,0 +1,12 @@
+<strong ng-show="!!filtro.id">Identificador:</strong>
+<span>{{filtro.id}}</span>
+<strong ng-show="!!filtro.emissorCredito">| Emissor do Crédito:</strong>
+<span>{{filtro.emissorCredito.razaoSocial}}</span>
+<strong ng-show="!!filtro.creditoEletronico">| Nome do Crédito:</strong>
+<span>{{filtro.creditoEletronico.nmCreditoEletronico}}</span>
+<strong ng-show="!!filtro.vigenciaCreditoTemporal">| Tipo da Vigência:</strong>
+<span>{{filtro.vigenciaCreditoTemporal.descricao}}</span>
+<strong ng-show="!!filtro.tipoTarifario">| Tipo Tarifário:</strong>
+<span>{{filtro.tipoTarifario.descricao}}</span>
+<strong ng-show="!!filtro.AplicacaoCredito">| Aplicação do Crédito:</strong>
+<span>{{filtro.AplicacaoCredito.descricao}}</span>

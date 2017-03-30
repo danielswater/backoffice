@@ -1,0 +1,119 @@
+<div class="formulario">
+	<spt-mensagem-erro form="formPergunta" mensagem-servidor="mensagemServidor"></spt-mensagem-erro>
+	<form id="formModal" class="modal-form" ng-submit="formPergunta.$valid && incluir()" name="formPergunta" novalidate>
+		<div class="form-group">
+			<label class="col-md-2 control-label">Emissor do Crédito:*</label>
+			<div class="col-md-4">
+				<select 
+					class="form-control" 
+					ng-model="novaEmissao.emissorCredito" 
+					ng-options="emissorCredito.razaoSocial for emissorCredito in emissor" required autofocus>
+					<option value="">Selecione o Emissor do Crédito</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="nomeCredito" class="col-md-2 control-label">Nome do Crédito:*</label>
+			<div class="col-md-4">
+				<select 
+					class="form-control"
+					ng-model="novaEmissao.creditoEletronico"
+					ng-options="nomeCredito.nmCreditoEletronico for nomeCredito in nmCreditoEletronico" required>
+					<option value="">Selecione o Nome do Crédito</option>>
+				</select>
+			</div> 
+			<div class='col-md-5 bkg-grey' ng-show="novaEmissao.creditoEletronico != null">
+				<label for="" class="float-left control-label">Tipo de Crédito:</label>
+				<div class="float-left">
+					<label for="" class="control-label">{{novaEmissao.creditoEletronico.tipoCreditoEletronico.descricao}}</label>
+				</div>
+				<div style="float:right" ng-if="novaEmissao.creditoEletronico.tipoCreditoEletronico.descricao === 'Temporal'">
+					<label for="" class="float-left control-label">Temporalidade:</label>
+					<div style="float:right">
+						<label for="" class="control-label">{{novaEmissao.creditoEletronico.temporalidadeCredito.descricao}}</label>
+					</div>
+				</div>
+			</div>
+		</div>	
+		<div class="form-group">
+			<label class="col-md-2 control-label">Tipo da Vigência:*</label>
+			<div class="col-md-4">
+				<select 
+					class="form-control"
+					ng-model="novaEmissao.vigenciaCreditoTemporal"
+					ng-options="tipo.descricao for tipo in TipoVigencia" required>
+					<option value="">Selecione o Tipo da Vigência</option>>
+				</select>
+			</div>
+			<div ng-if="novaEmissao.vigenciaCreditoTemporal.descricao=='Vigência Definida' || novaEmissao.vigenciaCreditoTemporal.descricao=='Vigência 1ª Utilização'">
+				<label for="inicio" class="float-left control-label">Vigência Inicial:*</label>
+				<div class="col-width">
+					<spt-data model="novaEmissao.dataInicioVigencia" atualmin="atual" maxima="fim" mascara="39/19/9999" placeholder="dd/mm/aaaa" required></spt-data>
+				</div>
+			</div>
+			<div ng-if="novaEmissao.vigenciaCreditoTemporal.descricao=='Vigência Definida' || novaEmissao.vigenciaCreditoTemporal.descricao=='Vigência Fim Definido' || novaEmissao.vigenciaCreditoTemporal.descricao=='Vigência Fim 1ª Utilização'">
+				<label for="" class="float-left control-label">Vigência Final:*</label>
+				<div class="col-width">
+					<spt-data id="fim" model="novaEmissao.dataFimVigencia" datamax="atual" maxima="novaEmissao.Emissor.formatoData" minima="inicio" atualmin="atual" mascara="39/19/9999" placeholder="dd/mm/aaaa" required></spt-data>
+				</div>
+			</div>
+			<div ng-if="novaEmissao.vigenciaCreditoTemporal.descricao=='Sem Vigência Definida' || novaEmissao.vigenciaCreditoTemporal.descricao=='Vigência 1ª Utilização'">
+				<label for="" class="float-left control-label">Vigência Final:*</label>
+				<div class="col-width">
+					<label for="" class="control-label">Indeterminado</label>
+				</div>
+			</div>
+		</div>	
+		
+		<div class="form-group">
+			<label class="col-md-2 control-label">Tipo Tarifário:*</label>
+			<div class="col-md-4">
+				<select 
+					class="form-control"
+					ng-model="novaEmissao.tipoTarifario"
+					ng-options="tipo.descricao for tipo in TipoTarifario" required>
+					<option value="">Selecione o Tipo Tarifário</option>>
+				</select>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-2 control-label">Aplicação do Crédito:*</label>
+			<div class="col-md-4">
+				<select 
+					class="form-control"
+					ng-model="novaEmissao.tipoAplicacaoTransporte"
+					ng-options="tipo.descricao for tipo in AplicacaoCredito" required>
+					<option value="">Selecione a Aplicação do Crédito</option>>
+				</select>
+			</div>
+		</div>
+		<div class="form-group" ng-controller="DualList" ng-if="novaEmissao.tipoAplicacaoTransporte.descricao == 'Transporte' || novaEmissao.tipoAplicacaoTransporte.descricao == 'Ambas'">
+			<label for="situacao" class="col-md-2 control-label">Modal:*</label>
+			<div class="dual-list list-left col-md-3">
+				<div class="well text-left">
+					<ul class="list-group apps-container screen floatleft" ui-sortable="sortableOptions" ng-model="Modal">
+						<li class="list-group-item" ng-repeat="app in Modal">{{app.descricao}}</li>
+					</ul>
+				</div>
+			</div>
+			<div class="list-arrows col-md-1 text-center">
+				<label class="btn btn-default btn-sm move-right" ng-click="moveAll(Modal,novaEmissao.modal,event)">
+					<span class="glyphicon glyphicon-step-forward"></span>
+				</label>
+				<label class="btn btn-default btn-sm move-left" ng-click="moveAll(novaEmissao.modal,Modal,event)">
+					<span class="glyphicon glyphicon-step-backward"></span>
+				</label>
+			</div>
+			<div class="dual-list list-right col-md-3">
+				<div class="well">
+					<ul class="list-group apps-container screen floatleft" ui-sortable="sortableOptions" ng-model="novaEmissao.modal">
+						<li class="list-group-item" ng-repeat="app in novaEmissao.modal">{{app.descricao}}</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<span class="legendas"><em>* Campo Obrigatório</em></span>
+		</div>
+	</form>
+</div>

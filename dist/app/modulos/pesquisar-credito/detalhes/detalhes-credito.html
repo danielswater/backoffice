@@ -1,0 +1,72 @@
+<div class="row" ng-show="!!credito">
+	<div class="col-md-12">
+
+
+		<div class="row">
+
+			<div class="col-md-6">
+				<span>Nome do Credito:</span>
+				<span ng-bind="credito.nmCreditoEletronico" class="detalhes-bold"></span>
+			</div>
+
+
+			<div class="col-md-6">
+				<span>Família do Crédito:</span>
+				<span ng-bind="credito.familiaCredito.descricao" class="detalhes-bold"></span>
+			</div>
+		</div>
+
+		<div class="row">&nbsp;</div>
+
+		<div class="row">
+			<div class="col-md-6">
+				<span>Tipo do Crédito:</span>
+				<span ng-bind="credito.tipoCreditoEletronico.descricao" class="detalhes-bold"></span>
+			</div>
+
+			<div class="col-md-6">
+				<span>Temporalidade:</span>
+				<span ng-bind="credito." class="detalhes-bold"></span>
+			</div>
+
+
+		</div>
+
+		<div class="row">&nbsp;</div>
+
+		<div class="row">
+			<div class="col-md-6">
+				<span>Descrição</span>
+				<span ng-bind="credito.deCreditoEletronico" class="detalhes-bold"></span>
+			</div>
+		</div>
+
+		<div class="row">&nbsp;</div>
+
+		<div class="row">
+			<div class="col-md-6">
+				<span>Situação:</span>
+				<span ng-bind="credito.situacao.descricao" class="detalhes-bold"></span>
+			</div>
+
+
+			<div class="col-md-6">
+				<span>Quantidade de Dias:</span>
+				<div ng-bind="tarifa.valor" class="detalhes-bold"></div>
+			</div>
+		</div>
+		<div class="row">&nbsp;</div>
+
+
+		<div class="row">&nbsp;</div>
+
+		<div class="row">
+			<div class="col-md-6">
+				<span></span>
+				<div class="detalhes-bold"></div>
+			</div>
+
+		</div>
+
+	</div>
+</div>

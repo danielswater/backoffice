@@ -1,0 +1,59 @@
+
+<div class="form-group">
+
+	<!-- mensagem de erro -->
+	<div class="ng-class: mensagemControle.class;" ng-if="mensagemControle">
+		<span ng-bind="mensagemControle.data.mensagem"></span>
+	</div>
+	<div class="espac"></div>
+	<!-- mensagem de erro -->
+
+
+
+
+
+	<div class="row">
+		<div class="col-md-12">
+
+			<div class="div-height">
+				<label for="nomePerfil" class="col-md-3 control-label">Nome do Crédito:</label>
+				<div class="col-md-3">
+					<input type="text" id="nome" class="form-control" ng-model="filtro.nmCreditoEletronico" min="3" ng-change="changeInput()">
+				</div>
+
+				<div class="col-md-6">
+					<label for="grupoUsuarioSistema" class="col-md-3 control-label">Tipo de Cŕedito:</label>
+					<div class="col-md-7">
+						<select class="form-control" ng-model="filtro.tipoCreditoEletronico.descricao" id="descricao" name="descricao" ng-options="tipoCreditoEletronico.descricao for tipo in creditoTipos">
+							<option value="">Todos(as)</option>
+						</select>
+					</div>
+				</div>
+			</div>
+
+			<div class="div-height">
+				<div class="col-md-6">
+					<label for="grupoUsuarioSistema" class="col-md-3 control-label">Familia do Cŕedito:</label>
+					<div class="col-md-7">
+						<select class="form-control" ng-model="filtro.familiaCredito.descricao" id="descricao" name="descricao" ng-options="familiaCredito.descricao for tipo in creditoTipos">
+							<option value="">Todos(as)</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="col-md-6">
+					<label for="grupoUsuarioSistema" class="col-md-3 control-label">Temporalidade:</label>
+					<div class="col-md-7">
+						<select class="form-control" ng-model="filtro.temporalidadeCredito.descricao" id="descricao" name="descricao" ng-options="temporalidadeCredito.descricao for tipo in creditoTipos">
+							<option value="">Todos(as)</option>
+						</select>
+					</div>
+				</div>
+
+
+
+			</div>
+			</div>
+
+	</div>
+</div>

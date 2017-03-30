@@ -1,0 +1,5 @@
+<strong ng-show="!!filtro.dataInicio || filtro.dataTermino">| Período </strong>
+<strong ng-show="!!filtro.dataInicio">de:</strong>
+<span ng-bind="filtro.dataInicio | date:'dd/MM/yyyy'"></span>
+<strong ng-show="!!filtro.dataTermino">até:</strong>
+<span ng-bind="filtro.dataTermino | date:'dd/MM/yyyy'"></span>

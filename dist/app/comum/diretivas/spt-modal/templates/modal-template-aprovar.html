@@ -1,0 +1,25 @@
+<div ng-show="!mensagemRetorno" cg-busy="espera">
+	<div class="cabecalho-modal"> <a type="button" class="fechar" ng-click="fechar()">×</a>
+		<h4 class="titulo-modal"><em ng-bind="modal.titulo"></em></h4>
+	</div>
+	<div class="conteudo-modal">
+		<spt-inclusao-estatica template-url="{{modal.template}}"></spt-inclusao-estatica>
+	</div>
+	<div class="rodape-modal text-center">	
+		<button class="bt bt-padrao bt-sucesso" ng-click="aprovar()"><mark class="cor"></mark>Aprovar</button>
+		<button class="bt bt-padrao bt-cancelar" ng-click="reprovar()"><mark class="cor"></mark>Reprovar</button>
+	</div>
+</div>
+<div ng-show="!!mensagemRetorno">
+	<div class="cabecalho-modal"> <a type="button" class="fechar" ng-click="ok()">×</a>		
+	</div>
+	<div class="conteudo-modal">
+		<div class="mensagem-sucesso">
+            <i class="fa fa-check-circle-o"></i> <span ng-bind="mensagemRetorno.descricao"></span>
+        </div>
+	</div>
+	<div class="rodape-modal">	
+		<button class="bt bt-padrao bt-sucesso" ng-click="aprovar()"><mark class="cor"></mark>Aprovar</button>
+		<button class="bt bt-padrao bt-padrao" ng-click="reprovar()"><mark class="cor"></mark>Reprovar</button>
+	</div>
+</div>

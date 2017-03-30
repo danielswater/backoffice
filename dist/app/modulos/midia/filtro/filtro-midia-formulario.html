@@ -1,0 +1,21 @@
+<div class="form-group">
+	<label for="tipoMidia" class="col-md-2 control-label">Tipo de Mídia:*</label>
+	<div class="col-md-6">
+		<select class="form-control" ng-model="filtro.tipoMidia" id="tipoMidia" name="tipoMidia" ng-options="tipoMidia.descricao for tipoMidia in tiposMidia" required>
+			<option value="" selected="selected">Selecione o Tipo de Mídia</option>
+		</select>
+	</div>
+</div>
+<div class="form-group">
+	<label for="cnpj" class="col-md-2 control-label">Nome da Mídia:</label>
+	<div class="col-md-4">
+		<input type="text" class="form-control" id="nomeMidia" name="nomeMidia" ng-model="filtro.nomeMidia" maxlength="30">
+	</div>
+</div>
+<div class="form-group">
+	<label for="situacao" class="col-md-2 control-label">Situação:</label>
+	<div class="col-md-3">
+		<select name="" id="" class="form-control" ng-model="filtro.situacao" id="situacao" name="situacao" ng-options="situacao.nome for situacao in situacoes" ng-init="filtro.situacao = filtro.situacao || situacoes[0]" >
+		</select>
+	</div>
+</div>

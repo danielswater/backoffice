@@ -1,0 +1,57 @@
+<section>
+	<div class="row conteudo-interno" cg-busy="espera">
+		<div class="row">
+			<div class="col-sm-6 col-md-8">
+				<em class="titulo-interno">Manter Tipo de Arquivo</em>
+			</div>
+			<div class=" col-sm-6 col-md-4">
+				<button class="bt bt-incluir" spt-modal-acao titulo="Incluir" acao="incluir" modulo="tipo-arquivo" objeto="items" >
+				<i class="fa fa-plus-circle" aria-hidden="true"></i> Incluir Tipo de Arquivo
+				</button>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="formulario">
+					<spt-filtro modulo="tipo-arquivo"></spt-filtro>
+				</div>
+			</div>
+		</div>
+		<div class="mensagem" ng-if="!!mensagemServidor">
+			<p>
+				<em ng-bind="mensagemServidor.descricao"></em>
+			</p>
+		</div>
+		<div ng-if="tiposArquivo.length" class="row resultados">
+			<div class="col-md-12">
+				<table class="tabela" width="100%">
+					<thead class="tabela-cabecalho">
+						<tr>
+							<th>Identificador</th>
+							<th>Descrição</th>
+							<th>Status</th>
+							<th>Ações</th>
+						</tr>
+					</thead>
+					<tbody class="tabela-conteudo">
+						<tr dir-paginate="tipoArquivo in tiposArquivo | itemsPerPage: ITENS_POR_PAGINA">
+							<td class="celula" ng-bind="tipoArquivo.id"></td>
+							<td class="celula" ng-bind="tipoArquivo.descricao"></td>
+							<td class="celula" ng-if="tipoArquivo.registro.status == 'A'">Ativo</td>
+							<td class="celula" ng-if="tipoArquivo.registro.status == 'I'">Inativo</td>
+							<td class="celula tabela-acoes">
+								<spt-botao-alternar condicao="tipoArquivo.registro.status == 'A'" texto-verdadeiro="Inativar" texto-falso="Reativar" classe-verdadeiro="ativo" callback="carregarItem(tipoArquivo.id)" posicao="bottom" icone="fa-check" modulo="tipo-arquivo" acao="ativar" objeto="tipoArquivo" titulo-verdadeiro="Inativar" titulo-falso="Reativar"></spt-botao-alternar>
+								<i class="fa fa-pencil" spt-modal-acao acao="editar" modulo="tipo-arquivo" tooltip-placement="bottom" uib-tooltip="Alterar" titulo="Alterar" objeto="tipoArquivo" callback="carregarItem(tipoArquivo.id)" aria-hidden="true"></i>
+								<i class="fa fa-search" spt-modal-acao acao="detalhes" modulo="tipo-arquivo" tooltip-placement="bottom" uib-tooltip="Detalhes" titulo="Consultar Detalhes" objeto="tipoArquivo"  aria-hidden="true"></i>
+								<i class="fa fa-times" spt-modal-acao acao="excluir" modulo="tipo-arquivo" tooltip-placement="bottom" uib-tooltip="Excluir" titulo="Excluir" objeto="tipoArquivo" callback="preFiltrar()" aria-hidden="true"></i>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="paginacao col-md-12">
+					<dir-pagination-controls boundary-links="true" template-url="app/comum/templates/paginacao.diretiva.html" callback-buscar-resultados="filtrar(objFiltro)"></dir-pagination-controls>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

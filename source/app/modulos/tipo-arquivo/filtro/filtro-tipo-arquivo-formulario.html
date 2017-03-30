@@ -1,0 +1,14 @@
+<div class="form-group">
+	<label for="tipoArquivo" class="col-md-2 control-label">Tipo de Arquivo:</label>
+	<div class="col-md-6">
+		<select name="" class="form-control" ng-model="filtro.tipoArquivo" id="tipoArquivo" name="tipoArquivo" ng-options="tipoArquivo.descricao for tipoArquivo in comboFiltros" ng-init="filtro.tipoArquivo = filtro.tipoArquivo || comboFiltros[0]" >
+		</select>
+	</div>
+</div>
+<div class="form-group">
+	<label for="situacao" class="col-md-2 control-label">Situação:</label>
+	<div class="col-md-3">
+		<select name="" id="" class="form-control" ng-model="filtro.situacao" id="situacao" name="situacao" ng-options="situacao.nome for situacao in situacoes" ng-init="filtro.situacao = filtro.situacao || situacoes[0]" >
+		</select>
+	</div>
+</div>

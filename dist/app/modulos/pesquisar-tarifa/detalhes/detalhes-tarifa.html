@@ -1,0 +1,90 @@
+<div class="row" ng-show="!!tarifa">
+	<div class="col-md-12">
+
+
+		<div class="row">
+
+
+
+			<!--
+
+
+			<tr dir-paginate="tarifa in tarifas | itemsPerPage: ITENS_POR_PAGINA">
+			<td class="celula">{{tarifa.nome}}</td>
+			<td class="celula">{{tarifa.codigoLegislacao}}</td>
+			<td class="celula">{{tarifa.tipo.descricao}}</td>
+			<td class="celula">{{tarifa.dataReajuste | date: 'dd/MM/yyyy'}}</td>
+			<td class="celula">{{tarifa.listaModal}}</td>
+			<td class="celula">{{tarifa.valor}}</td>
+			<td class="celula tabela-acoes"> -->
+
+
+			<div class="col-md-6">
+				<span>Nome da Tarifa:</span>
+				<span ng-bind="tarifa.nome" class="detalhes-bold"></span>
+			</div>
+		</div>
+
+		<div class="row">&nbsp;</div>
+
+		<div class="row">
+			<div class="col-md-6">
+				<span>Número da Legislação:</span>
+				<span ng-bind="tarifa.codigoLegislacao" class="detalhes-bold"></span>
+			</div>
+
+
+			<div class="col-md-6">
+				<span>Data da Legislação:</span>
+				<span ng-bind="tarifa.dataLegislacao | date: 'dd/MM/yyyy'" class="detalhes-bold"></span>
+			</div>
+
+		</div>
+
+		<div class="row">&nbsp;</div>
+
+		<div class="row">
+			<div class="col-md-6">
+				<span>Descrição</span>
+				<span ng-bind="tarifa.descricao" class="detalhes-bold"></span>
+			</div>
+		</div>
+
+		<div class="row">&nbsp;</div>
+
+		<div class="row">
+			<div class="col-md-6">
+				<span>Tipo da Tarifa:</span>
+				<span ng-bind="tarifa.tipo.descricao" class="detalhes-bold"></span>
+			</div>
+
+			<div class="col-md-6">
+				<span>Data do Reajuste:</span>
+				<span ng-bind="tarifa.dataReajuste | date: 'dd/MM/yyyy'" class="detalhes-bold"></span>
+			</div>
+		</div>
+		<div class="row">&nbsp;</div>
+
+		<div class="row">
+			<div class="col-md-6">
+				<span>Modal:</span>
+				<span ng-bind="tarifa.listaModal" class="detalhes-bold"></span>
+			</div>
+		</div>
+
+		<div class="row">&nbsp;</div>
+
+		<div class="row">
+			<div class="col-md-5">
+				<span>Tipo de Moeda:</span>
+				<div ng-bind="tarifa.moeda.descricao" class="detalhes-bold"></div>
+			</div>
+
+			<div class="col-md-6">
+				<span>Valor da Tarifa Base:</span>
+				<div ng-bind="tarifa.valor" class="detalhes-bold"></div>
+			</div>
+		</div>
+
+	</div>
+</div>

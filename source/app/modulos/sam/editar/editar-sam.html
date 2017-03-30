@@ -1,0 +1,28 @@
+<div class="formulario">
+	<spt-mensagem-erro form="formSam" mensagem-servidor="mensagemServidor"></spt-mensagem-erro>
+	<form id="formModal" class="modal-form" ng-submit="formSam.$valid && editar()" name="formSam" novalidate>
+		<div class="form-group">
+			<label for="" class="col-md-2 control-label">Tipo do SAM:*</label>
+			<div class="col-md-4">
+				<select class="form-control" ng-model="sam.tipoSAM" id="tipoSAM" name="tipoSAM" ng-options="sam.descricao for sam in samsTipos track by sam.id" required>
+					<option value="">Selecione</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="" class="col-md-2 control-label">Número do SAM:*</label>
+			<div class="col-md-4">
+				<input type="text" class="form-control" ng-model="sam.numeroSAM" mask="999999999999" restrict="reject"  required clean="true" maxlength="12">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="" class="col-md-2 control-label">Número de Série: *</label>
+			<div class="col-md-4">
+				<input type="text" class="form-control" ng-model="sam.numeroSerie" required clean="true" mask="999999999999" restrict="reject" validate="false" clean="true">
+			</div>
+		</div>
+	</form>
+	<div class="row">
+		<span class="legendas"><em>* Campo Obrigatório</em></span>
+	</div>
+</div>

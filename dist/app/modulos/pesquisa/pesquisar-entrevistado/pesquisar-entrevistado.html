@@ -1,0 +1,69 @@
+<section>
+	<div class="row conteudo-interno">
+		<div class="row">
+			<div class="col-sm-6 col-md-8">
+				<em class="titulo-interno">Pesquisar Entrevistado vinculado ao Grupo de Entrevistados</em>
+			</div>
+			<div class=" col-sm-6 col-md-4">
+				<button class="bt bt-incluir" spt-modal-acao 
+					modulo="entrevistado" caminho-modulo="pesquisa/pesquisar-entrevistado" acao="vincular" 
+					titulo="Vincular Entrevistado ao Grupo de Entrevistados" tamanho="50">
+					<i class="fa fa-plus-circle" aria-hidden="true"></i> Vincular Entrevistado ao Grupo de Entrevistados
+				</button>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-md-12">
+				<div class="formulario">
+					<spt-filtro caminho-modulo="pesquisa/pesquisar-entrevistado" nome-filtro="pesquisar"></spt-filtro>
+				</div>
+			</div>
+		</div>
+		<div ng-hide="filtro.CategoriaPergunta.categoria == pergunta.categoria" class="row resultados">
+		<div class="row resultados">
+			<div class="col-md-12">
+				<table class="tabela" width="100%">
+					<thead class="tabela-cabecalho">
+						<tr>
+							<th class="col-md-1"><input type="checkbox" ng-model="check"></th>
+							<th class="col-md-3">Grupo de Entrevistados</th>
+							<th class="col-md-3">CPF do Entrevistado</th>
+							<th class="col-md-10">Nome do Entrevistado</th>
+							<th class="col-md-1">Ação</th>
+						</tr>
+					</thead>
+					<tbody class="tabela-conteudo">
+						<tr dir-paginate="pergunta in pesquisa | itemsPerPage: ITENS_POR_PAGINA">
+							<td class="celula" ><input type="checkbox" ng-checked="check"></td>
+							<td class="celula" ng-bind="pergunta.grupo" ></td>
+							<td class="celula" ng-bind="pergunta.cpf" ></td>
+							<td class="celula" ng-bind="pergunta.nome"></td>
+							<td class="celula tabela-acoes">
+								<i class="fa fa-unlink" 
+									spt-modal-acao acao="desvincular" 
+									modulo="entrevistado" 
+									caminho-modulo="pesquisa/pesquisar-entrevistado" 
+									tooltip-placement="left" 
+									uib-tooltip="Desvincular" 
+									titulo="Desvincular" 
+									tamanho="medio" 
+									aria-hidden="true">
+								</i>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="7" align="right">Total de Entrevistado(s) vinculado(s) ao Grupo de Entrevistados: {{ pesquisa.length }}</td>
+						</tr>
+						<tr ng-show="pesquisa.length == 0">
+							<td colspan="7">Não há registro retornado na pesquisa.</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="paginacao col-md-12">
+					<dir-pagination-controls boundary-links="true" template-url="app/comum/templates/paginacao.diretiva.html"></dir-pagination-controls>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

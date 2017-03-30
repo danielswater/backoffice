@@ -1,0 +1,18 @@
+<div class="form-group">
+    <div class="row">
+		<div class="col-md-12">
+			<label for="categoria" class="col-md-3 control-label">Categoria:</label>
+			<div class="col-md-6">
+				<spt-select id="categoria" model="filtro.categoria" options="categoriasListSelectField" label="descricao" track-by="id" default="Selecione"></spt-select>
+			</div>
+		</div>
+	</div>
+    <div class="row">
+		<div class="col-md-12">
+			<label for="pergunta" class="col-md-3 control-label">Pergunta:</label>
+			<div class="col-md-6">
+				<input type="text" id="pergunta" class="form-control" ng-model="filtro.pergunta" maxlength="200" >
+			</div>
+		</div>
+	</div>
+</div>

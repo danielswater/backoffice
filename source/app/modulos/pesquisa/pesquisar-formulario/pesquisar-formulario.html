@@ -1,0 +1,122 @@
+<section>
+	<div class="row conteudo-interno">
+		<div class="row">
+			<div class="col-sm-6 col-md-8">
+				<em class="titulo-interno">Pesquisar Formulário de Pesquisa</em>
+			</div>
+			<div class=" col-sm-6 col-md-4">
+				<button class="bt bt-incluir" spt-modal-acao 
+					modulo="formulario" caminho-modulo="pesquisa/pesquisar-formulario" acao="incluir" 
+					titulo="Incluir" tamanho="75">
+				    <i class="fa fa-plus-circle" aria-hidden="true"></i> Incluir Formulário de Pesquisa
+				</button>				
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="formulario">
+					<spt-filtro caminho-modulo="pesquisa/pesquisar-formulario" nome-filtro="pesquisa"></spt-filtro>
+				</div>
+			</div>
+		</div>
+		<div class="mensagem" ng-if="!!mensagemServidor">
+			<p>
+				<em ng-bind="mensagemServidor.descricao"></em>
+			</p>
+		</div>
+		<!--<div ng-hide="filtro.formulario.formulario == grupo.formulario" class="row resultados">-->
+			<div class="row resultados">
+			<div class="col-md-12">
+				<table class="tabela" width="100%">
+					<thead class="tabela-cabecalho">
+						<tr>
+							<th class="col-md-3">Formulário de Pesquisa</th>
+							<th class="col-md-3">Grupo de Entrevistados</th>
+							<th class="col-md-2">Período de Vigência</th>
+							<th class="col-md-2">Situação</th>
+							<th class="col-md-2">Ação</th>
+						</tr>
+					</thead>
+					<tbody class="tabela-conteudo">
+
+						<!--<tr dir-paginate="grupo in pesquisa | itemsPerPage: ITENS_POR_PAGINA" ng-show='filtro.formulario.formulario == grupo.formulario'>-->
+						<tr dir-paginate="pesquisa in pesquisa_formulario | itemsPerPage: ITENS_POR_PAGINA">
+							<td class="celula" ng-bind="pesquisa.formulario" ></td>
+							<td class="celula" ng-bind="pesquisa.grupo"></td>
+							<td class="celula" ng-bind="pesquisa.periodo" ></td>
+							<td class="celula" ng-bind="pesquisa.situacao"></td>
+							<td class="celula tabela-acoes">
+								<i class="fa fa-file" 
+									spt-modal-acao acao="visualizar" 
+									objeto="formulario" 
+									modulo="formulario"
+									caminho-modulo="pesquisa/pesquisar-formulario" 
+									tooltip-placement="left" 
+									uib-tooltip="Visualizar" 
+									titulo="Visualizar Formulário de Pesquisa (Visualização como Entrevistado)" 
+									tamanho="75" 
+									aria-hidden="true">
+								</i>
+								<i class="fa fa-play" 
+									spt-modal-acao acao="congelar" 
+									objeto="pesquisa" 
+									modulo="pesquisa" 
+									caminho-modulo="pesquisa/pesquisar-formulario" 
+									tooltip-placement="left" 
+									tamanho:"75"
+									uib-tooltip="{{pesquisa.situacao=='Congelado' ? 'Descongelar' : 'Congelar'}}" 
+									titulo="{{pesquisa.situacao=='Congelado' ? 'Descongelar' : 'Congelar'}}"
+									status="{{pesquisa.situacao=='Congelado' ? 'Descongelado' : 'Congelar'}}"
+									aria-hidden="true" 
+									ng-class="pesquisa.situacao=='Congelado' ? 'fa-pause corCinza' : 'fa-play' ">
+								</i>
+								<i class="fa fa-search" 
+									spt-modal-acao acao="detalhes" 
+									objeto="pesquisa" 
+									modulo="pesquisa"
+									caminho-modulo="pesquisa/pesquisar-formulario" 
+									tooltip-placement="left" 
+									uib-tooltip="Consultar Detalhes" 
+									titulo="Consultar Detalhes do Formulário de Pesquisa" 
+									tamanho="75" 
+									aria-hidden="true">
+								</i>
+								<i class="fa fa-pencil" 
+									spt-modal-acao acao="editar" 
+									objeto="pesquisa" 
+									modulo="pesquisa" 
+									caminho-modulo="pesquisa/pesquisar-formulario" 
+									tooltip-placement="left" 
+									uib-tooltip="Editar" 
+									titulo="Editar" 
+									tamanho="75" 
+									aria-hidden="true">
+								</i>
+								<i class="fa fa-times" 
+									spt-modal-acao acao="excluir" 
+									objeto="pesquisa" 
+									modulo="pesquisa" 
+									caminho-modulo="pesquisa/pesquisar-formulario" 
+									tooltip-placement="left" 
+									uib-tooltip="Excluir" 
+									titulo="Excluir" 
+									tamanho="medio" 
+									aria-hidden="true">
+								</i>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="7" align="right">Total de grupo(s) cadastrada(s): {{ pesquisa.length }}</td>
+						</tr>
+						<tr ng-show="pesquisa.length == 0">
+							<td colspan="7">Não há registro retornado na pesquisa.</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="paginacao col-md-12">
+					<dir-pagination-controls boundary-links="true" template-url="app/comum/templates/paginacao.diretiva.html"></dir-pagination-controls>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

@@ -1,0 +1,59 @@
+<section>
+	<div class="row conteudo-interno" cg-busy="espera">
+		<div class="row">
+			<div class="col-sm-6 col-md-8">
+				<em class="titulo-interno">Manter Cartão</em>
+			</div>
+			<div class=" col-sm-6 col-md-4">
+				<button class="bt bt-incluir" spt-modal-acao titulo="Incluir Cartão" acao="incluir" modulo="cartao" objeto="items" >
+				    <i class="fa fa-plus-circle" aria-hidden="true"></i> Incluir Cartão
+				</button>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="formulario">
+					<spt-filtro modulo="cartao"></spt-filtro>
+				</div>
+			</div>
+		</div>
+		<div class="mensagem" ng-if="!!mensagemServidor">
+			<p>
+				<em>{{mensagemServidor.descricao}}</em>
+			</p>
+		</div>
+		<div ng-if="cartoes.length" class="row resultados">
+			<div class="col-md-12">
+				<table class="tabela" width="100%">
+					<thead class="tabela-cabecalho">
+						<tr>
+							<th>Número Lógico</th>
+							<th>Número Físico</th>
+							<th>Tipo de Casco</th>
+							<th>Tipo de Cartão</th>
+							<th>Situação</th>
+						</tr>
+					</thead>
+					<tbody class="tabela-conteudo">
+						<tr dir-paginate="cartao in cartoes | itemsPerPage: ITENS_POR_PAGINA">
+							<td class="celula">{{cartao.numeroLogico}}</td>
+							<td class="celula">{{cartao.numeroFisico}}</td>
+							<td class="celula">{{cartao.tipoCasco}}</td>
+							<td class="celula">{{cartao.tipoCartao}}</td>
+							<td class="celula">{{cartao.situacao}}</td>
+							<td class="celula tabela-acoes">
+								<spt-botao-alternar condicao="cartao.registro.status == 'A'" texto-verdadeiro="Inativar" texto-falso="Reativar" classe-verdadeiro="ativo" callback="carregarCartao(cartao.id)" posicao="bottom" icone="fa-check" modulo="cartao" acao="ativar" objeto="cartao" titulo-verdadeiro="Inativar" titulo-falso="Reativar Cartão"></spt-botao-alternar>
+								<i class="fa fa-pencil" spt-modal-acao acao="editar" modulo="cartao" tooltip-placement="bottom" uib-tooltip="Alterar" titulo="Alterar Cartão" callback="carregarCartao(cartao.id)" objeto="cartao" aria-hidden="true"></i>
+								<i class="fa fa-search" spt-modal-acao acao="detalhes" modulo="cartao" tooltip-placement="bottom" uib-tooltip="Detalhes" titulo="Detalhes do Cartão" objeto="cartao"  aria-hidden="true"></i>
+								<i class="fa fa-times" spt-modal-acao acao="excluir" modulo="cartao" tooltip-placement="bottom" uib-tooltip="Excluir" titulo="Confirmação" objeto="cartao" callback="preFiltrar()" aria-hidden="true"></i>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="paginacao col-md-12">
+					<dir-pagination-controls boundary-links="true" template-url="app/comum/templates/paginacao.diretiva.html" callback-buscar-resultados="filtrar(objFiltro)"></dir-pagination-controls>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

@@ -1,0 +1,57 @@
+<section>
+    <div class="row conteudo-interno" cg-busy="espera">
+        <div class="row">
+            <div class="col-sm-6 col-md-8">
+                <em class="titulo-interno">Consultar Vínculo de Estampa e Casco</em>
+            </div>
+            <div class=" col-sm-6 col-md-4">
+                <button class="bt bt-incluir" spt-modal-acao titulo="Vincular Estampas x Tipo de Casco" acao="incluir" modulo="estampa-vinculo" tamanho="meio-grande" objeto="items" callback="incluirSucesso()">
+				<i class="fa fa-plus-circle" aria-hidden="true"></i> Incluir Vínculo
+				</button>
+            </div>
+        </div>
+        <div class="mensagem" ng-if="!!mensagemServidor">
+            <p>
+                <em>{{mensagemServidor.descricao}}</em>
+            </p>
+        </div>
+        <div ng-if="vinculos.length" class="row resultados">
+            <div class="col-md-12">
+                <table class="tabela" width="100%">
+                    <thead class="tabela-cabecalho">
+                        <tr>
+                            <th>Tipo de Casco</th>
+                            <th>Estampa</th>
+                            <th>Produto</th>
+                            <th>Data de realização do vínculo</th>
+                            <th>Vigência</th>
+                            <th>Desvincular</th>
+                        </tr>
+                    </thead>
+                    <tbody class="tabela-conteudo">
+                        <tr dir-paginate="vinculo in vinculos | itemsPerPage: ITENS_POR_PAGINA">
+                            <td class="celula">{{vinculo.tipoCasco.descricao}}</td>
+                            <td class="celula">{{vinculo.nome}} <i class="fa fa-info-circle" tooltip-placement="right" tooltip-class="tooltip-image" uib-tooltip-template="'estampa.tooltip.html'"></i></td>
+                            <td class="celula">{{vinculo.produto.descricao}}</td>
+                            <td class="celula">{{vinculo.registro.dataCriacao | date:'dd/MM/yyyy'}}</td>
+                            <td class="celula">{{vinculo.dataInicioVigencia | date:'dd/MM/yyyy'}} - {{vinculo.dataFimVigencia | date:'dd/MM/yyyy'}}</td>
+                            <td class="celula tabela-acoes">
+                                <i class="fa fa-link" spt-modal-acao acao="excluir" modulo="estampa-vinculo" tooltip-placement="bottom" uib-tooltip="Excluir" titulo="Excluir"
+                                    objeto="vinculo" callback="preFiltrar()" aria-hidden="true"></i>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="paginacao col-md-12">
+                    <dir-pagination-controls boundary-links="true" template-url="app/comum/templates/paginacao.diretiva.html"></dir-pagination-controls>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Tooltip-->
+<script type="text/ng-template" id="estampa.tooltip.html">
+    <div>
+        <img data-ng-src="{{vinculo.imagemClob}}"/>
+    </div>
+</script>

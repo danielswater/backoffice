@@ -1,0 +1,56 @@
+<section>
+	<div class="row conteudo-interno" cg-busy="espera">
+		<div class="row">
+			<div class="col-sm-6 col-md-8">
+				<em class="titulo-interno">Manter SAM - Pesquisa</em>
+			</div>
+			<div class=" col-sm-6 col-md-4">
+				<button class="bt bt-incluir" spt-modal-acao titulo="Incluir" acao="incluir" modulo="sam" objeto="items" callback="incluirSucesso()" >
+				<i class="fa fa-plus-circle" aria-hidden="true"></i> Incluir SAM
+				</button>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="formulario">
+					<spt-filtro modulo="sam"></spt-filtro>
+				</div>
+			</div>
+		</div>
+		<div class="mensagem" ng-if="!!mensagemServidor">
+			<p>
+				<em>{{mensagemServidor.descricao}}</em>
+			</p>
+		</div>
+		<div ng-if="sams.length" class="row resultados">
+			<div class="col-md-12">
+				<table class="tabela" width="100%">
+					<thead class="tabela-cabecalho">
+						<tr>
+							<th>Identificador</th>
+							<th>Tipo do SAM</th>
+							<th>Número de Série</th>
+							<th>Ações</th>
+						</tr>
+					</thead>
+					<tbody class="tabela-conteudo">
+						<tr dir-paginate="sam in sams | itemsPerPage: ITENS_POR_PAGINA">
+							<td class="celula">{{sam.id}}</td>
+							<td class="celula">{{sam.tipoSAM.descricao}}</td>
+							<td class="celula">{{sam.numeroSerie}}</td>
+							<td class="celula tabela-acoes">
+								<spt-botao-alternar condicao="sam.registro.situacao.id == 'A' || sam.registro.situacao.id == 'S'" texto-verdadeiro="Inativar" texto-falso="Reativar" classe-verdadeiro="ativo" callback="carregarSam(sam.id)" posicao="bottom" icone="fa-check" modulo="sam" acao="ativar" objeto="sam" titulo-verdadeiro="Inativar" titulo-falso="Reativar"></spt-botao-alternar>
+								<i class="fa fa-pencil" spt-modal-acao acao="editar" modulo="sam" tooltip-placement="bottom" uib-tooltip="Alterar" titulo="Alterar" objeto="sam" callback="carregarSam(sam.id)" aria-hidden="true"></i>
+								<i class="fa fa-search" spt-modal-acao acao="detalhes" modulo="sam" tooltip-placement="bottom" uib-tooltip="Consultar Detalhes" titulo="Consultar Detalhes" objeto="sam" aria-hidden="true"></i>
+								<i class="fa fa-times" spt-modal-acao acao="excluir" modulo="sam" tooltip-placement="bottom" uib-tooltip="Excluir" titulo="Excluir" objeto="sam" callback="preFiltrar()" aria-hidden="true"></i>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="paginacao col-md-12">
+					<dir-pagination-controls boundary-links="true" template-url="app/comum/templates/paginacao.diretiva.html"></dir-pagination-controls>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

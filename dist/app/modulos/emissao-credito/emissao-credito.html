@@ -1,0 +1,115 @@
+ <section>
+	<div class="row conteudo-interno">
+		<div class="row">
+			<div class="col-sm-6 col-md-8">
+				<em class="titulo-interno">Pesquisar Tipo de Emissão de Crédito</em>
+			</div>
+			<div class=" col-sm-6 col-md-4">
+				<button class="bt bt-incluir" spt-modal-acao 
+					modulo="credito" caminho-modulo="emissao-credito" acao="incluir" 
+					titulo="Incluir" tamanho="80" callback="incluirSucesso()">
+				    <i class="fa fa-plus-circle" aria-hidden="true"></i> Incluir Tipo de Emissão de Crédito
+				</button>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="formulario">
+					<spt-filtro caminho-modulo="emissao-credito" nome-filtro="credito"></spt-filtro>
+				</div>
+			</div>
+		</div>
+		<!--<div class="mensagem-erro" ng-if="!!mensagemServidor">
+			<p>
+				<em>{{mensagemServidor.descricao}}</em>
+			</p>
+		</div>-->
+		<div ng-if="emissao.length" class="row resultados">
+			<div class="col-md-12">
+				<table class="tabela" width="100%">
+					<thead class="tabela-cabecalho">
+						<tr>
+							<th style="width: 50px;">ID</th>
+							<th>Emissor do Crédito</th>
+							<th>Nome do Crédito</th>
+							<th>Tipo da Vigência</th>
+							<th>Tipo Tarifário</th>
+							<th>Aplicação do Crédito</th>
+							<th>Ação</th>
+						</tr>
+					</thead>
+					<tbody class="tabela-conteudo">
+						<tr dir-paginate="emissao in emissao | itemsPerPage: ITENS_POR_PAGINA | orderBy:'-id'">
+							<td class="celula">{{emissao.id}}</td>
+							<td class="celula">{{emissao.emissorCredito.descricao}}</td>
+							<td class="celula">{{emissao.creditoEletronico.descricao}}</td>
+							<td class="celula">{{emissao.vigenciaCreditoTemporal.descricao}}</td>
+							<td class="celula">{{emissao.tipoTarifario.descricao}}</td>
+							<td class="celula">{{emissao.tipoAplicacaoTransporte.descricao}}</td>
+							<td class="celula tabela-acoes">
+								<i class="fa fa-search" 
+									spt-modal-acao acao="detalhes" 
+									objeto="emissao" 
+									modulo="credito" 
+									caminho-modulo="emissao-credito" 
+									tooltip-placement="left" 
+									uib-tooltip="Consultar Detalhes" 
+									titulo="Consultar Detalhes do Tipo de Emissão de Crédito" 
+									tamanho="75" 
+									aria-hidden="true">
+								</i>
+								<i class="fa fa-pencil" 
+									spt-modal-acao acao="editar" 
+									objeto="emissao" 
+									modulo="credito" 
+									caminho-modulo="emissao-credito" 
+									tooltip-placement="left" 
+									uib-tooltip="Alterar" 
+									titulo="Alterar Tipo de Emissão de Crédito" 
+									tamanho="75" 
+									aria-hidden="true" 
+									callback="carregarEmissao(emissao.id)">
+								</i>
+								<spt-botao-alternar
+									condicao="emissao.registro.situacao.id == 'A'" 
+									texto-verdadeiro="Inativar" 
+									texto-falso="Reativar" 
+									classe-verdadeiro="ativo" 
+									callback="carregarEmissao(emissao.id)" 
+									posicao="bottom" 
+									icone="fa-check" 
+									modulo="emissao-credito" 
+									acao="ativar" 
+									objeto="emissao" 
+									titulo-verdadeiro="Inativar" 
+									titulo-falso="Reativar">
+								</spt-botao-alternar>
+								
+								<i class="fa fa-times" 
+									spt-modal-acao acao="excluir" 
+									objeto="emissao" 
+									modulo="credito" 
+									caminho-modulo="emissao-credito"
+									tooltip-placement="left" 
+									uib-tooltip="Excluir" 
+									titulo="Excluir Tipo de Emissão de Crédito" 
+									aria-hidden="true"
+									callback="preFiltrar()">
+								</i>
+							</td>
+						</tr>
+						<tr ng-show="emissao.length">
+							<td colspan="7" align="right">Total de Tipos de Emissão de Créditos Cadastrados: {{ emissao.length }}</td>
+						</tr>
+						<tr ng-show="emissao.length == 0">
+							<td colspan="7">Não há registro retornado na pesquisa.</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="paginacao col-md-12">
+					<dir-pagination-controls boundary-links="true" template-url="app/comum/templates/paginacao.diretiva.html"></dir-pagination-controls>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

@@ -1,0 +1,26 @@
+<div ng-show="!mensagemRetorno" cg-busy="espera">
+	<div class="cabecalho-modal"> <button type="button" class="fechar" ng-click="fechar()">×</button>
+		<h4 class="titulo-modal"><em ng-bind="modal.titulo"></em></h4>
+	</div>
+	<div class="conteudo-modal">
+		<spt-inclusao-estatica template-url="{{modal.template}}"></spt-inclusao-estatica>		
+	</div>
+	<div class="rodape-modal">
+		<div ng-hide="modal.nome=='faq' || modal.nome=='informacoes' || modal.nome=='informacoes_submit' || modal.nome=='agrupamento' || modal.nome=='menu-pagina-principal' || modal.nome=='moeda'">
+			<button class="bt bt-padrao bt-cancelar" type="button" ng-click="fechar()" form="formModal"><mark class="cor"></mark>Cancelar</button>
+			<button class="bt bt-padrao" type="submit" form="formModal"><mark class="cor"></mark>Salvar</button>
+		</div>
+	</div>
+</div>
+<div ng-show="!!mensagemRetorno">
+	<div class="cabecalho-modal"> <a type="button" class="fechar" ng-click="ok()">×</a>		
+	</div>
+	<div class="conteudo-modal">
+		<div class="mensagem-sucesso">
+            <i class="fa fa-check-circle-o"></i> <span ng-bind="mensagemRetorno.descricao"></span>
+        </div>
+	</div>
+	<div class="rodape-modal">	
+		<button class="bt bt-padrao bt-sucesso" ng-click="ok()"><mark class="cor"></mark>OK</button>
+	</div>
+</div>

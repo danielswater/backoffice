@@ -1,0 +1,54 @@
+<div class="formulario">
+	<spt-mensagem-erro form="formMidia" mensagem-servidor="mensagemServidor" ></spt-mensagem-erro>
+	<form id="formModal" class="modal-form" ng-submit="formMidia.$valid && incluir()"  name="formMidia" novalidate>
+		<div class="form-group">
+			<label for="" class="col-md-3 control-label">Tipo de Mídia:*</label>
+			<div class="col-md-6">
+				<select class="form-control" ng-model="midia.tipo" id="tipo" name="tipo" ng-options="tipo.descricao for tipo in tipos" ng-required="true">
+					<option value="" selected="selected">Selecione o Tipo de Mídia</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="" class="col-md-3 control-label">Mídia:*</label>
+			<div class="col-md-9">				
+				<input type="text" maxlength="20" class="form-control" ng-model="midia.nome" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="" class="col-md-3 control-label">Descrição da Mídia:*</label>
+			<div class="col-md-9">
+				<textarea class="form-control" name="descricao" ng-model="midia.descricao" ng-trim="false" maxlength="200" rows="5" required></textarea>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label for="" class="col-md-3 control-label">Capacidade de Memória:*</label>
+			<div class="col-md-6">				
+				<input type="text" class="form-control" ng-model="midia.memoriaBytes" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="" class="col-md-3 control-label">Velocidade de Transmissão dos Dados:*</label>
+			<div class="col-md-6">				
+				<input type="text" class="form-control" ng-model="midia.velocidadeTransmissao" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="" class="col-md-3 control-label">Distância de Operadores:*</label>
+			<div class="col-md-9">				
+				<input type="text" class="form-control" ng-model="midia.distanciaOperacao" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="" class="col-md-3 control-label">Normas Técnicas:*</label>
+			<div class="col-md-9">				
+				<input type="text" class="form-control" ng-model="midia.normasTecnicas" required>
+			</div>
+		</div>
+	</form>
+	<div class="row">
+		<span class="legendas"><em>* Campo Obrigatório</em></span>
+	</div>
+</div>

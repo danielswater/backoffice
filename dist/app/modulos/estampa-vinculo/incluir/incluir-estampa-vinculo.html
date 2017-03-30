@@ -1,0 +1,50 @@
+<div class="formulario">
+	<spt-mensagem-erro form="formEstampa" mensagem-servidor="mensagemServidor"></spt-mensagem-erro>
+	<form id="formModal" class="modal-form" ng-submit="formEstampa.$valid && incluir()" name="formEstampa" novalidate>
+		<div class="form-group">
+			<label for="" class="col-md-2 control-label">Tipo do Casco:*</label>
+			<div class="col-md-4">
+				<select class="form-control" ng-model="novoVinculo.tipoCasco" id="tipoCasco" name="tipoCasco" ng-options="casco.descricao for casco in tipoCascos" required>
+					<option value="">Selecione</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="" class="col-md-2 control-label">Estampa:*</label>
+			<div class="col-md-4">
+				<select class="form-control" ng-model="estampa" id="estampa" name="estampa" ng-options="estampa.nome for estampa in estampas" required>
+					<option value="">Selecione</option>
+				</select>
+                <div style="margin-top: 10px">
+                    <img class="img-detalhes" data-ng-src="{{estampa.imagemClob}}">
+                </div>
+			</div>
+			<label for="" class="col-md-2 control-label">Produtos:*</label>
+			<div class="col-md-4">
+                <div ng-repeat="produto in listaProdutos">
+                    <input type="checkbox" name="produto" value ="{{produto.produto.id}}" ng-model="produtos[produto.produto.id]">
+                    <label>{{produto.produto.descricao}}</label>
+                </div>
+			</div>
+		</div>
+		<div class="form-group">
+            <div class="col-md-6">
+            </div>
+            <div class="col-md-3">
+                <label for="" class="col-md-5 control-label">Vigência de:*</label>
+                <div class="col-md-7">
+                    <spt-data model="novoVinculo.dataInicioVigencia" abre="up" atualmin="atual" maxima="novoVinculo.dataFimVigencia || atual" mascara="39/19/9999" placeholder="dd/mm/aaaa" required></spt-data>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <label for="" class="col-md-5 control-label">até:*</label>
+                <div class="col-md-7">
+                    <spt-data id="fim" model="novoVinculo.dataFimVigencia" abre="up" atualmin="atual" minima="novoVinculo.dataInicioVigencia"  mascara="39/19/9999" placeholder="dd/mm/aaaa" required></spt-data>
+                </div>
+            </div>
+		</div>
+	</form>
+	<div class="row">
+		<span class="legendas"><em>* Campo Obrigatório</em></span>
+	</div>
+</div>

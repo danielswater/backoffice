@@ -1,0 +1,7 @@
+<div class="form-group">
+	<label for="tipoRelatorio" class="col-md-2 control-label">Tipo Relatório:</label>
+	<div class="col-md-3">
+		<spt-select id="tipoRelatorio" model="filtro.tipoRelatorio" options="tiposRelatorios" label="nome" track-by="id" default="{{LABEL.SELECIONE}}" required="true"></spt-select>
+	</div>
+</div>
+<spt-data-intervalo inicio="filtro.dataInicio" fim="filtro.dataTermino" classe-label="col-md-2" required="true"></spt-data-intervalo>

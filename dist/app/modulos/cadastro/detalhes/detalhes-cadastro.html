@@ -1,0 +1,164 @@
+<div class="container">
+    <!-- PAGE MAIN -->
+    <div class="col-md-12 page-main">
+        <!-- ROW TITLE PAGE -->
+        <div class="row">
+            <div class="col-md-8">
+                <div class="title-page"><span><em>Consultar Cidadão</em></span> </div>
+            </div>
+        </div>
+        <!-- FIM ROW TITLE PAGE-->
+        <!-- PAINEL GROUP -->
+        <div class="panel-group" id="accordion">
+            <!-- PAINEL DEFAULT -->
+            <div class="panel panel-default panel-default-tabs">
+                <div class="panel-heading form-head">
+                    <!-- Nav tabs -->
+                    <uib-tabset active="active">
+                        <!--  ABA DADOS SOLICITANTE -->
+                        <uib-tab index="0" heading="Solicitante">
+                            <div class="panel-body tab-content panel-body-tab">
+                                EF036
+                            </div>
+                        </uib-tab>
+                        <!--  ABA DADOS CARTÃO -->
+                        <uib-tab index="1" heading="Cartões">
+                            <!-- PANEL BODY -->
+                            <div class="panel-body tab-content panel-body-tab">
+                                <div id="cartoes" class="tab-pane active">
+                                    <div class="row title-label">
+                                        <div class="col-md-12">
+                                            <div class="boxScroll">
+                                                <fieldset class="fieldset">
+                                                    <legend class="legend">Dados do Solicitante</legend>
+                                                    <div class="col-md-12">
+                                                        <div class="box-table" style="margin-top:0;margin-bottom:10px">
+                                                            <table border="0" class="table table-striped box-width table-hover tag-row-zebra-white" style="margin-bottom:0px">
+                                                                <tbody class="tag-row-zebra-white">
+                                                                    <tr>
+                                                                        <td style="border-top:none; width:110px "><strong>Nome:</strong></td>
+                                                                        <td colspan="8" style="border-top:none">{{cartao.usuario.nomeCompleto}}</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="width:110px "><strong>CPF:</strong></td>
+                                                                        <td>{{cartao.usuario.cpf}}</td>
+                                                                        <td align="right"><strong>Tipo do CPF:</strong></td>
+                                                                        <td>{{cartao.usuario.cpf}}</td>
+                                                                        <td align="right"><strong>Data de Nascimento:</strong></td>
+                                                                        <td>{{cartao.usuario.dataNascimento}}</td>
+                                                                    </tr>
+                                                                    <tr style="width:110px ">
+                                                                        <td><strong>Tipo Dcto:</strong></td>
+                                                                        <td>{{cartao.usuario.tipoDocumento}}</td>
+                                                                        <td align="right"><strong>Nº Dcto:</strong></td>
+                                                                        <td>{{cartao.usuario.numeroDocumento}}</td>
+                                                                        <td align="right"><strong>Data de Emissão:</strong></td>
+                                                                        <td>{{cartao.usuario.dataEmissao}}</td>
+                                                                    </tr>
+                                                                    <tr style="width:110px ">
+                                                                        <td><strong>Estado Emissor:</strong></td>
+                                                                        <td>{{cartao.usuario.estadoEmissor}}</td>
+                                                                        <td align="right"><strong>Sexo:</strong></td>
+                                                                        <td>{{cartao.usuario.sexo}}</td>
+                                                                        <td align="right"></td>
+                                                                        <td></td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </fieldset>
+                                            </div>
+                                        </div>
+                                        <div class="row title-label">
+                                            <div class="col-md-12">
+                                                <div class="boxScroll">
+                                                    <fieldset class="fieldset">
+                                                        <legend class="legend">Dados dos cartões do cidadão</legend>
+                                                        <div ng-if="!(cartoes.length > 0)">
+                                                            <strong>Não há registro retornado na pesquisa.</strong>
+                                                        </div>
+                                                        <div ng-repeat="cartao in cartoes" class="col-md-12">
+                                                            <div class="box-table" style="margin-top:0;margin-bottom:10px">
+                                                                <table border="0" class="table table-striped box-width table-hover tag-row-zebra-white" style="margin-bottom:0px">
+                                                                    <tbody class="tag-row-zebra-white">
+                                                                        <tr>
+                                                                            <td style="border-top:none"><strong>Tipo de cartão:</strong></td>
+                                                                            <td style="border-top:none">{{cartao.tipoCartao.descricao}}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td><strong>Número lógico:</strong></td>
+                                                                            <td>{{cartao.identificadorCartao}}</td>
+                                                                            <td align="right"><strong>Número físico:</strong></td>
+                                                                            <td>{{cartao.numeroFisico}}</td>
+                                                                            <td align="right"><strong>OSE:</strong></td>
+                                                                            <td><a href="" ng-click="abreOseModal(cartao)">{{cartao.codigoOSE}}</a></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td><strong>Nº da via:</strong></td>
+                                                                            <td>{{cartao.numeroViaEmissao}}</td>
+                                                                            <td align="right"><strong>Data de solicitação:</strong></td>
+                                                                            <td>{{cartao.solicitacao.dataSolicitacao | date: 'dd/MM/yyyy'}}</td>
+                                                                            <td align="right"><strong>Data de Emissão:</strong></td>
+                                                                            <td>{{cartao.solicitacao.dataEmissaoCredito | date: 'dd/MM/yyyy'}}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td style="width: 120px;"><strong>Local de retirada:</strong></td>
+                                                                            <td>{{cartao.tipoLocalEntrega.descricao}}</td>
+                                                                            <td align="right"><strong>Estampa:</strong></td>
+                                                                            <td>{{cartao.estampa.nome}} <i class="fa fa-info-circle" tooltip-placement="right" tooltip-class="tooltip-image" uib-tooltip-template="'estampa.tooltip.html'"></i></td>
+                                                                            <td align="right"><strong>Situação:</strong></td>
+                                                                            <td><a href="" ng-click="abreSituacaoModal(cartao)">{{cartao.registro.situacao.descricao}}</a></td>
+                                                                        </tr>
+                                                                        <tr ng-if="cartao.produtos.length" class="row resultados">
+                                                                            <tr>
+                                                                                <td colspan="6" style="width:120px"><strong>Histórico do cartão:</strong></td>
+                                                                            </tr>
+                                                                            <div class="col-md-12">
+                                                                                <table class="tabela" width="100%">
+                                                                                    <thead class="tabela-cabecalho">
+                                                                                        <tr>
+                                                                                            <th>Produto/Benefício</th>
+                                                                                            <th>Data de Solicitação</th>
+                                                                                            <th>Situação</th>
+                                                                                            <th>Data da Situação</th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody class="tabela-conteudo">
+                                                                                        <tr ng-repeat="produto in cartao.produtos">
+                                                                                            <td class="celula">{{produto.nome}}</td>
+                                                                                            <td class="celula">{{produto.solicitacao.dataSolicitacao | date: 'dd/MM/yyyy'}}</td>
+                                                                                            <td class="celula">{{produto.registro.situacao.descricao}}</td>
+                                                                                            <td class="celula">{{produto.registro.dataAlteracao}}</td>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </fieldset>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- FIM PANEL BODY -->
+                        </uib-tab>
+                    </uib-tabset>
+                </div>
+            </div>
+            <!-- FIM PAINEL DEFAULT -->
+        </div>
+        <!-- FIM PAINEL GROUP -->
+    </div>
+    <!-- FIM PAGE MAIN -->
+</div>
+<!--Tooltip-->
+<script type="text/ng-template" id="estampa.tooltip.html">
+    <div>
+        <img data-ng-src="{{cartao.estampa.imagemClob}}"/>
+    </div>
+</script>
